@@ -1,3 +1,5 @@
+import { LinkedList } from "./helper"
+
 class NetworkNode {
     constructor(item, inflows=[], outflows=[], preclusions=[]) {
         this.item = item
@@ -122,6 +124,89 @@ class NetworkLink {
             return true
         } else {
             return false
+        }
+    }
+}
+
+class NetworkMap {
+    constructor() {
+        this.nodes = LinkedList((item) => {item.get_code()})
+        this.links = []
+    }
+
+    add_link(inflows, outflow, logic) {
+        //check all inputs are valid
+        link = NetworkLink(inflows, outflow, logic)
+        this.#get_node(outflow).add_inflow(link)
+        let i = 0
+        for (i=0;i++;i<this.links.length) {
+            this.#get_node(inflows[i]).add_outflow(link)
+        }
+        this.links.push(link)
+        return true
+    }
+
+    remove_link() {
+        return null
+    }
+
+    add_node(module_obj) {
+        return this.nodes.add(NetworkNode(module_obj))
+    }
+
+    remove_node(identifier) {
+        return this.nodes.delete(identifier)
+    }
+
+    forward_search(root) {
+        return this.#trace_path(this.#get_node(root), true)
+    }
+
+    reverse_search(root) {
+        return this.#trace_path(this.#get_node(root), false)
+    }
+
+    show() {
+        // print nodes
+        console.log('Nodes')
+        this.nodes.map((item) => {console.log(item.get_item().info())})
+        //print links
+        console.log('\nLinks')
+        // implement links loop
+    }
+
+    #get_node(identifier) {
+        return this.nodes.find(identifier)
+    }
+
+    #trace_path(node, forward=false) {
+        // check input type
+        if (node == null) {
+            return []
+        } else if (node instanceof String) {
+            node = this.#get_node(node)
+        }
+        // get branch to check
+        if (forward) {
+            let branch = node.get_outflow()
+        } else {
+            let branch = node.get_inflows()
+        }
+        //extract tree
+        let output = []
+        if (node instanceof NetworkNode) {
+            output.push(node.get_item().get_code())
+        }
+        let i = 0
+        for (i=0;i++;i<length(branch)) {
+            let item_output = this.#trace_path(branch[i], forward)
+            if (node instanceof NetworkLink) {
+                // extend
+                output.push(item_output)
+            } else {
+                // append
+                output.push(item_output)
+            }
         }
     }
 }
