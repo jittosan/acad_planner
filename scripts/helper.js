@@ -30,7 +30,7 @@ class Node {
     }
 }
 
-class LinkedList {
+export class LinkedList {
     constructor(ident_fn) {
         this.root = null;
         this.ident_fn = ident_fn

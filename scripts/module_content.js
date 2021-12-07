@@ -1,3 +1,5 @@
+import { LinkedList } from './helper'
+
 class ModuleInformation {
     // mod_info= (code, name, credits)
     constructor(mod_info) {
@@ -37,7 +39,7 @@ class ModuleInformation {
 
 class ModuleCollection {
     constructor() {
-        this.modules = LinkedList((item) => {return item.get_code()})
+        this.modules = new LinkedList((item) => {return item.get_code()})
     }
 
     #add(mod_info, raw_node=false) {
@@ -67,3 +69,5 @@ class ModuleCollection {
         this.modules.map((item) => {console.log(item.info())})
     }
 }
+
+let a = new ModuleCollection()
