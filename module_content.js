@@ -34,3 +34,36 @@ class ModuleInformation {
         return `${this.code} - ${this.name} (${this.credits}MC)`
     }
 }
+
+class ModuleCollection {
+    constructor() {
+        this.modules = LinkedList((item) => {return item.get_code()})
+    }
+
+    #add(mod_info, raw_node=false) {
+        if (raw_node) {
+            mod_info = ModuleInformation(mod_info)
+        }
+        return this.modules.add(mod_info)
+    }
+
+    #find(module_code) {
+        return this.modules.find(module_code)
+    }
+
+    #remove(module_code){
+        return this.modules.delete(module_code)
+    }
+
+    #cap() {
+        //compute cap
+        return 0
+    }
+    empty() {
+        return this.modules.empty()
+    }
+
+    show_contents(){
+        this.modules.map((item) => {console.log(item.info())})
+    }
+}
