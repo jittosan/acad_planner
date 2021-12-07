@@ -1,8 +1,8 @@
 class Node {
     constructor(item){
         this.item = item;
-        this.prev = none;
-        this.next = none;
+        this.prev = null;
+        this.next = null;
     }
 
     get_item(){
@@ -32,7 +32,7 @@ class Node {
 
 class LinkedList {
     constructor(ident_fn) {
-        this.root = none;
+        this.root = null;
         this.ident_fn = ident_fn
     }
 
@@ -45,7 +45,7 @@ class LinkedList {
             return true
         } else {
             // check duplicate
-            if (this.find(this.ident_fn(item)) != none) {
+            if (this.find(this.ident_fn(item)) != null) {
                 return false
             }
             // add to end of list
@@ -60,9 +60,9 @@ class LinkedList {
     }
 
     find(identifier, raw_node=false){
-        // return none if list empty
+        // return null if list empty
         if (this.empty()) {
-            return none;
+            return null;
         }   
         // check if root is the node to be found
         if (this.ident_fn(this.root.get_item()) == identifier) {
@@ -79,17 +79,17 @@ class LinkedList {
             }
         } while (cur_node != this.root)
 
-        // return none if identifier not found in list
-        return none
+        // return null if identifier not found in list
+        return null
     }
 
     delete(identifier){
         // check identifier exists in list
         del_node = this.find(identifier)
-        if (del_node == none) {return false}
+        if (del_node == null) {return false}
         // check if del_node is the last element
         if (this.size() == 1) {
-            this.root = none
+            this.root = null
             return true
         }
         // remove del_node
@@ -101,7 +101,7 @@ class LinkedList {
     }
 
     empty() {
-        return this.root == none;
+        return this.root == null;
     }
 
     size() {
@@ -124,3 +124,5 @@ class LinkedList {
         return 1;
     }
 }
+
+let a = new LinkedList((item) => {item})
