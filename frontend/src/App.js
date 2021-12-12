@@ -67,8 +67,8 @@ const sem_data = [
 function App() {
   return (
     <div className="App">
+      <ScheduleHeader title={'Schedule Planner'}/>
       <div className='MainContainer'>
-        <ScheduleHeader title={'Schedule Planner'}/>
         <SemesterContainer sem_data={sem_data} />
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>

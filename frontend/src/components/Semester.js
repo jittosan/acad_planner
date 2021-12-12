@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {MdOutlineCancel} from 'react-icons/md'
 import {BsDash} from 'react-icons/bs'
+import {IoAdd} from 'react-icons/io5'
 import styles from './Semester.module.scss'
 
 const Semester = ({sem_obj}) => {
@@ -14,7 +15,7 @@ const Semester = ({sem_obj}) => {
                 {sem_obj.modules.map((item)=><Module module_code={item} />)}  
             </div>
             <div className={styles.footer}>
-            <p>+</p>
+                <IoAdd className={styles.footerIcon} />
                 <input placeholder='Add module...' />
             </div>
         </div>
