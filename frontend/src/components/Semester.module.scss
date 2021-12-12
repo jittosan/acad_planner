@@ -1,0 +1,67 @@
+// Semester Class styling
+.container {
+    box-sizing: border-box;
+    height: auto;
+    min-height: 150px;
+    max-height: 600px;
+    width: auto;
+    min-width: 250px;
+    max-width: 400px;
+    padding: 3ch 3ch;
+    margin: 20px;
+    border: 0.2rem solid white;
+    background-color: white;
+    border-radius: 0.5rem;
+    filter: drop-shadow(2px 2px 3px #9c9c9c);
+    text-align: left;
+
+    .title {
+        margin: 0px;
+        padding: 0px;
+
+        h2 {
+            margin: 10px 0px 0px 0px;
+        }
+
+        i {
+            color: grey;
+            opacity: 0.7;
+        }
+    }
+
+    .module_container {
+        margin-top: 1ch;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}
+
+// Module Class styling
+.module {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+    height: auto;
+    padding-left: 2ch;
+    border-radius: 0.2rem;
+    padding: 0px 0px 0px 2ch;
+    margin: 0px;
+
+    p {
+        margin: 1ch;
+    }
+
+    .listmarker {
+        height: 50%;
+        width: 25px;
+        background-color: blue;
+    }
+
+    &:hover {
+        border: blue solid 1px;
+    }
+}
