@@ -11,6 +11,10 @@ const Semester = ({sem_obj}) => {
             <div className={styles.module_container}>
                 {sem_obj.modules.map((item)=><Module module_code={item} />)}  
             </div>
+            <div className={styles.footer}>
+            <p>+</p>
+                <input placeholder='Add module...' />
+            </div>
         </div>
     )
 }
@@ -20,6 +24,7 @@ const Module = ({module_code}) => {
         <div className={styles.module}>
             {/* <div className={styles.listmarker}></div> */}
             <p>{module_code}</p>
+            {/* <p> X </p> */}
         </div>
     )
 }

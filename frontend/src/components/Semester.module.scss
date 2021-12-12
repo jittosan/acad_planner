@@ -36,6 +36,25 @@
         display: grid;
         grid-template-columns: 100%;
     }
+
+    .footer {
+        height: auto;
+        width: 100%;
+        padding: 0ch 1ch;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        input {
+            border: none;
+            outline: none;
+            text-decoration: none;
+            background-color: none;
+            margin-left: 2ch;
+            width: 100%;
+            margin: auto;
+        }
+    }
 }
 
 // Module Class styling
@@ -46,10 +65,9 @@
     justify-content: left;
     width: 100%;
     height: auto;
-    padding-left: 2ch;
     border-radius: 0.2rem;
-    padding: 0px 0px 0px 2ch;
-    margin: 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px;
 
     p {
         margin: 1ch;
@@ -62,6 +80,6 @@
     }
 
     &:hover {
-        border: blue solid 1px;
+        border-left: grey solid 0.2rem;
     }
 }

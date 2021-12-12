@@ -30,7 +30,7 @@ const test_obj = [
 
 const SemesterContainer = () => {
     return (
-        <div>
+        <div className={styles.container}>
             {test_obj.map((item) => <Semester sem_obj={item}  />)}
         </div>
     )
