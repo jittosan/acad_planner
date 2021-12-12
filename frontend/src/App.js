@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import SemesterContainer from './components/SemesterContainer';
+import AcademicRequirements from './components/AcademicRequirements';
 
 function App() {
   return (
@@ -19,7 +20,10 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <SemesterContainer />
+      <div className='MainContainer'>
+        <SemesterContainer />
+        <AcademicRequirements />
+      </div>
     </div>
   );
 }
