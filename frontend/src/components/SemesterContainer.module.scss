@@ -1,4 +1,6 @@
 .container {
+    grid-column: 1;
+    grid-row-start: 2;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -8,4 +10,5 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    overflow-y: auto;
 }

@@ -1,28 +1,76 @@
-import logo from './logo.svg';
 import './App.css';
 import SemesterContainer from './components/SemesterContainer';
 import AcademicRequirements from './components/AcademicRequirements';
+import ScheduleHeader from './components/ScheduleHeader';
+
+//define test data
+const acad_req_data = [
+  {
+      name: 'ESP',
+      modules: ['ESP1111', 'ESP2111']
+  },
+  {
+      name: 'IDP',
+      modules: ['EG2310', 'EG2401A']
+  },
+  {
+      name: 'Physics Minor',
+      modules: ['PC1101']
+  },
+
+]
+const sem_data = [
+  {
+      name:'Y1S1',
+      acad_year: 'AY20/21',
+      type:'SEM 1',
+      id: 1,
+      modules:['ESP1111', 'MA1512', 'MA1511']
+  },
+  {
+      name:'Y1S2',
+      acad_year: 'AY20/21',
+      type:'SEM 2',
+      id: 1,
+      modules:['PC2030', 'ESP2111']
+  },
+  {
+      name:'Y2S1',
+      acad_year: 'AY21/22',
+      type:'SEM 1',
+      id: 1,
+      modules:['MA1508E', 'ME2121', 'GEA1000']
+  },
+  {
+      name:'Y2S2',
+      acad_year: 'AY21/22',
+      type:'SEM 2',
+      id: 1,
+      modules:['ESP1111', 'MA1512', 'MA1511']
+  },
+  {
+      name:'Y2 Summer',
+      acad_year: 'AY22/23',
+      type:'ST I',
+      id: 1,
+      modules:['PC2030', 'ESP2111']
+  },
+  {
+      name:'Y3S1',
+      acad_year: 'AY22/23',
+      type:'SEM 1',
+      id: 1,
+      modules:['MA1508E', 'ME2121', 'GEA1000']
+  },
+] 
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
       <div className='MainContainer'>
-        <SemesterContainer />
-        <AcademicRequirements />
+        <ScheduleHeader title={'Schedule Planner'}/>
+        <SemesterContainer sem_data={sem_data} />
+        <AcademicRequirements acad_req_data={acad_req_data} />
       </div>
     </div>
   );
