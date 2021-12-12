@@ -5,8 +5,8 @@ const Semester = ({sem_obj}) => {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-                <h2>{sem_obj.name}</h2>
-                <i>{sem_obj.acad_year} - {sem_obj.type}</i>
+                <strong>{sem_obj.name}</strong>
+                <p>{sem_obj.acad_year} ({sem_obj.type})</p>
             </div>
             <div className={styles.module_container}>
                 {sem_obj.modules.map((item)=><Module module_code={item} />)}  
