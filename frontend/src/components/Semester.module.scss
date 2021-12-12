@@ -64,6 +64,7 @@
 
 // Module Class styling
 .module {
+    position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -84,7 +85,16 @@
         background-color: blue;
     }
 
-    &:hover {
-        border-left: grey solid 0.2rem;
+    .dashIcon {
+        margin: auto 0;
     }
+
+    .deleteIcon {
+        color: red;
+        margin: auto 0;
+        padding: auto 0;
+        right: 0;
+        cursor: pointer;
+    }
+
 }

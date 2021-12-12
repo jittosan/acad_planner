@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {MdOutlineCancel} from 'react-icons/md'
+import {BsDash} from 'react-icons/bs'
 import styles from './Semester.module.scss'
 
 const Semester = ({sem_obj}) => {
@@ -20,11 +22,14 @@ const Semester = ({sem_obj}) => {
 }
 
 const Module = ({module_code}) => {
+    const [hovered, setHovered] = useState(false)
+    const isHovered = () => {setHovered(true)}
+    const notHovered = () => {setHovered(false)}
+
     return(
-        <div className={styles.module}>
-            {/* <div className={styles.listmarker}></div> */}
+        <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
+            {hovered ? <MdOutlineCancel className={styles.deleteIcon} /> : <BsDash className={styles.dashIcon} /> }
             <p>{module_code}</p>
-            {/* <p> X </p> */}
         </div>
     )
 }
