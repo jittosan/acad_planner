@@ -24,11 +24,9 @@ const RequirementGroup = ({req_data}) => {
             <Tag code={req_data.name.substring(0,3)} color={'#ec3cec'}/>
             <p className={styles.titleText}>{req_data.name}</p>
         </div>
-        {selected ? 
-                <div className={styles.dropdownContainer}>
+                <div className={styles.dropdownContainer} style={{display: selected ? '' : 'none'}}>
                     {req_data.modules.map((item) => <RequiredModule code={item} />)}
                 </div>
-            : ''}
         </>
     )
 }
