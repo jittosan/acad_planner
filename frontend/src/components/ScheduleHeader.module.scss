@@ -1,7 +1,20 @@
 .container {
+    box-sizing: border-box;
     width: 100%;
     height: auto;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 2;
+    border: rgb(216, 216, 216) 1px solid;
+    filter: drop-shadow(0px 0px 2px rgb(216, 216, 216));
+    z-index: 99;
+    display: grid;
+    grid-template-columns: auto 80px;
+
+    .settingsIcon {
+        width: 50px;
+        font-size: 2rem;
+        margin: auto;
+        padding-right: 1rem;
+    }
 }

@@ -63,11 +63,12 @@ const sem_data = [
       modules:['MA1508E', 'ME2121', 'GEA1000']
   },
 ] 
+const schedule_title = 'Ultimate Combi'
 
 function App() {
   return (
     <div className="App">
-      <ScheduleHeader title={'Schedule Planner'}/>
+      <ScheduleHeader title={schedule_title}/>
       <div className='MainContainer'>
         <SemesterContainer sem_data={sem_data} />
         <AcademicRequirements acad_req_data={acad_req_data} />
