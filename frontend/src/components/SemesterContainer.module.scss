@@ -1,7 +1,8 @@
 .container {
     grid-column: 1;
     grid-row-start: 2;
-    height: 100%;
+    height: auto;
+    min-height:75vh;
     width: 100%;
     margin: 0;
     padding: 0;

@@ -14,7 +14,6 @@
     .iconContainer {
         width: 40px;
         height: 40px;
-        // background-color: red;
         border-radius: 50%;
     }
 
@@ -22,8 +21,18 @@
         width: 30px;
         font-size: 2rem;
         margin: auto auto;
-        padding-right: 1rem;
+        padding: 0.5rem;
         border-radius: 50%;
+        cursor: pointer;
+        background-color: white;
+        transform: rotate(0deg);
+        filter: none;
+
+        &:hover {
+            transition: cubic-bezier(.5,.62,.22,.87) 150ms;
+            transform: scale(1.01) rotate(45deg);
+            filter: drop-shadow(0px 0px 2px rgba(100, 100, 100, 0.3));
+        }
     }
 
 }
