@@ -2,11 +2,11 @@
 .container {
     box-sizing: border-box;
     height: auto;
-    min-height: 150px;
-    max-height: 600px;
-    width: auto;
-    min-width: 250px;
-    max-width: 400px;
+    // min-height: 150px;
+    // max-height: 600px;
+    width: 100%;
+    // min-width: 250px;
+    // max-width: 400px;
     padding: 3ch 3ch;
     margin: 20px;
     border: 0.1rem solid rgb(197, 197, 197);
@@ -85,12 +85,12 @@
     padding: 0.2rem 0.8rem;
     margin: 0.1rem 0px;
     background-color: white;
+    transition: cubic-bezier(.5,.62,.22,.87) 150ms;
 
-    &:hover {
-        transition: cubic-bezier(.5,.62,.22,.87) 150ms;
-        // transform: translateX(-2px);
-        // filter: drop-shadow(0px 1px 1px rgba(100, 100, 100, 0.3));
-    }
+    // &:hover {
+    //     transform: translateX(-2px);
+    //     filter: drop-shadow(0px 1px 1px rgba(100, 100, 100, 0.3));
+    // }
 
     p {
         box-sizing: border-box;
@@ -124,9 +124,10 @@
         cursor: pointer;
         font-size: 1rem;
         transform: rotate(0deg);
+        transition: cubic-bezier(.15,.84,.25,1.1) 50ms;
+
 
         &:hover {
-            transition: cubic-bezier(.15,.84,.25,1.1) 50ms;
             transform: scale(1.1) rotate(90deg);
             filter: drop-shadow(0px 0px 1px rgba(255, 0, 0, 0.3));
         }
