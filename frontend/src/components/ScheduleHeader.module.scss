@@ -9,12 +9,21 @@
     filter: drop-shadow(0px 0px 2px rgb(216, 216, 216));
     z-index: 99;
     display: grid;
-    grid-template-columns: auto 80px;
+    grid-template-columns: auto 30px 50px;
+
+    .iconContainer {
+        width: 40px;
+        height: 40px;
+        // background-color: red;
+        border-radius: 50%;
+    }
 
     .settingsIcon {
-        width: 50px;
+        width: 30px;
         font-size: 2rem;
-        margin: auto;
+        margin: auto auto;
         padding-right: 1rem;
+        border-radius: 50%;
     }
+
 }

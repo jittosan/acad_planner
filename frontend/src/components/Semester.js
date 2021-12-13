@@ -32,8 +32,10 @@ const Module = ({module_code}) => {
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
             {hovered ? <MdOutlineCancel className={styles.deleteIcon} /> : <BsCircle className={styles.dashIcon} /> }
             <p>{module_code}</p>
-            <Tag code={'NAN'} color={'#ec3cec'}/>
-            <Tag code={'ENE'} color={'#ecc23c'}/>
+            <div className={styles.tagContainer}>
+                <Tag code={'NAN'} color={'#ec3cec'}/>
+                <Tag code={'ENE'} color={'#ecc23c'}/>
+            </div>
         </div>
     )
 }

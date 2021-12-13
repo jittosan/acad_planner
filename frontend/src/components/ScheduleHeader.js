@@ -11,7 +11,9 @@ const ScheduleHeader = ({title}) => {
     return (
         <div className={styles.container}>
             <h2>{title}</h2>
-            <MdSettings className={styles.settingsIcon} />
+            {/* <div className={styles.iconContainer}> */}
+                <MdSettings className={styles.settingsIcon} />
+            {/* </div> */}
         </div>
     )
 }

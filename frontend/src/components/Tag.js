@@ -10,3 +10,6 @@ const Tag = ({code, color}) => {
 }
 
 export default Tag
+
+
+// redux-store : {code,color, isVisible, name}
