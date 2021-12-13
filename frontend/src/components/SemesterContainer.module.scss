@@ -1,17 +1,16 @@
 .container {
-    grid-column: 1;
+    grid-column: 2;
     grid-row-start: 2;
-    height: auto;
+    height: 100vh;
     min-height:100vh;
     width: 100%;
     margin: 0;
     padding: 0;
-    display: grid;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: block;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    overflow-y: auto;
+    align-items: flex-start;
+    overflow-y: scroll;
     // background-image: url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
     // background-color: rgb(57, 29, 134);
     background-color: whitesmoke;

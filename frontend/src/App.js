@@ -2,6 +2,7 @@ import './App.css';
 import SemesterContainer from './components/SemesterContainer';
 import AcademicRequirements from './components/AcademicRequirements';
 import ScheduleHeader from './components/ScheduleHeader';
+import ScheduleContainer from './components/ScheduleContainer';
 
 //define test data
 const acad_req_data = [
@@ -68,8 +69,9 @@ const schedule_title = 'Ultimate Combi'
 function App() {
   return (
     <div className="App">
-      <ScheduleHeader title={schedule_title}/>
+      {/* <ScheduleHeader title={schedule_title}/> */}
       <div className='MainContainer'>
+        <ScheduleContainer acad_req_data={acad_req_data} />
         <SemesterContainer sem_data={sem_data} />
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>
