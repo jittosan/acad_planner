@@ -70,4 +70,4 @@ class ModuleCollection {
     }
 }
 
-let a = new ModuleCollection()
+export {ModuleInformation}

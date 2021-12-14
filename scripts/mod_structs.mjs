@@ -121,3 +121,6 @@ class AcademicRequirement extends ModuleCollection {
 }
 
 //SCHEDULE CLASS
+
+
+export {Database, Semester, AcademicRequirement}
