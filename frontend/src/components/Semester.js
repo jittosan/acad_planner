@@ -14,10 +14,10 @@ const Semester = ({sem_obj}) => {
             <div className={styles.module_container}>
                 {sem_obj.modules.map((item)=><Module module_code={item} />)}  
             </div>
-            <div className={styles.footer}>
+            {/* <div className={styles.footer}>
                 <IoAdd className={styles.footerIcon} />
                 <input placeholder='Add module...' />
-            </div>
+            </div> */}
         </div>
     )
 }
@@ -32,7 +32,7 @@ const Module = ({module_code}) => {
             <div className={styles.codeContainer}>
                 <p>{module_code}</p>
             </div>
-            <p>Insert Module Title here</p>
+            <p>Engineering Calculus</p>
             <div className={styles.tagContainer}>
                 {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
                 <Tag code={'ENE'} color={'#168f1c'}/>
