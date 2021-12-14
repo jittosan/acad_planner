@@ -1,4 +1,4 @@
-import { LinkedList } from './helper'
+import { LinkedList } from './helper.mjs'
 
 class ModuleInformation {
     // mod_info= (code, name, credits)

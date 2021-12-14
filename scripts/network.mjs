@@ -1,4 +1,4 @@
-import { LinkedList } from "./helper"
+import { LinkedList } from "./helper.mjs"
 
 class NetworkNode {
     constructor(item, inflows=[], outflows=[], preclusions=[]) {
@@ -130,13 +130,13 @@ class NetworkLink {
 
 class NetworkMap {
     constructor() {
-        this.nodes = LinkedList((item) => {item.get_code()})
+        this.nodes = new LinkedList((item) => {item.get_code()})
         this.links = []
     }
 
     add_link(inflows, outflow, logic) {
         //check all inputs are valid
-        link = NetworkLink(inflows, outflow, logic)
+        link = new NetworkLink(inflows, outflow, logic)
         this.#get_node(outflow).add_inflow(link)
         let i = 0
         for (i=0;i++;i<this.links.length) {
@@ -210,3 +210,5 @@ class NetworkMap {
         }
     }
 }
+
+export {NetworkMap}

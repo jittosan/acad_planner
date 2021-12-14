@@ -30,7 +30,7 @@ class Node {
     }
 }
 
-export class LinkedList {
+class LinkedList {
     constructor(ident_fn) {
         this.root = null;
         this.ident_fn = ident_fn
@@ -143,6 +143,8 @@ export class LinkedList {
         return output
     }
 }
+
+export {LinkedList}
 
 // let a = new LinkedList((item) => {return item})
 // a.add(1)
