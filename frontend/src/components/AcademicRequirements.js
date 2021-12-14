@@ -5,9 +5,13 @@ import styles from './AcademicRequirements.module.scss'
 import Tag from './Tag'
 
 const AcademicRequirements = ({acad_req_data}) => {
+    const [display, setDisplay] = useState(true)
+    const showDisplay = () =>{setDisplay(true)}
+    const hideDisplay = () =>{setDisplay(false)}
+
     return (
-        <div className={styles.container}>
-            <strong>Requirements</strong>
+        <div className={`${styles.container} ${display ? '' : styles.hidden}`}>
+            <strong  onClick={hideDisplay}>Requirements</strong>
             {acad_req_data.map((item) => <RequirementGroup req_data={item} />)}
         </div>
     )
