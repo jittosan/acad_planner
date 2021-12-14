@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import {MdOutlineCancel} from 'react-icons/md'
-import {BsCircle} from 'react-icons/bs'
+import {HiOutlineTrash} from 'react-icons/hi'
 import {IoAdd} from 'react-icons/io5'
 import styles from './Semester.module.scss'
 import Tag from './Tag'
@@ -30,14 +29,15 @@ const Module = ({module_code}) => {
 
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
-            {/* {hovered ? <MdOutlineCancel className={styles.deleteIcon} /> : <BsCircle className={styles.dashIcon} /> } */}
             <div className={styles.codeContainer}>
                 <p>{module_code}</p>
             </div>
+            <p>Insert Module Title here</p>
             <div className={styles.tagContainer}>
-                <Tag code={'NAN'} color={'#ec3cec'}/>
-                <Tag code={'ENE'} color={'#ecc23c'}/>
+                {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
+                <Tag code={'ENE'} color={'#168f1c'}/>
             </div>
+            {hovered ? <HiOutlineTrash className={styles.deleteIcon} /> : '' }
         </div>
     )
 }

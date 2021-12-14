@@ -80,12 +80,14 @@
 .module {
     position: relative;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
     height: auto;
     border-radius: 0.8rem;
-    padding: 0.2rem 0.8rem;
+    padding: 0.3rem 0.8rem;
     margin: 0.1rem 0px;
     background-color: white;
     transition: 30ms;
@@ -106,13 +108,12 @@
     .codeContainer {
         padding: 0rem;
         border-radius: 0.6rem;
-        background-color: rgba(0,0,185,0.1);
+        // color: white;
+        background-color: #caf0f8;
         // filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.3));
     }
 
     .tagContainer {
-        grid-column: 3;
-        grid-row: 1;
         display: flex;
         flex-direction: row;
     }
@@ -127,6 +128,8 @@
     }
 
     .deleteIcon {
+        position: absolute;
+        right: 2ch;
         box-sizing: border-box;
         color: red;
         margin: auto 0;
@@ -134,12 +137,12 @@
         cursor: pointer;
         font-size: 1rem;
         transform: rotate(0deg);
-        transition: cubic-bezier(.15,.84,.25,1.1) 50ms;
+        transition: ease 50ms;
 
 
         &:hover {
-            transform: scale(1.1) rotate(90deg);
-            filter: drop-shadow(0px 0px 1px rgba(255, 0, 0, 0.3));
+            transform: scale(1.1) rotate(10deg);
+            filter: drop-shadow(0px 0px 1px rgba(255, 0, 0, 0.2));
         }
     }
 

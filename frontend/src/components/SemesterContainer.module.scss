@@ -17,7 +17,7 @@
 
     /* width */
     &::-webkit-scrollbar {
-        width: 0.6rem;
+        width: 0.3rem;
     }
     
     /* Track */
@@ -28,14 +28,16 @@
     
     /* Handle */
     &::-webkit-scrollbar-thumb {
-        background: rgb(190, 68, 68);
-        border: solid 2px rgb(167, 73, 73);
+        background: rgb(161, 161, 161);
+        // border: solid 2px rgb(167, 73, 73);
         filter: drop-shadow(0px 0px 5px rgba(0,0,0,1));
         border-radius: 1rem;
+        width: 50%;
     }
     
     /* Handle on hover */
     &::-webkit-scrollbar-thumb:hover {
         background: #555;
+        width: 100%;
     }
 }
