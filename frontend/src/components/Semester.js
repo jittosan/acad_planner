@@ -30,7 +30,7 @@ const Module = ({module_code}) => {
 
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
-            {hovered ? <MdOutlineCancel className={styles.deleteIcon} /> : <BsCircle className={styles.dashIcon} /> }
+            {/* {hovered ? <MdOutlineCancel className={styles.deleteIcon} /> : <BsCircle className={styles.dashIcon} /> } */}
             <div className={styles.codeContainer}>
                 <p>{module_code}</p>
             </div>
