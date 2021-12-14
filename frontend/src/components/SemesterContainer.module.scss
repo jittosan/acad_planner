@@ -14,4 +14,28 @@
     // background-image: url('https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
     // background-color: rgb(57, 29, 134);
     background-color: whitesmoke;
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 0.6rem;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 10px auto;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgb(190, 68, 68);
+        border: solid 2px rgb(167, 73, 73);
+        filter: drop-shadow(0px 0px 5px rgba(0,0,0,1));
+        border-radius: 1rem;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 }
