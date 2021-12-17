@@ -1,18 +1,20 @@
+import {ModuleCollection} from './module_content.js'
+
 class Database extends ModuleCollection {
     constructor() {
         super()
     }
 
     add_module(mod_info) {
-        return this.modules.#add(mod_info)
+        return this.modules.add(mod_info)
     }
 
     find_module(mod_info) {
-        return this.modules.#find(mod_info)
+        return this.modules.find(mod_info)
     }
 
     remove_module(mod_info) {
-        return this.modules.#remove(mod_info)
+        return this.modules.remove(mod_info)
     }
 }
 
@@ -31,15 +33,15 @@ class Course extends ModuleCollection {
     }
 
     add_module(mod_info) {
-        return this.modules.#add(mod_info)
+        return this.modules.add(mod_info)
     }
 
     find_module(mod_info) {
-        return this.modules.#find(mod_info)
+        return this.modules.find(mod_info)
     }
 
     remove_module(mod_info) {
-        return this.modules.#remove(mod_info)
+        return this.modules.remove(mod_info)
     }
 
     compute_cap() {
@@ -67,15 +69,15 @@ class Semester extends ModuleCollection {
     }
 
     add_module(mod_info) {
-        return this.modules.#add(mod_info)
+        return this.modules.add(mod_info)
     }
 
     find_module(mod_info) {
-        return this.modules.#find(mod_info)
+        return this.modules.find(mod_info)
     }
 
     remove_module(mod_info) {
-        return this.modules.#remove(mod_info)
+        return this.modules.remove(mod_info)
     }
 
     compute_cap() {
@@ -103,15 +105,15 @@ class AcademicRequirement extends ModuleCollection {
     }
 
     add_module(mod_info) {
-        return this.modules.#add(mod_info)
+        return this.modules.add(mod_info)
     }
 
     find_module(mod_info) {
-        return this.modules.#find(mod_info)
+        return this.modules.find(mod_info)
     }
 
     remove_module(mod_info) {
-        return this.modules.#remove(mod_info)
+        return this.modules.remove(mod_info)
     }
 
     info() {
@@ -123,4 +125,4 @@ class AcademicRequirement extends ModuleCollection {
 //SCHEDULE CLASS
 
 
-export {Database, Semester, AcademicRequirement}
+export {Database as DataStore, Semester, AcademicRequirement}

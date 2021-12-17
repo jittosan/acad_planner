@@ -1,4 +1,4 @@
-import { LinkedList } from "./helper.mjs"
+import { LinkedList } from "./helper.js"
 
 class NetworkNode {
     constructor(item, inflows=[], outflows=[], preclusions=[]) {

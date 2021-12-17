@@ -1,10 +1,10 @@
-import {NetworkMap} from './network.mjs';
-import {Database} from './mod_structs.mjs';
+import {NetworkMap} from './network.js';
+import {DataStore} from './mod_structs.js';
 
 let n = new NetworkMap()
-// n.info()
+n.show()
 
-let db = Database()
+let db = DataStore()
 db.show()
 
 let a = 2
