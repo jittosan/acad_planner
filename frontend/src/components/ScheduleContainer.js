@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BsCheckCircle, BsDashCircle } from 'react-icons/bs'
 import {RiArrowDownSLine,RiArrowRightSLine} from 'react-icons/ri'
-import styles from './ScheduleContainer.module.scss'
+import styles from '../styles/ScheduleContainer.module.scss'
 import Tag from './Tag'
 
 const ScheduleContainer = ({acad_req_data}) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {HiOutlineTrash} from 'react-icons/hi'
-import {IoAdd} from 'react-icons/io5'
-import styles from './Semester.module.scss'
+// import {IoAdd} from 'react-icons/io5'
+import styles from '../styles/Semester.module.scss'
 import Tag from './Tag'
 
 const Semester = ({sem_obj}) => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BsCheckCircle, BsDashCircle } from 'react-icons/bs'
 import {RiArrowDownSLine,RiArrowRightSLine} from 'react-icons/ri'
-import styles from './AcademicRequirements.module.scss'
+import styles from '../styles/AcademicRequirements.module.scss'
 import Tag from './Tag'
 
 const AcademicRequirements = ({acad_req_data}) => {
     const [display, setDisplay] = useState(true)
-    const showDisplay = () =>{setDisplay(true)}
+    // const showDisplay = () =>{setDisplay(true)}
     const hideDisplay = () =>{setDisplay(false)}
 
     return (

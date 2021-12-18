@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdSettings } from 'react-icons/md'
-import styles from './ScheduleHeader.module.scss'
+import styles from '../styles/ScheduleHeader.module.scss'
 
 const ScheduleHeader = ({title}) => {
     // set default title

@@ -1,6 +1,6 @@
 import React from 'react'
 import Semester from './Semester'
-import styles from './SemesterContainer.module.scss'
+import styles from '../styles/SemesterContainer.module.scss'
 
 const SemesterContainer = ({sem_data}) => {
     return (
