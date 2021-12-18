@@ -22,42 +22,42 @@ class NetworkNode {
     }
 
     get_outflows(){
-        return self.outflows
+        return this.outflows
     }
 
     add_outflow(link) {
-        return this.#add(link, this.outflows)
+        return this.add(link, this.outflows)
     }
 
     del_outflow(link) {
-        return this.#del(link, this.outflows)
+        return this.del(link, this.outflows)
     }
 
     get_inflows(){
-        return self.inflows
+        return this.inflows
     }
 
     add_inflow(link) {
-        return this.#add(link, this.inflows)
+        return this.add(link, this.inflows)
     }
 
     del_inflow(link) {
-        return this.#del(link, this.inflows)
+        return this.del(link, this.inflows)
     }
 
     get_preclusions(){
-        return self.preclusions
+        return this.preclusions
     }
 
     add_preclusion(link) {
-        return this.#add(link, this.preclusions)
+        return this.add(link, this.preclusions)
     }
 
     del_preclusion(link) {
-        return this.#del(link, this.preclusions)
+        return this.del(link, this.preclusions)
     }
 
-    #add(item, collection) {
+    add(item, collection) {
         //check duplicate
         if (!collection.includes(item)) {
             collection.push(item)
@@ -67,7 +67,7 @@ class NetworkNode {
         }
     }
 
-    #del(item, collection) {
+    del(item, collection) {
         //check duplicate
         if (collection.includes(item)) {
             collection.splice(collection.indexOf(item), 1)
@@ -136,11 +136,11 @@ class NetworkMap {
 
     add_link(inflows, outflow, logic) {
         //check all inputs are valid
-        link = new NetworkLink(inflows, outflow, logic)
-        this.#get_node(outflow).add_inflow(link)
+        let link = new NetworkLink(inflows, outflow, logic)
+        this.get_node(outflow).add_inflow(link)
         let i = 0
         for (i=0;i++;i<this.links.length) {
-            this.#get_node(inflows[i]).add_outflow(link)
+            this.get_node(inflows[i]).add_outflow(link)
         }
         this.links.push(link)
         return true
@@ -159,38 +159,39 @@ class NetworkMap {
     }
 
     forward_search(root) {
-        return this.#trace_path(this.#get_node(root), true)
+        return this.trace_path(this.get_node(root), true)
     }
 
     reverse_search(root) {
-        return this.#trace_path(this.#get_node(root), false)
+        return this.trace_path(this.get_node(root), false)
     }
 
     show() {
         // print nodes
         console.log('Nodes')
-        this.nodes.map((item) => {console.log(item.get_item().info())})
+        this.nodes.map((item) => console.log(item.get_item().info()))
         //print links
         console.log('\nLinks')
         // implement links loop
     }
 
-    #get_node(identifier) {
+    get_node(identifier) {
         return this.nodes.find(identifier)
     }
 
-    #trace_path(node, forward=false) {
+    trace_path(node, forward=false) {
         // check input type
         if (node == null) {
             return []
         } else if (node instanceof String) {
-            node = this.#get_node(node)
+            node = this.get_node(node)
         }
         // get branch to check
+        let branch = []
         if (forward) {
-            let branch = node.get_outflow()
+            branch = node.get_outflow()
         } else {
-            let branch = node.get_inflows()
+            branch = node.get_inflows()
         }
         //extract tree
         let output = []
@@ -198,8 +199,8 @@ class NetworkMap {
             output.push(node.get_item().get_code())
         }
         let i = 0
-        for (i=0;i++;i<length(branch)) {
-            let item_output = this.#trace_path(branch[i], forward)
+        for (i=0;i++;i< branch.length) {
+            let item_output = this.trace_path(branch[i], forward)
             if (node instanceof NetworkLink) {
                 // extend
                 output.push(item_output)
