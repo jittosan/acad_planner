@@ -1,10 +1,6 @@
 import {ModuleCollection} from './module_content.js'
 
 class Database extends ModuleCollection {
-    constructor() {
-        super()
-    }
-
     add_module(mod_info) {
         return this.modules.add(mod_info)
     }
@@ -18,41 +14,41 @@ class Database extends ModuleCollection {
     }
 }
 
-class Course extends ModuleCollection {
-    constructor(name='') {
-        super()
-        this.name = name
-    }
+// class Course extends ModuleCollection {
+//     constructor(name='') {
+//         super()
+//         this.name = name
+//     }
 
-    get_name() {
-        return this.name
-    }
+//     get_name() {
+//         return this.name
+//     }
 
-    set_name(name) {
-        this.name = name
-    }
+//     set_name(name) {
+//         this.name = name
+//     }
 
-    add_module(mod_info) {
-        return this.modules.add(mod_info)
-    }
+//     add_module(mod_info) {
+//         return this.modules.add(mod_info)
+//     }
 
-    find_module(mod_info) {
-        return this.modules.find(mod_info)
-    }
+//     find_module(mod_info) {
+//         return this.modules.find(mod_info)
+//     }
 
-    remove_module(mod_info) {
-        return this.modules.remove(mod_info)
-    }
+//     remove_module(mod_info) {
+//         return this.modules.remove(mod_info)
+//     }
 
-    compute_cap() {
-        return this.modules.compute_cap()
-    }
+//     compute_cap() {
+//         return this.modules.compute_cap()
+//     }
 
-    info() {
-        console.log(`COURSE: ${this.name}`)
-        this.modules.map((item) => {item.info()})
-    }
-}
+//     info() {
+//         console.log(`COURSE: ${this.name}`)
+//         this.modules.map((item) => {item.info()})
+//     }
+// }
 
 class Semester extends ModuleCollection {
     constructor(num=0) {
@@ -86,7 +82,7 @@ class Semester extends ModuleCollection {
 
     info() {
         console.log(`SEMESTER: ${this.num}`)
-        this.modules.map((item) => {item.info()})
+        this.modules.map((item) => {item.info(); return null})
     }
 }
 
@@ -118,7 +114,7 @@ class AcademicRequirement extends ModuleCollection {
 
     info() {
         console.log(`REQUIREMENT: ${this.name}`)
-        this.modules.map((item) => {item.info()})
+        this.modules.map((item) => {item.info(); return null})
     }
 }
 
