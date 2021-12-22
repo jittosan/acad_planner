@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {HiOutlineTrash} from 'react-icons/hi'
-// import {IoAdd} from 'react-icons/io5'
+import {IoAdd} from 'react-icons/io5'
 import styles from '../styles/Semester.module.scss'
 import Tag from './Tag'
 
@@ -13,11 +13,11 @@ const Semester = ({sem_obj}) => {
             </div>
             <div className={styles.module_container}>
                 {sem_obj.modules.map((item)=><Module module_code={item} />)}  
+                <div className={styles.footer}>
+                    <IoAdd className={styles.footerIcon} />
+                    <input placeholder='Add module...' />
+                </div>
             </div>
-            {/* <div className={styles.footer}>
-                <IoAdd className={styles.footerIcon} />
-                <input placeholder='Add module...' />
-            </div> */}
         </div>
     )
 }
