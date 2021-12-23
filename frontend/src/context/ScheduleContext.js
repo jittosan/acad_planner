@@ -1,7 +1,22 @@
 import { createContext } from "react";
 
-// define context & load in from data files
-const ScheduleContext = createContext({});
+class demo {
+    constructor() {
+        this.text = 'TEST TEXT'
+    }
+
+    getText() {
+        return this.text
+    }
+
+    setText(text) {
+        this.text = text
+    }
+}
+
+
+// define context
+const ScheduleContext = createContext(new demo());
 
 const ScheduleContextProvider = ({value, children}) => {
     return(

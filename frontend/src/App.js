@@ -33,21 +33,21 @@ const sem_data = [
       acad_year: 'AY20/21',
       type:'SEM 2',
       id: 1,
-      modules:['CS1010', 'ESP2111']
+      modules:['CS1010E', 'ESP2111']
   },
   {
       name:'Y2S1',
       acad_year: 'AY21/22',
       type:'SEM 1',
       id: 1,
-      modules:['MA1508E', 'ME2121', 'GEA1000']
+      modules:['PC2031', 'ME2121', 'GESS1014']
   },
   {
       name:'Y2S2',
       acad_year: 'AY21/22',
       type:'SEM 2',
       id: 1,
-      modules:['ESP1111', 'MA1512', 'MA1511']
+      modules:['GEC1010', 'ESP5402', 'MA1511']
   },
   {
       name:'Y2 Summer',

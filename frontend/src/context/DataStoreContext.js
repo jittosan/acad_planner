@@ -1,7 +1,8 @@
 import { createContext } from "react";
+import modData from '../data/modData.json'
 
 // define context & load in from data files
-const DataStoreContext = createContext({});
+const DataStoreContext = createContext(modData);
 
 const DataStoreContextProvider = ({value, children}) => {
     return(

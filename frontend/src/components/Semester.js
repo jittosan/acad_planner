@@ -3,9 +3,12 @@ import {HiOutlineTrash} from 'react-icons/hi'
 import {IoAdd} from 'react-icons/io5'
 import styles from '../styles/Semester.module.scss'
 import Tag from './Tag'
-import modData from '../data/modData.json'
+import { useContext } from 'react'
+import { DataStoreContext } from '../context/DataStoreContext'
+import { ScheduleContext } from '../context/ScheduleContext'
 
 const Semester = ({sem_obj}) => {
+    let demo = useContext(ScheduleContext)
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -16,7 +19,7 @@ const Semester = ({sem_obj}) => {
                 {sem_obj.modules.map((item, index)=><Module key={index} module_code={item} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
-                    <input placeholder='Add module...' />
+                    <input placeholder={demo.getText()} onClick={() => demo.setText('NEW')} />
                 </div>
             </div>
         </div>
@@ -27,8 +30,9 @@ const Module = ({module_code}) => {
     const [hovered, setHovered] = useState(false)
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
+    let modData = useContext(DataStoreContext)
 
-    console.log(modData[module_code] ? modData[module_code].title : '!Not Found')
+    // console.log(modData[module_code] ? modData[module_code].title : '!Not Found')
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
             <div className={styles.codeContainer}>
