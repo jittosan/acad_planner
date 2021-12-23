@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Semester from './Semester'
 import styles from '../styles/SemesterContainer.module.scss'
-import { DataStore } from '../scripts/v3'
+import { useContext } from 'react/cjs/react.development'
+import { ScheduleContext } from '../context/ScheduleContext'
 
-const SemesterContainer = ({sem_data}) => {
+const SemesterContainer = () => {
+    let schedule = useContext(ScheduleContext)
+    
     return (
         <div className={styles.container}>
-            {sem_data.map((item, index) => <Semester key={index} sem_obj={item}  />)}
+            {schedule.map((_, index) => <Semester key={index} index={index}  />)}
         </div>
     )
 }

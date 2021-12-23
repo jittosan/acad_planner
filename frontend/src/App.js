@@ -3,6 +3,7 @@ import SemesterContainer from './components/SemesterContainer';
 import AcademicRequirements from './components/AcademicRequirements';
 import ScheduleHeader from './components/ScheduleHeader';
 import ScheduleContainer from './components/ScheduleContainer';
+import { ScheduleContextProvider } from './context/ScheduleContext';
 
 //define test data
 const acad_req_data = [
@@ -64,17 +65,19 @@ const sem_data = [
       modules:['MA1508E', 'ME2121', 'GEA1000']
   },
 ] 
-const schedule_title = 'Ultimate Combi'
+// const schedule_title = 'Ultimate Combi'
 
 function App() {
   return (
     <div className="App">
       {/* <ScheduleHeader title={schedule_title}/> */}
+      <ScheduleContextProvider value={sem_data}>
       <div className='MainContainer'>
         <ScheduleContainer acad_req_data={acad_req_data} />
-        <SemesterContainer sem_data={sem_data} />
+        <SemesterContainer />
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>
+      </ScheduleContextProvider>
     </div>
   );
 }

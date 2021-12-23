@@ -7,8 +7,9 @@ import { useContext } from 'react'
 import { DataStoreContext } from '../context/DataStoreContext'
 import { ScheduleContext } from '../context/ScheduleContext'
 
-const Semester = ({sem_obj}) => {
-    let demo = useContext(ScheduleContext)
+const Semester = ({index}) => {
+    let sem_obj = useContext(ScheduleContext)[index]
+    
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -19,7 +20,7 @@ const Semester = ({sem_obj}) => {
                 {sem_obj.modules.map((item, index)=><Module key={index} module_code={item} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
-                    <input placeholder={demo.getText()} onClick={() => demo.setText('NEW')} />
+                    <input placeholder={'Add Module...'} />
                 </div>
             </div>
         </div>
@@ -32,7 +33,6 @@ const Module = ({module_code}) => {
     const notHovered = () => {setHovered(false)}
     let modData = useContext(DataStoreContext)
 
-    // console.log(modData[module_code] ? modData[module_code].title : '!Not Found')
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
             <div className={styles.codeContainer}>
