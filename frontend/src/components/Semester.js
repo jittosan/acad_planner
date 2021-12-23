@@ -3,6 +3,7 @@ import {HiOutlineTrash} from 'react-icons/hi'
 import {IoAdd} from 'react-icons/io5'
 import styles from '../styles/Semester.module.scss'
 import Tag from './Tag'
+import modData from '../data/modData.json'
 
 const Semester = ({sem_obj}) => {
     return (
@@ -27,12 +28,13 @@ const Module = ({module_code}) => {
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
 
+    console.log(modData[module_code] ? modData[module_code].title : '!Not Found')
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
             <div className={styles.codeContainer}>
                 <p>{module_code}</p>
             </div>
-            <p>Engineering Calculus</p>
+            <p>{modData[module_code] ? modData[module_code].title : '!Not Found'}</p>
             <div className={styles.tagContainer}>
                 {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
                 <Tag code={'ENE'} color={'#168f1c'}/>
