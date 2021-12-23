@@ -1,4 +1,5 @@
 import modData from '../data/modData.json'
+import { DataStore } from './v3'
 
 async function loadWebHook(callback) {
     let moduleList = []
@@ -32,7 +33,8 @@ async function initialiseData(callback) {
 }
 
 const loadData = () => {
-    return modData
+    let db = DataStore()
+    modData.map((item) => item)
 }
 
 export {loadWebHook, initialiseData, loadData}

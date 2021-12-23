@@ -149,7 +149,7 @@ class Link {
 
 class DataStore {
     constructor(){
-        this.nodes = modData
+        this.nodes = {}
         this.links  = []
     }
 
