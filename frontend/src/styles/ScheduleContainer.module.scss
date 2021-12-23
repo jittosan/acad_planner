@@ -13,57 +13,25 @@
     overflow-y: auto;
     z-index: 5;
     // resize: horizontal;
+    
+    .selected {
+        font-weight: 600;
+        color: rgb(24, 106, 200);
+    }
 
-
-    .requirementGroup {
-        position: relative;
-        display: grid;
-        grid-template-columns: 2ch 30px auto;
-        padding: 0ch 2ch;
+    .itemContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 1ch;
+        padding: 1ch 0;
         cursor: pointer;
 
-        .dropdownIcon {
-            margin:auto 0;
-        }
-
-        .titleText {
-            padding-left: 1ch;
-            text-align: left;
-        }
-
-        .dropdownContainer {
-            position: relative;
-            grid-row: 2;
-            height: auto;
-            width: 100%;
-            padding: 0;
-            padding-left: 5ch;
+        p {
             margin: 0;
+            padding: 0;
+            padding-left: 1ch;
         }
-    }
-}
-
-.requiredModule {
-    width: auto;
-    height: auto;
-    display: grid;
-    padding-left: 5ch;
-    grid-template-columns: 50px auto;
-    grid-template-rows: 100%;
-
-    .dashIcon {
-        margin: auto;
-        width: 30px;
-    }
-
-    .checkIcon {
-        margin: auto;
-        color: green;
-        width: 30px;
-    }
-
-
-    p {
-        text-align: left;
     }
 }

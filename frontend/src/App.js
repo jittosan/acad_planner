@@ -66,20 +66,38 @@ let sem_data = [
       modules:['MA1508E', 'ME2121', 'GEA1000']
   },
 ] 
-// const schedule_title = 'Ultimate Combi'
 
+let scheduleData = [
+  {
+    name:'First',
+    semesters: [...sem_data]
+  },
+  {
+    name:'Alternate',
+    semesters: [...sem_data]
+  },
+  {
+    name:'Extreme',
+    semesters: [...sem_data]
+  },
+]
+// const schedule_title = 'Ultimate Combi'
+console.log(scheduleData)
 function App() {
-  const [schedule, setSchedule] = useState(sem_data)
+  const [currentSchedule, setCurrentSchedule] = useState(0)
+
+  const [schedule, setSchedule] = useState(scheduleData[currentSchedule]['semesters'])
+  console.log(schedule)
   const [flip, setFlip] = useState(true)
   const trigger = () => (setFlip(!flip))
   const update = (newState) => {setSchedule(newState);trigger()}
 
   return (
     <div className="App">
-      <ScheduleHeader title={'Test'}/>
+      {/* <ScheduleHeader title={'Academic Planner'}/> */}
       <ScheduleContextProvider value={schedule} update={update}>
       <div className='MainContainer'>
-        <ScheduleContainer acad_req_data={acad_req_data} />
+        <ScheduleContainer acad_req_data={acad_req_data} schedule={scheduleData} update={setCurrentSchedule} current={currentSchedule}/>
         <SemesterContainer />
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>

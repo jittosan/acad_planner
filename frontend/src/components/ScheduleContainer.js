@@ -1,42 +1,21 @@
 import React, { useState } from 'react'
-import { BsCheckCircle, BsDashCircle } from 'react-icons/bs'
-import {RiArrowDownSLine,RiArrowRightSLine} from 'react-icons/ri'
+import { HiOutlineClipboardList } from 'react-icons/hi'
 import styles from '../styles/ScheduleContainer.module.scss'
-import Tag from './Tag'
 
-const ScheduleContainer = ({acad_req_data}) => {
+const ScheduleContainer = ({acad_req_data, schedule, update, current}) => {
     return (
         <div className={styles.container}>
             <strong>Schedules</strong>
-            {acad_req_data.map((item, index) => <RequirementGroup key={index} req_data={item} />)}
+            {schedule.map((item, index) => <ScheduleItem key={index} title={item.name} update={() => update(index)} selected={current===index} />)}
         </div>
     )
 }
 
-const RequirementGroup = ({req_data}) => {
-    const [selected, setSelected] = useState(false)
-    const toggleSelect = () => {setSelected(!selected)}
-
+const ScheduleItem = ({title, update, selected}) => {
     return (
-        <>
-        <div className={styles.requirementGroup} onClick={toggleSelect} >
-            {selected ? <RiArrowRightSLine className={styles.dropdownIcon} /> : <RiArrowDownSLine className={styles.dropdownIcon} />}
-            <Tag code={req_data.name.substring(0,3)} color={'#ec3cec'}/>
-            <p className={styles.titleText}>{req_data.name}</p>
-        </div>
-                <div className={styles.dropdownContainer} style={{display: selected ? '' : 'none'}}>
-                    {req_data.modules.map((item, index) => <RequiredModule key={index} code={item} />)}
-                </div>
-        </>
-    )
-}
-
-const RequiredModule = ({code}) => {
-    const [completed, setCompleted] = useState(false)
-    return(
-        <div className={styles.requiredModule} onClick={() => setCompleted(!completed)}>
-            {completed ? <BsCheckCircle className={styles.checkIcon} /> : <BsDashCircle className={styles.dashIcon} />}
-            <p>{code}</p>
+        <div className={`${styles.itemContainer} ${selected ? styles.selected : ''}`} onClick={update}>
+            <HiOutlineClipboardList />
+            <p>{title}</p>
         </div>
     )
 }
