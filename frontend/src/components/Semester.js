@@ -29,7 +29,7 @@ const Semester = ({index}) => {
                 {semData.modules.map((item, index)=><Module key={index} module_code={item} removeModuleCode={removeModuleCode} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
-                    <input placeholder={'Add Module...'} ref={moduleInputRef} />
+                    <input placeholder={'Add Module...'} ref={moduleInputRef} onKeyPress={(e) => {if (e.key==='Enter') {addModuleCode()}}}/>
                     <p onClick={addModuleCode}>Add</p>
                 </div>
             </div>
