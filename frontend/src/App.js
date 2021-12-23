@@ -4,6 +4,7 @@ import AcademicRequirements from './components/AcademicRequirements';
 import ScheduleHeader from './components/ScheduleHeader';
 import ScheduleContainer from './components/ScheduleContainer';
 import { ScheduleContextProvider } from './context/ScheduleContext';
+import { useEffect, useState } from 'react';
 
 //define test data
 const acad_req_data = [
@@ -68,16 +69,26 @@ const sem_data = [
 // const schedule_title = 'Ultimate Combi'
 
 function App() {
+  const [schedule, setSchedule] = useState(sem_data)
+  const [flip, setflip] = useState(1)
+  const update = (newState) => {setSchedule(newState);console.log(newState)}
+
+  useEffect(() => {
+    console.log('RERENDER APP')
+  }, [flip])
+
+
   return (
     <div className="App">
-      {/* <ScheduleHeader title={schedule_title}/> */}
-      <ScheduleContextProvider value={sem_data}>
+      <ScheduleHeader title={'Test'}/>
+      <ScheduleContextProvider value={schedule} update={update}>
       <div className='MainContainer'>
         <ScheduleContainer acad_req_data={acad_req_data} />
         <SemesterContainer />
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>
       </ScheduleContextProvider>
+      <p onClick={()=>setflip(flip+1)}>TEST</p>
     </div>
   );
 }

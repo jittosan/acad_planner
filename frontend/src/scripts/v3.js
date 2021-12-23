@@ -213,15 +213,22 @@ class Schedule {
     }
 
     removeSemester(index) {
-        return null
+        this.data.splice(index, 1)
+        return true
     }
 
     addModule(code, semIndex) {
-        return null
+        let semObj = this.data[semIndex]
+        semObj.modules.push(code)
+        this.update(this.data)
+        return true
     }
 
     removeModule(code, semIndex) {
-        return null
+        let semObj = this.data[semIndex]
+        semObj.modules.splice(semObj.modules.indexOf(code),1)
+        this.update(this.data)
+        return true
     }
 
     getData() {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {HiOutlineTrash} from 'react-icons/hi'
 import {IoAdd} from 'react-icons/io5'
 import styles from '../styles/Semester.module.scss'
@@ -10,6 +10,14 @@ import { ScheduleContext } from '../context/ScheduleContext'
 const Semester = ({index}) => {
     let semHandler = useContext(ScheduleContext)
     let semData = semHandler.getData()[index]
+    let moduleInputRef = useRef(null)
+    const addModuleCode = ()=> {
+        semHandler.addModule(moduleInputRef.current.value, index)
+        moduleInputRef.current.value = ''
+    }
+    const removeModuleCode = (code) => {
+        semHandler.removeModule(code, index)
+    }
     
     return (
         <div className={styles.container}>
@@ -18,17 +26,18 @@ const Semester = ({index}) => {
                 <p>{semData.acad_year} ({semData.type})</p>
             </div>
             <div className={styles.module_container}>
-                {semData.modules.map((item, index)=><Module key={index} module_code={item} />)}  
+                {semData.modules.map((item, index)=><Module key={index} module_code={item} removeModuleCode={removeModuleCode} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
-                    <input placeholder={'Add Module...'} />
+                    <input placeholder={'Add Module...'} ref={moduleInputRef} />
+                    <p onClick={addModuleCode}>Add</p>
                 </div>
             </div>
         </div>
     )
 }
 
-const Module = ({module_code}) => {
+const Module = ({module_code, removeModuleCode}) => {
     const [hovered, setHovered] = useState(false)
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
@@ -44,7 +53,7 @@ const Module = ({module_code}) => {
                 {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
                 <Tag code={'ENE'} color={'#168f1c'}/>
             </div>
-            {hovered ? <HiOutlineTrash className={styles.deleteIcon} /> : '' }
+            {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
         </div>
     )
 }

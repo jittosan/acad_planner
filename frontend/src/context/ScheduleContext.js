@@ -6,6 +6,7 @@ const ScheduleContext = createContext({});
 
 const ScheduleContextProvider = ({value, update, children}) => {
     // wrap raw schedule data into Schedule class
+    console.log(update)
     let newValue = new Schedule(value, update)
 
     return(
