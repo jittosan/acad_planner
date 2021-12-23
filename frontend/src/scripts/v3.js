@@ -1,8 +1,3 @@
-import modData from '../data/modData.json'
-
-// define new v3.0 structures
-
-
 // HELPER FUNCTIONS
 const checkCollection = (item, collection) => {
     return collection.includes(item)
