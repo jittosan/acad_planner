@@ -7,7 +7,7 @@ import { ScheduleContextProvider } from './context/ScheduleContext';
 import { useEffect, useState } from 'react';
 
 //define test data
-const acad_req_data = [
+let acad_req_data = [
   {
       name: 'ESP',
       modules: ['ESP1111', 'ESP2111']
@@ -22,7 +22,7 @@ const acad_req_data = [
   },
 
 ]
-const sem_data = [
+let sem_data = [
   {
       name:'Y1S1',
       acad_year: 'AY20/21',
@@ -70,13 +70,9 @@ const sem_data = [
 
 function App() {
   const [schedule, setSchedule] = useState(sem_data)
-  const [flip, setflip] = useState(1)
-  const update = (newState) => {setSchedule(newState);console.log(newState)}
-
-  useEffect(() => {
-    console.log('RERENDER APP')
-  }, [flip])
-
+  const [flip, setFlip] = useState(true)
+  const trigger = () => (setFlip(!flip))
+  const update = (newState) => {setSchedule(newState);trigger()}
 
   return (
     <div className="App">
@@ -88,7 +84,6 @@ function App() {
         <AcademicRequirements acad_req_data={acad_req_data} />
       </div>
       </ScheduleContextProvider>
-      <p onClick={()=>setflip(flip+1)}>TEST</p>
     </div>
   );
 }
