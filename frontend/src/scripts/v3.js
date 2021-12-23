@@ -209,11 +209,13 @@ class Schedule {
             modules:[]
         }
         this.data.push(newSem)
+        this.update(this.data)
         return true
     }
 
     removeSemester(index) {
         this.data.splice(index, 1)
+        this.update(this.data)
         return true
     }
 
