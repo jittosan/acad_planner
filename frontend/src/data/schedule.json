@@ -1,0 +1,37 @@
+[
+    {
+        "name": "ESP Recommended",
+        "semesters" : [
+            {
+                "name" : "Y1 S1",
+                "modules" : ["ESP1111", "CS1010E"]
+            }
+        ]
+    },
+    {
+        "name": "Spam Minors",
+        "semesters" : [
+            {
+                "name" : "Y1S1",
+                "modules" : ["ESP1111", "CS1010E"]
+            },
+            {
+                "name" : "Y1S2",
+                "modules" : ["ESP2111", "GEA1000"]
+            },
+            {
+                "name" : "Y2S1",
+                "modules" : ["ESP2106", "PC2030"]
+            }
+        ]
+    },
+    {
+        "name": "Balanced",
+        "semesters" : [
+            {
+                "name" : "Y1S2",
+                "modules" : ["ESP1111", "CS1010E"]
+            }
+        ]
+    }
+] 
