@@ -1,11 +1,7 @@
+import modData from '../data/modData.json'
+
 // define new v3.0 structures
-```
-DataStore => (Node, Link)
 
-Schedules => [{Schedules}] => {name, semesters, su}
-
-AcadReq => [{AcadRequirements}]
-```
 
 // HELPER FUNCTIONS
 const checkCollection = (item, collection) => {
@@ -153,18 +149,49 @@ class Link {
 
 class DataStore {
     constructor(){
-        this.nodes = {}
+        this.nodes = modData
         this.links  = []
     }
 
-    // data methods
+    // data methods for Node
+    addNode(code, item) {
+        if (!this.checkNode(code)) {
+            this.nodes[code] = Node(item)
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    removeNode(code) {
+        if (this.checkNode(code)){
+            delete this.nodes[code]
+            return true
+        } else {
+            return false
+        }
+    }
+    
     getNode(code) {
         return this.nodes[code]
+    }
+
+    getData(code){
+        if (this.checkNode(code)) {
+            return this.getNode(code).getItem()
+        } else {
+            return null
+        }
     }
 
     checkNode(code) {
         return this.nodes[code] !== null
     }
+
+    // data methods for Link
+
+
+    // graph methods
 }
 
 export {DataStore}

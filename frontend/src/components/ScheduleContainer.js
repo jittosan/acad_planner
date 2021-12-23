@@ -8,7 +8,7 @@ const ScheduleContainer = ({acad_req_data}) => {
     return (
         <div className={styles.container}>
             <strong>Schedules</strong>
-            {acad_req_data.map((item) => <RequirementGroup req_data={item} />)}
+            {acad_req_data.map((item, index) => <RequirementGroup key={index} req_data={item} />)}
         </div>
     )
 }
@@ -25,7 +25,7 @@ const RequirementGroup = ({req_data}) => {
             <p className={styles.titleText}>{req_data.name}</p>
         </div>
                 <div className={styles.dropdownContainer} style={{display: selected ? '' : 'none'}}>
-                    {req_data.modules.map((item) => <RequiredModule code={item} />)}
+                    {req_data.modules.map((item, index) => <RequiredModule key={index} code={item} />)}
                 </div>
         </>
     )

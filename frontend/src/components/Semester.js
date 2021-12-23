@@ -12,7 +12,7 @@ const Semester = ({sem_obj}) => {
                 <p>{sem_obj.acad_year} ({sem_obj.type})</p>
             </div>
             <div className={styles.module_container}>
-                {sem_obj.modules.map((item)=><Module module_code={item} />)}  
+                {sem_obj.modules.map((item, index)=><Module key={index} module_code={item} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
                     <input placeholder='Add module...' />
