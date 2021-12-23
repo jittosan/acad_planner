@@ -194,4 +194,42 @@ class DataStore {
     // graph methods
 }
 
-export {DataStore}
+// SCHEDULE COMPONENTS
+
+class Schedule {
+    constructor(data, update) {
+        this.data = data
+        this.update = update
+    }
+
+    addSemester(name) {
+        // check duplicate name?
+        let newSem = {
+            name:name, 
+            modules:[]
+        }
+        this.data.push(newSem)
+        return true
+    }
+
+    removeSemester(index) {
+        return null
+    }
+
+    addModule(code, semIndex) {
+        return null
+    }
+
+    removeModule(code, semIndex) {
+        return null
+    }
+
+    getData() {
+        return this.data
+    }
+}
+
+
+
+
+export {DataStore, Schedule}

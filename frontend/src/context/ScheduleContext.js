@@ -1,26 +1,15 @@
 import { createContext } from "react";
-
-class demo {
-    constructor() {
-        this.text = 'TEST TEXT'
-    }
-
-    getText() {
-        return this.text
-    }
-
-    setText(text) {
-        this.text = text
-    }
-}
-
+import { Schedule } from "../scripts/v3";
 
 // define context
-const ScheduleContext = createContext(new demo());
+const ScheduleContext = createContext({});
 
-const ScheduleContextProvider = ({value, children}) => {
+const ScheduleContextProvider = ({value, update, children}) => {
+    // wrap raw schedule data into Schedule class
+    let newValue = new Schedule(value, update)
+
     return(
-        <ScheduleContext.Provider value={value}>
+        <ScheduleContext.Provider value={newValue}>
             {children}
         </ScheduleContext.Provider>
     )

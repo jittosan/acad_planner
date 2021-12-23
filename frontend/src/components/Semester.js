@@ -8,16 +8,17 @@ import { DataStoreContext } from '../context/DataStoreContext'
 import { ScheduleContext } from '../context/ScheduleContext'
 
 const Semester = ({index}) => {
-    let sem_obj = useContext(ScheduleContext)[index]
+    let semHandler = useContext(ScheduleContext)
+    let semData = semHandler.getData()[index]
     
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-                <strong>{sem_obj.name}</strong>
-                <p>{sem_obj.acad_year} ({sem_obj.type})</p>
+                <strong>{semData.name}</strong>
+                <p>{semData.acad_year} ({semData.type})</p>
             </div>
             <div className={styles.module_container}>
-                {sem_obj.modules.map((item, index)=><Module key={index} module_code={item} />)}  
+                {semData.modules.map((item, index)=><Module key={index} module_code={item} />)}  
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
                     <input placeholder={'Add Module...'} />

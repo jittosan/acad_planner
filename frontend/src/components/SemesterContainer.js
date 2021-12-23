@@ -5,7 +5,7 @@ import { useContext } from 'react/cjs/react.development'
 import { ScheduleContext } from '../context/ScheduleContext'
 
 const SemesterContainer = () => {
-    let schedule = useContext(ScheduleContext)
+    let schedule = useContext(ScheduleContext).getData()
     
     return (
         <div className={styles.container}>
