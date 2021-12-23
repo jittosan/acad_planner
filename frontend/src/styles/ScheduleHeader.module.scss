@@ -1,7 +1,8 @@
 .container {
     box-sizing: border-box;
     width: 100%;
-    height: auto;
+    height: 12vh;
+    display: grid;
     grid-row: 1;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -9,7 +10,6 @@
     background-color: white;
     filter: drop-shadow(0px 0px 2px rgb(216, 216, 216));
     z-index: 99;
-    display: grid;
     grid-template-columns: auto 30px 50px;
 
     .iconContainer {

@@ -48,12 +48,17 @@ const Module = ({module_code, removeModuleCode}) => {
             <div className={styles.codeContainer}>
                 <p>{module_code}</p>
             </div>
-            <p>{modData[module_code] ? modData[module_code].title : '!Not Found'}</p>
-            <div className={styles.tagContainer}>
-                {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
-                <Tag code={'ENE'} color={'#168f1c'}/>
+            <div className={styles.contentContainer}>
+                <p>{modData[module_code] ? modData[module_code].title : '!Not Found'}</p>
+                <div className={styles.tagContainer}>
+                    {/* {/* <Tag code={'NAN'} color={'#2135aa'}/> */}
+                    {/* <Tag code={'ENE'} color={'#168f1c'}/> */}
+                </div>
             </div>
-            {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
+            <div className={styles.deleteContainer}>
+                {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
+            </div>
+
         </div>
     )
 }
