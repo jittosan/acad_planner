@@ -1,0 +1,14 @@
+.input {
+    width: 100%;
+    padding: 1ch 0.5ch;
+    margin: 1ch;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    border: rgba(120,120,120,1) 3px solid;
+
+    &:hover {
+        border-color: blue;
+    }
+}
