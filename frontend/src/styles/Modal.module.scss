@@ -1,0 +1,41 @@
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(120,120,120,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    opacity: 1;
+    position: absolute;
+    padding: 2ch;
+    height: auto;
+    width: auto;
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+
+    .optionContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .option {
+        height: auto;
+        width: auto;
+        padding: 0ch 2ch;
+        margin: 1ch;
+        border-radius: 1rem;
+        background-color: rgb(190, 190, 190);
+    }
+
+    .highlight {
+        background-color: blue;
+    }
+}
