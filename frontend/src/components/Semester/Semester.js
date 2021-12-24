@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import {HiOutlineTrash} from 'react-icons/hi'
 import {IoAdd} from 'react-icons/io5'
-import styles from '../styles/Semester.module.scss'
+import styles from './Semester.module.scss'
 import { useContext } from 'react'
-import { DataStoreContext } from '../context/DataStoreContext'
-import { ScheduleContext } from '../context/ScheduleContext'
+import { DataStoreContext } from '../../context/DataStoreContext'
+import { ScheduleContext } from '../../context/ScheduleContext'
 
 const Semester = ({index}) => {
     let semHandler = useContext(ScheduleContext)

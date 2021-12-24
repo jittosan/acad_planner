@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BsCheckCircle, BsDashCircle } from 'react-icons/bs'
 import {RiArrowDownSLine,RiArrowRightSLine} from 'react-icons/ri'
-import styles from '../styles/AcademicRequirements.module.scss'
+import styles from './AcademicRequirements.module.scss'
 import Tag from './Tag'
 
 const AcademicRequirements = ({acad_req_data}) => {

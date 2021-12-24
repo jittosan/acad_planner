@@ -1,9 +1,9 @@
 import React, { useState} from 'react'
 import Semester from './Semester'
-import SemesterModal from './modals/SemesterModal.js'
-import styles from '../styles/SemesterContainer.module.scss'
+import SemesterModal from '../modals/SemesterModal.js'
+import styles from './SemesterContainer.module.scss'
 import { useContext } from 'react/cjs/react.development'
-import { ScheduleContext } from '../context/ScheduleContext'
+import { ScheduleContext } from '../../context/ScheduleContext'
 
 const SemesterContainer = () => {
     let scheduleHandler = useContext(ScheduleContext)

@@ -1,4 +1,4 @@
-import styles from '../../styles/Modal.module.scss'
+import styles from './Modal.module.scss'
 
 //  <Popup title={'Confirm Delete'} text={'Are you sure you want to delete module from semester?'} options={[{name:'Confirm',action:()=>console.log('confirm modal')},{name:'Cancel',action:()=>console.log('cancel modal'), highlight:true}]} toggle={() => console.log('close')} />
 

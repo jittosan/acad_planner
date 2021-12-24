@@ -1,7 +1,7 @@
 import './App.css';
-import SemesterContainer from './components/SemesterContainer';
-import AcademicRequirements from './components/AcademicRequirements';
-import ScheduleContainer from './components/ScheduleContainer';
+import SemesterContainer from './components/Semester/SemesterContainer';
+import AcademicRequirements from './components/AcademicRequirements/AcademicRequirements';
+import ScheduleContainer from './components/Schedule/ScheduleContainer';
 import { ScheduleContextProvider } from './context/ScheduleContext';
 import { useState } from 'react';
 import scheduleData from './data/schedule.json'

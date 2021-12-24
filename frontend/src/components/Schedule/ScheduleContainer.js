@@ -1,7 +1,7 @@
 import React from 'react'
 import { HiOutlineClipboardList } from 'react-icons/hi'
 import { MdSaveAlt, MdSettings } from 'react-icons/md'
-import styles from '../styles/ScheduleContainer.module.scss'
+import styles from './ScheduleContainer.module.scss'
 
 const ScheduleContainer = ({acad_req_data, schedule, update, current}) => {
     return (
