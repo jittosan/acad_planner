@@ -1,17 +1,25 @@
 import styles from '../../styles/Modal.module.scss'
 
-//  <Modal title={'Confirm Delete'} text={'Are you sure you want to delete module from semester?'} options={[{name:'Confirm',action:()=>console.log('confirm modal')},{name:'Cancel',action:()=>console.log('cancel modal'), highlight:true}]} toggle={() => console.log('close')} />
+//  <Popup title={'Confirm Delete'} text={'Are you sure you want to delete module from semester?'} options={[{name:'Confirm',action:()=>console.log('confirm modal')},{name:'Cancel',action:()=>console.log('cancel modal'), highlight:true}]} toggle={() => console.log('close')} />
 
+const Popup = ({title, options, text, toggle}) => {
+    return(
+        <Modal>
+            <strong>{title}</strong>
+            <p>{text}</p>
+            <div className={styles.optionContainer}>
+                {options.map((item, index) => <ModalOption key={index} text={item.name} action={() => {item.action();toggle()}} highlight={item.highlight}/>)}
+            </div>
+        </Modal>
+    )
+}
 
-const Modal = ({title, options, text, toggle}) => {
+const Modal = ({children, close}) => {
+    //close button?
     return (
-        <div className={styles.background}>
+        <div className={styles.background} onClick={close}>
             <div className={styles.container}>
-                <strong>{title}</strong>
-                <p>{text}</p>
-                <div className={styles.optionContainer}>
-                    {options.map((item, index) => <ModalOption key={index} text={item.name} action={() => {item.action();toggle()}} highlight={item.highlight}/>)}
-                </div>
+                {children}
             </div>
         </div>
     )
@@ -25,4 +33,4 @@ const ModalOption = ({text, action, highlight}) => {
     )
 }
 
-export default Modal
+export {Modal, Popup}
