@@ -3,6 +3,8 @@ import { useContext } from 'react/cjs/react.development'
 import { ScheduleContext } from '../../context/ScheduleContext'
 import { CgList } from 'react-icons/cg'
 import { GrAdd } from 'react-icons/gr'
+import { FaRegSave } from 'react-icons/fa'
+import {HiOutlineTrash} from 'react-icons/hi'
 import { Modal } from './Modal'
 import styles from './SemesterModal.module.scss'
 import InputField from '../auxillary/InputField'
@@ -42,6 +44,24 @@ const SemesterModal = ({close}) => {
                         <p>Name</p>
                         <InputField placeholder={scheduleData[selectedSem].name} />
                     </div>
+                    <div className={styles.inputItem}>
+                        <p>Acad. Year</p>
+                        <InputField placeholder={scheduleData[selectedSem].acadYear} />
+                    </div>
+                    <div className={styles.inputItem}>
+                        <p>Type</p>
+                        <InputField placeholder={scheduleData[selectedSem].semType} />
+                    </div>
+                    </div>
+                    <div className={styles.controlContainer}>
+                        <div className={`${styles.controlButton} ${styles.saveButton}`}>
+                            <FaRegSave />
+                            <p>Save</p>
+                        </div>
+                        <div className={`${styles.controlButton} ${styles.deleteButton}`}>
+                            <HiOutlineTrash />
+                            <p>Delete</p>
+                        </div>
                     </div>
                 </div>
             </div>
