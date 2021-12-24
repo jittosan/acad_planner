@@ -37,7 +37,7 @@ function App() {
         <div className='MainContainer'>
           <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/>
           <SemesterContainer />
-          <AcademicRequirements acad_req_data={acad_req_data} />
+          {/* <AcademicRequirements acad_req_data={acad_req_data} /> */}
         </div>
       </ScheduleContextProvider>
     </div>
