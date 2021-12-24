@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import Semester from './Semester'
 import SemesterModal from '../modals/SemesterModal.js'
 import styles from './SemesterContainer.module.scss'
+import {RiEditLine} from 'react-icons/ri'
 import { useContext } from 'react/cjs/react.development'
 import { ScheduleContext } from '../../context/ScheduleContext'
 
@@ -16,7 +17,7 @@ const SemesterContainer = () => {
     return (
         <div className={styles.container}>
             {schedule.map((_, index) => <Semester key={index} index={index}  />)}
-            <p onClick={displayModal}>Edit Semesters</p>
+            <p onClick={displayModal}><RiEditLine /> Edit Semesters</p>
             {modalOpen ? <SemesterModal close={hideModal} /> : ''}
         </div>
     )

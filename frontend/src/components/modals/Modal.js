@@ -1,4 +1,5 @@
 import styles from './Modal.module.scss'
+import {GrClose} from 'react-icons/gr'
 
 //  <Popup title={'Confirm Delete'} text={'Are you sure you want to delete module from semester?'} options={[{name:'Confirm',action:()=>console.log('confirm modal')},{name:'Cancel',action:()=>console.log('cancel modal'), highlight:true}]} toggle={() => console.log('close')} />
 
@@ -14,11 +15,12 @@ const Popup = ({title, options, text, toggle}) => {
     )
 }
 
-const Modal = ({children, close}) => {
+const Modal = ({children, close, className}) => {
     //close button?
     return (
-        <div className={styles.background} onClick={close}>
-            <div className={styles.container}>
+        <div className={styles.background}>
+            <div className={`${styles.container} ${className ? className : ''}`}>
+                <GrClose className={styles.closeIcon} onClick={close}/>
                 {children}
             </div>
         </div>

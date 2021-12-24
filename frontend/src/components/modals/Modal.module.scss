@@ -15,29 +15,42 @@
     opacity: 1;
     position: absolute;
     padding: 2ch;
-    height: auto;
-    width: auto;
     background-color: white;
     color: black;
     border-radius: 1rem;
 
-    .optionContainer {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
+    .closeIcon {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        color:red;
+        font-size: 1.2rem;
+        padding: 1ch;
+        cursor: pointer;
+        border-radius: 0.2rem;
 
-    .option {
-        height: auto;
-        width: auto;
-        padding: 0ch 2ch;
-        margin: 1ch;
-        border-radius: 1rem;
-        background-color: rgb(190, 190, 190);
+        &:hover {
+            background-color: rgba(255, 0, 0, 0.4);
+        }
     }
+}
 
-    .highlight {
-        background-color: blue;
-    }
+.optionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.option {
+    height: auto;
+    width: auto;
+    padding: 0ch 2ch;
+    margin: 1ch;
+    border-radius: 1rem;
+    background-color: rgb(190, 190, 190);
+}
+
+.highlight {
+    background-color: blue;
 }
