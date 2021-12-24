@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useContext } from 'react/cjs/react.development'
 import { ScheduleContext } from '../../context/ScheduleContext'
 import { CgList } from 'react-icons/cg'
+import { GrAdd } from 'react-icons/gr'
 import { Modal } from './Modal'
 import styles from './SemesterModal.module.scss'
 import InputField from '../auxillary/InputField'
@@ -26,7 +27,10 @@ const SemesterModal = ({close}) => {
                         title={item.name}
                         selected={index===selectedSem}
                         />)}
-                    <p>+ New Sem</p>
+                    <div className={styles.addButton}>
+                        <GrAdd />
+                        <p>New Sem</p>
+                    </div>
                 </div>
                 <div>
                     <strong>Semester Details</strong>

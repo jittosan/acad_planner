@@ -19,7 +19,7 @@
             height: 100%;
             width: 100%;
             padding: 0ch 1ch 0ch 3ch;
-            border-right: black solid 1px;
+            // border-right: black solid 1px;
             overflow-y: auto;
 
             .semesterItem {
@@ -37,6 +37,23 @@
             .selected {
                 font-weight: 600;
                 color: rgb(24, 106, 200)
+            }
+
+            .addButton {
+                width: auto;
+                // background-color: rgba(24, 106, 200);
+                // color: white;
+                border-radius: 1rem;
+                padding: 0.1ch 0ch;
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+
+                p {
+                    padding-left: 1ch;
+                }
             }
         }
 
