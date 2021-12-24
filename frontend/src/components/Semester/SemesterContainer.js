@@ -1,16 +1,15 @@
-import React, { useState} from 'react'
-import Semester from './Semester'
+import { useState} from 'react'
+import { useContext } from 'react'
+import {RiEditLine} from 'react-icons/ri'                           // import icons
+import styles from './SemesterContainer.module.scss'                // import styles
+import { ScheduleContext } from '../../context/ScheduleContext'     // import context data
+import Semester from './Semester'                                   // import local components
 import SemesterModal from '../modals/SemesterModal.js'
-import styles from './SemesterContainer.module.scss'
-import {RiEditLine} from 'react-icons/ri'
-import { useContext } from 'react/cjs/react.development'
-import { ScheduleContext } from '../../context/ScheduleContext'
 
 const SemesterContainer = () => {
-    let scheduleHandler = useContext(ScheduleContext)
+    let scheduleHandler = useContext(ScheduleContext) // get schedule data from context
     let schedule = scheduleHandler.getData()
-    
-    const [modalOpen, setModalOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false) // state controls for showing/hiding edit settings modal
     const displayModal = () => {setModalOpen(true)}
     const hideModal = () => {setModalOpen(false)}
 

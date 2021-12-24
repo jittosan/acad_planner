@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-// define context & load in from data files
+// define context relating to Academic Requirements
 const AcademicRequirementContext = createContext({});
 
 const AcademicRequirementContextProvider = ({value, children}) => {

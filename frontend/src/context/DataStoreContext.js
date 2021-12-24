@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import modData from '../data/modData.json'
 
-// define context & load in from data files
+// define context pertaining to DataStore objects (i.e. module information & networking)
 const DataStoreContext = createContext(modData);
 
 const DataStoreContextProvider = ({value, children}) => {

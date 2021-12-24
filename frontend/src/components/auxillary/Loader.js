@@ -1,6 +1,6 @@
-import React from 'react'
 import styles from './Loader.module.scss'
 
+// Loading component to overlay while app is loading data
 const Loader = () => {
     return (
         <div className={styles.background}>

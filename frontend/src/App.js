@@ -1,10 +1,10 @@
-import './App.css';
-import SemesterContainer from './components/Semester/SemesterContainer';
+import { useState } from 'react';
+import './App.css';         // import global styles
+import SemesterContainer from './components/Semester/SemesterContainer';    // import local components
 import AcademicRequirements from './components/AcademicRequirements/AcademicRequirements';
 import ScheduleContainer from './components/Schedule/ScheduleContainer';
-import { ScheduleContextProvider } from './context/ScheduleContext';
-import { useState } from 'react';
-import scheduleData from './data/schedule.json'
+import { ScheduleContextProvider } from './context/ScheduleContext';    
+import scheduleData from './data/schedule.json'  // import data from local file
 
 //define test data
 let acad_req_data = [
@@ -24,21 +24,21 @@ let acad_req_data = [
 ]
 
 function App() {
-  const [currentSchedule, setCurrentSchedule] = useState(0)
-  const selectSchedule = (index) => {console.log(index);setCurrentSchedule(index);trigger()}
-  let schedule = scheduleData[currentSchedule]['semesters']
-  const [flip, setFlip] = useState(true)
+  const [currentSchedule, setCurrentSchedule] = useState(0)   // state to track current selected schedule from list
+  const selectSchedule = (index) => {setCurrentSchedule(index);trigger()}
+  const [flip, setFlip] = useState(true)      // dummy state to trigger for rerenders (setCurrentSchedule apparently does not trigger rerender cycles properly)
   const trigger = () => (setFlip(!flip))
   const update = (newState) => {trigger()}
+  let schedule = scheduleData[currentSchedule]['semesters']   // extract imported data into variable
 
   return (
     <div className="App">
       <ScheduleContextProvider value={schedule} update={update}>
-      <div className='MainContainer'>
-        <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/>
-        <SemesterContainer />
-        <AcademicRequirements acad_req_data={acad_req_data} />
-      </div>
+        <div className='MainContainer'>
+          <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/>
+          <SemesterContainer />
+          <AcademicRequirements acad_req_data={acad_req_data} />
+        </div>
       </ScheduleContextProvider>
     </div>
   );

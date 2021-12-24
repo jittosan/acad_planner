@@ -1,11 +1,11 @@
 import { createContext } from "react";
 import { Schedule } from "../scripts/v3";
 
-// define context
+// define context pertaining to Scheduling
 const ScheduleContext = createContext({});
 
 const ScheduleContextProvider = ({value, update, children}) => {
-    // wrap raw schedule data into Schedule class
+    // wrap raw scheduleJSON data from file into Schedule class
     let newValue = new Schedule(value, update)
 
     return(
