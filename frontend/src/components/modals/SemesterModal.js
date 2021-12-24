@@ -13,7 +13,10 @@ const SemesterModal = ({close}) => {
     let scheduleData = scheduleHandler.getData()
     // state to store which semester is current selected
     const [selectedSem, setSelectedSem] = useState(0)
-
+    // function to insert new Semester into schedule
+    const addNewSemester =() => {
+        scheduleHandler.addSemester(`Semester ${scheduleData.length+1}`)
+    }
     return (
         <Modal className={styles.main} close={close}>
             <div>
@@ -27,7 +30,7 @@ const SemesterModal = ({close}) => {
                         title={item.name}
                         selected={index===selectedSem}
                         />)}
-                    <div className={styles.addButton}>
+                    <div className={styles.addButton} onClick={addNewSemester}>
                         <GrAdd />
                         <p>New Sem</p>
                     </div>
