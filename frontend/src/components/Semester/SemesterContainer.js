@@ -17,8 +17,10 @@ const SemesterContainer = () => {
     return (
         <div className={styles.container}>
             {schedule.map((_, index) => <Semester key={index} index={index}  />)}
-            <p onClick={displayModal}><RiEditLine /> Edit Semesters</p>
-            {modalOpen ? <SemesterModal close={hideModal} /> : ''}
+            <div className={styles.editButton}>
+                <p onClick={displayModal}><RiEditLine /> Edit Semesters</p>
+                {modalOpen ? <SemesterModal close={hideModal} /> : ''}
+            </div>
         </div>
     )
 }
