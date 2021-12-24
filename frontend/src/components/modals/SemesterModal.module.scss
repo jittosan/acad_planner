@@ -1,6 +1,45 @@
 .main {
+    position: relative;
     height:80%;
     max-height: 450px;
     width: 80%;
     max-width: 650px;
+
+    .content {
+        position: relative;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 100%;
+        padding: 1ch 0ch;
+        margin: auto;
+        width: 100%;
+
+        .listContainer {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            padding: 0ch 1ch 0ch 3ch;
+            border-right: black solid 1px;
+            overflow-y: auto;
+
+            .semesterItem {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                cursor: pointer;
+
+                p {
+                    padding-left: 1ch;
+                }
+            }
+
+            .selected {
+                font-weight: 600;
+        color: rgb(24, 106, 200)
+            }
+        
+        
+        }
+    }
 }
