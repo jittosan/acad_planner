@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useContext } from 'react/cjs/react.development'
 import { ScheduleContext } from '../../context/ScheduleContext'
-import {CgList} from 'react-icons/cg'
+import { CgList } from 'react-icons/cg'
 import { Modal } from './Modal'
 import styles from './SemesterModal.module.scss'
 import InputField from '../auxillary/InputField'
@@ -30,8 +30,12 @@ const SemesterModal = ({close}) => {
                 </div>
                 <div>
                     <strong>Semester Details</strong>
-                    <p>Name: {scheduleData[selectedSem].name}</p>
-                    <InputField placeholder={scheduleData[selectedSem].name} />
+                    <div className={styles.inputForm}>
+                    <div className={styles.inputItem}>
+                        <p>Name</p>
+                        <InputField placeholder={scheduleData[selectedSem].name} />
+                    </div>
+                    </div>
                 </div>
             </div>
         </Modal>

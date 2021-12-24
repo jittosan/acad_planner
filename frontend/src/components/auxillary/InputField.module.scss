@@ -1,14 +1,22 @@
 .input {
     width: 100%;
-    padding: 1ch 0.5ch;
+    padding: 1ch 1ch;
     margin: 1ch;
     text-decoration: none;
+    outline: none;
     font-family: 'Poppins', sans-serif;
-    border-radius: 1rem;
+    // border-radius: 1rem;
     box-sizing: border-box;
-    border: rgba(120,120,120,1) 3px solid;
+    border: none;
+    border-bottom: rgba(120,120,120,1) 2px solid;
 
     &:hover {
-        border-color: blue;
+        border-color: rgb(24, 106, 200);
+        background-color: rgba(24, 106, 200,0.05);
+    }
+
+    &:focus {
+        background-color: rgba(120,120,120,0.1);
+        border-color: rgb(24, 106, 200)
     }
 }
