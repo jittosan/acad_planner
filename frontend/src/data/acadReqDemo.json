@@ -1,0 +1,64 @@
+{
+    "name" : "Engineering Science Programme",
+    "code":"ESP",
+    "modules": {
+        "type" : "node",
+        "logic" : "and",
+        "modules":[
+            {
+                "type":"category",
+                "name":"University Core",
+                "modules":[
+                    {
+                        "type":"node",
+                        "logic":"and",
+                        "modules":[
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["CS1010E"]
+                            },
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["GEC1010"]
+                            },
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["GESS1014"]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type":"category",
+                "name":"Engineering Core",
+                "modules":[
+                    {
+                        "type":"node",
+                        "logic":"and",
+                        "modules":[
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["ESP1111"]
+                            },
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["ESP2111"]
+                            },
+                            {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["ESP5402"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
