@@ -1,64 +1,111 @@
 {
+    "type" : "main",
     "name" : "Engineering Science Programme",
     "code":"ESP",
-    "modules": {
-        "type" : "node",
-        "logic" : "and",
-        "modules":[
-            {
-                "type":"category",
-                "name":"University Core",
-                "modules":[
-                    {
-                        "type":"node",
-                        "logic":"and",
-                        "modules":[
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["CS1010E"]
-                            },
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["GEC1010"]
-                            },
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["GESS1014"]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "type":"category",
-                "name":"Engineering Core",
-                "modules":[
-                    {
-                        "type":"node",
-                        "logic":"and",
-                        "modules":[
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["ESP1111"]
-                            },
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["ESP2111"]
-                            },
-                            {
-                                "type":"node",
-                                "logic":".",
-                                "modules":["ESP5402"]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+    "modules":[
+        {
+            "type":"node",
+            "logic":"and",
+            "modules": [
+                {
+                    "type":"category",
+                    "criteria": {
+                        "number" : 2
+                    },
+                    "name":"University Core",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":"and",
+                            "modules":[
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["CS1010E"]
+                                },
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["GEC1010"]
+                                },
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["GESS1014"]
+                                },
+                                {
+                                    "type":"group",
+                                    "modules":[
+                                        {
+                                            "type":"node",
+                                            "logic":"or",
+                                            "modules": [
+                                                {
+                                                    "type":"node",
+                                                    "logic":".",
+                                                    "modules":["GEA1000"]
+                                                },
+                                                {
+                                                    "type":"node",
+                                                    "logic":".",
+                                                    "modules":["GEQ1000"]
+                                                },
+                                                {
+                                                    "type":"node",
+                                                    "logic":".",
+                                                    "modules":["GER1000"]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"category",
+                    "name":"Engineering Core",
+                    "criteria": {
+                        "credit" : 8
+                    },
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":"and",
+                            "modules":[
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["ESP1111"]
+                                },
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["ESP2111"]
+                                },
+                                {
+                                    "type":"node",
+                                    "logic":".",
+                                    "modules":["ESP5402"]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"category",
+                    "name":"Physics Component",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC21XX"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    
 }

@@ -239,17 +239,168 @@ class Schedule {
 class AcademicRequirement {
     constructor(reqData) {
         this.data = reqData 
+        this.initialise(this.data)
     }
 
-    comparator(requirement, module) {
-        // define comparator with XX placeholders?
-        return false
+    // getter/setter methods
+    getData() { 
+        return this.data
     }
 
-    verify(modList) {
-        // compare modules in modList against requirements
-        return false
+    setData(data) {
+        this.data = data
     }
+
+    // PREPROCESSING METHODS
+    initialise(currentNode) {
+        // define match property for endpoint nodes, and end function
+        if (currentNode.type ==="node" && currentNode.logic===".") {
+            currentNode['match'] = []
+        } else {
+            // define criteria boolean for category/group nodes
+            if (currentNode.type!=="node") {
+                // create criteria segment if not defined
+                if (!currentNode.criteria) {
+                    currentNode['criteria'] = {met:false}
+                } else {
+                    currentNode.criteria['met'] = false
+                }
+            }
+            // continue recursing through nodes
+            for (let i=0;i<currentNode.modules.length;i++) {
+                this.initialise(currentNode.modules[i])
+            }
+        }
+    }
+
+    // VALIDATION METHODS
+    compare(requirement, module) {
+        // check valid format for module codes
+        if (!this.isValid(requirement) || !this.isValid(module)) {
+            return false
+        }
+        // iterate through and match codes, with X as null char
+        for (let i=0; i < Math.min(requirement.length, module.length); i++){
+            if (requirement[i] !== module[i] && requirement[i] !== 'X') {
+                return false
+            }
+        }
+        return true
+    }
+
+    isValid(code) {
+        //check code is valid module code
+        return true
+    }
+
+    match(modList) {
+        // define helper functions
+        const findMatch = (item, collection) => {
+            for (let i=0;i<collection.length;i++) {
+                if (this.compare(item, collection[i])) {
+                    return i
+                }
+            }
+            return null
+        }
+        // direct match modules
+        const matchHelper = (currentNode) => {
+            // if endpoint
+            if (currentNode.type ==="node" && currentNode.logic===".") {
+                // find direct matching module
+                let matchedCodeIndex = findMatch(currentNode.modules[0], modList)
+                // check if criteria met for number/credits
+                // attach to endpoint and drop from modList once matched
+                if (matchedCodeIndex !== null) {
+                    currentNode['match'].push(modList[matchedCodeIndex])
+                    modList.splice(matchedCodeIndex, 1)
+                }
+            } else {
+                // recurse through structure if not endpoint
+                for (let i=0;i<currentNode.modules.length;i++) {
+                    matchHelper(currentNode.modules[i])
+                }
+            }
+        }
+
+        // execute direct matching
+        matchHelper(this.data)
+        // execute preclusion checks
+    }
+
+    verify() {
+        // recurse through nodes to check whether conditions are met or not
+        // define verification function
+        const verifyEndpoint = (endpoint) => {
+            return endpoint.match!==[]
+        }
+        const verifyCollection = (collection) => {
+            return false
+        }
+        const verifyNode = (node) => {
+            return false
+        }
+        // direct match modules
+        const verifyHelper = (currentNode) => {
+            // CONSIDER ADDITIONAL CRITERIA OF NUMBER/CREDITS
+            // if endpoint
+            if (currentNode.type ==="node" && currentNode.logic===".") {
+                console.log('end', currentNode.match.length !== 0, currentNode.match, currentNode.modules)
+                return currentNode.match.length !== 0
+            // if and/or node
+            } else if (currentNode.type==="node") {
+                if (currentNode.logic==="and") {
+                    // if and node, check all children are true
+                    let testLogic = true
+                    for (let i=0;i<currentNode.modules.length;i++) {
+                        testLogic = testLogic && verifyHelper(currentNode.modules[i])
+                    }
+                    console.log('and', testLogic, currentNode.modules)
+                    return testLogic
+                } else {
+                    // if or node, check any children is true
+                    let testLogic = false
+                    for (let i=0;i<currentNode.modules.length;i++) {
+                        testLogic = testLogic || verifyHelper(currentNode.modules[i])
+                    }
+                    console.log('or', testLogic, currentNode.modules)
+                    return testLogic
+                }
+            } else {
+                // recurse through structure if not endpoint
+                for (let i=0;i<currentNode.modules.length;i++) {
+                    return verifyHelper(currentNode.modules[i])
+                }
+            }
+        }
+
+        // execute direct matching
+        return verifyHelper(this.data)
+    }
+
+    // DATA EXTRACTION METHODS
+
+    // return list of modules used to satisfy the requirements
+    flatten() {
+        const flattenHelper = (currentNode) => {
+            let output = []
+            // if endpoint
+            if (currentNode.type ==="node" && currentNode.logic===".") {
+                // find direct matching module
+                output = output.concat(currentNode.match)
+            } else {
+                // recurse through structure if not endpoint
+                for (let i=0;i<currentNode.modules.length;i++) {
+                    output = output.concat(flattenHelper(currentNode.modules[i]))
+                }
+            }
+            return output
+        }
+
+        return flattenHelper(this.data)
+    }
+
+    
 }
 
 
