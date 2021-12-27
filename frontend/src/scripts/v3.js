@@ -233,7 +233,24 @@ class Schedule {
     }
 }
 
+// ACADEMIC REQUIREMENT COMPONENTS
+// { 'group' / 'node' / 'category' } if node: logic : 'and' / 'or' / '.'
+
+class AcademicRequirement {
+    constructor(reqData) {
+        this.data = reqData 
+    }
+
+    comparator(requirement, module) {
+        // define comparator with XX placeholders?
+        return false
+    }
+
+    verify(modList) {
+        // compare modules in modList against requirements
+        return false
+    }
+}
 
 
-
-export {DataStore, Schedule}
+export {DataStore, Schedule, AcademicRequirement}
