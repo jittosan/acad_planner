@@ -9,7 +9,15 @@ const Tag = ({code, color}) => {
     )
 }
 
-export default Tag
+const LargeTag = ({code, color}) => {
+    return (
+        <div className={styles.largeContainer} style={{backgroundColor:color}}>
+            <p>{code}</p>
+        </div>
+    )
+}
+
+export {Tag, LargeTag }
 
 
 // redux-store : {code,color, isVisible, name}

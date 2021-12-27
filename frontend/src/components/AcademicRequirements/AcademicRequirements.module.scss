@@ -1,13 +1,8 @@
 .container {
     box-sizing: border-box;
     position: relative;
-    grid-column: 3;
-    grid-row-start: 2;
-    height: 100vh;
-    min-height: 100vh;
-    width: auto;
-    max-width: 350px;
-    min-width: 250px;
+    height: 100%;
+    width: 100%;
     background-color: white;
     padding: 2ch;
     border-left: rgb(216, 216, 216) 0.1rem solid;

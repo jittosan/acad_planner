@@ -5,6 +5,8 @@ import AcademicRequirements from './components/AcademicRequirements/AcademicRequ
 import ScheduleContainer from './components/Schedule/ScheduleContainer';
 import { ScheduleContextProvider } from './context/ScheduleContext';    
 import scheduleData from './data/schedule.json'  // import data from local file
+import AcademicRequirementTray from './components/AcademicRequirements/AcademicRequirementTray';
+import MainMenuTray from './components/Schedule/MainMenuTray';
 
 //define test data
 let acad_req_data = [
@@ -35,8 +37,10 @@ function App() {
     <div className="App">
       <ScheduleContextProvider value={schedule} update={update}>
         <div className='MainContainer'>
-          <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/>
+        <MainMenuTray />
+          {/* <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/> */}
           <SemesterContainer />
+          <AcademicRequirementTray />
           {/* <AcademicRequirements acad_req_data={acad_req_data} /> */}
         </div>
       </ScheduleContextProvider>

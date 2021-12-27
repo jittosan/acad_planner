@@ -1,0 +1,42 @@
+.mainTray {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffb703;
+    z-index: 2;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 80px calc(100vh - 240px) 160px;
+    transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
+}
+
+.minimised {
+    height: 80px;
+}
+
+.enlarged { 
+    height: 100vh;
+}
+
+.globalControlsTray {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .controlIcon {
+        margin: 0.5ch;
+        padding: 0.8ch;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: cubic-bezier(0.19, 1, 0.22, 1) 150ms;
+        
+
+        &:hover {
+            transform: translateY(-2px);
+            cursor: pointer;
+        }
+    }
+}

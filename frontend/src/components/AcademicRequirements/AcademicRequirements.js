@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BsCheckCircle, BsDashCircle } from 'react-icons/bs' // import icons
 import {RiArrowDownSLine,RiArrowRightSLine} from 'react-icons/ri'
 import styles from './AcademicRequirements.module.scss' // import styles
-import Tag from './Tag' // import local components
+import {Tag} from './Tag' // import local components
 
 // MAIN ACADEMIC REQUIREMENT COMPONENT
 const AcademicRequirements = ({acad_req_data}) => {

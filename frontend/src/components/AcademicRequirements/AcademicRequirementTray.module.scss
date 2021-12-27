@@ -1,0 +1,26 @@
+.tray {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    // background-color: rgb(255, 167, 4);
+    background-color: rgb(216, 216, 216);
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 100%;
+
+    .tagContainer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .editContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+    }
+}
