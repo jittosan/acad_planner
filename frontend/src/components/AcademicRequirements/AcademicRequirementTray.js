@@ -39,12 +39,12 @@ export default AcademicRequirementTray
 
 const AcademicReqHandler = () => {
     console.log('Academic Requirement Handler Test')
-    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GET1012', "PC2130"]
+    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GET1012', "PC2130", "PC2132"]
     // let ml = ['ESP1111']
     let aca = new AcademicRequirement(acadReqDemo)
-    console.log(aca)
+    // console.log(aca)
     aca.match(ml)
-    console.log(aca.flatten())
+    // console.log(aca.flatten())
     console.log(aca.verify())
 
     return (

@@ -341,11 +341,15 @@ class AcademicRequirement {
             return false
         }
         // direct match modules
-        const verifyHelper = (currentNode) => {
-            // CONSIDER ADDITIONAL CRITERIA OF NUMBER/CREDITS
+        const verifyHelper = (currentNode, criteria) => {
+            // if trackFn already satisfied, do not traverse
+            if(criteria!==undefined){console.log(criteria.check())}
+            if (criteria!==undefined && criteria.check()) {
+                return true
+            }
             // if endpoint
             if (currentNode.type ==="node" && currentNode.logic===".") {
-                console.log('end', currentNode.match.length !== 0, currentNode.match, currentNode.modules)
+                console.log('.', currentNode.match.length !== 0, currentNode.match, currentNode.modules)
                 return currentNode.match.length !== 0
             // if and/or node
             } else if (currentNode.type==="node") {
@@ -366,10 +370,38 @@ class AcademicRequirement {
                     console.log('or', testLogic, currentNode.modules)
                     return testLogic
                 }
+            // if category/main/group
             } else {
+                // check for criteria for category/main/group
+                let criteriaOpr
+                if (currentNode.criteria!==undefined) {
+                    console.log('Crit', currentNode.criteria)
+                    // criteria is number of modules
+                    if (currentNode.criteria.number!==undefined) {
+                        console.log('NUMBER')
+                        criteriaOpr = {
+                            type:"number", 
+                            value:currentNode.criteria.number,
+                            count:0,
+                            check:()=>{return this.count>=this.value},
+                            update:(val)=> {this.count += val}
+                        }
+                    // criteria is number of MCs
+                    } else if (currentNode.criteria.credit!==undefined) {
+                        console.log('CREDIT')
+                        criteriaOpr ={
+                            type:"credit", 
+                            value:currentNode.criteria.credit,
+                            count:0,
+                            check:()=>{return this.count>=this.value},
+                            update:(val)=> {this.count += val}
+                        }
+                    }
+                    console.log(criteriaOpr)
+                }
                 // recurse through structure if not endpoint
                 for (let i=0;i<currentNode.modules.length;i++) {
-                    return verifyHelper(currentNode.modules[i])
+                    return verifyHelper(currentNode.modules[i], criteriaOpr)
                 }
             }
         }
