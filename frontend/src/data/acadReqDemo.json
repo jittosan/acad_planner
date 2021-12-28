@@ -9,9 +9,6 @@
             "modules": [
                 {
                     "type":"category",
-                    "criteria": {
-                        "number" : 2
-                    },
                     "name":"University Core",
                     "modules":[
                         {
@@ -35,27 +32,24 @@
                                 },
                                 {
                                     "type":"group",
+                                    "criteria": {
+                                        "number" : 2
+                                    },
                                     "modules":[
                                         {
                                             "type":"node",
-                                            "logic":"or",
-                                            "modules": [
-                                                {
-                                                    "type":"node",
-                                                    "logic":".",
-                                                    "modules":["GEA1000"]
-                                                },
-                                                {
-                                                    "type":"node",
-                                                    "logic":".",
-                                                    "modules":["GEQ1000"]
-                                                },
-                                                {
-                                                    "type":"node",
-                                                    "logic":".",
-                                                    "modules":["GER1000"]
-                                                }
-                                            ]
+                                            "logic":".",
+                                            "modules":["GEA1000"]
+                                        },
+                                        {
+                                            "type":"node",
+                                            "logic":".",
+                                            "modules":["GEQ1000"]
+                                        },
+                                        {
+                                            "type":"node",
+                                            "logic":".",
+                                            "modules":["GER1000"]
                                         }
                                     ]
                                 }
@@ -66,9 +60,6 @@
                 {
                     "type":"category",
                     "name":"Engineering Core",
-                    "criteria": {
-                        "credit" : 8
-                    },
                     "modules":[
                         {
                             "type":"node",
@@ -96,6 +87,9 @@
                 {
                     "type":"category",
                     "name":"Physics Component",
+                    "criteria": {
+                        "credit": 8
+                    },
                     "modules":[
                         {
                             "type":"node",

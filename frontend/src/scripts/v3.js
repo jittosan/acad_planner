@@ -237,8 +237,9 @@ class Schedule {
 // { 'group' / 'node' / 'category' } if node: logic : 'and' / 'or' / '.'
 
 class AcademicRequirement {
-    constructor(reqData) {
+    constructor(reqData, modData) {
         this.data = reqData 
+        this.db = modData
         this.initialise(this.data)
     }
 
@@ -309,7 +310,7 @@ class AcademicRequirement {
             if (currentNode.type ==="node" && currentNode.logic===".") {
                 // find direct matching module
                 let matchedCodeIndex = findMatch(currentNode.modules[0], modList)
-                // check if criteria met for number/credits
+                // if XX present in code, loop to keep matching untill null/criteria met
                 // attach to endpoint and drop from modList once matched
                 if (matchedCodeIndex !== null) {
                     currentNode['match'].push(modList[matchedCodeIndex])
@@ -317,6 +318,7 @@ class AcademicRequirement {
                 }
             } else {
                 // recurse through structure if not endpoint
+                // process criteria if present and pass down
                 for (let i=0;i<currentNode.modules.length;i++) {
                     matchHelper(currentNode.modules[i])
                 }
@@ -328,86 +330,129 @@ class AcademicRequirement {
         // execute preclusion checks
     }
 
-    verify() {
+    verify(modList) {
+        // is repeated
+        const checkCanRepeat = (item) => {
+            return item.includes('X')
+        }
+        // find a corresponding module match in modlist based of item requirement
+        const findMatch = (item) => {
+            for (let i=0;i<modList.length;i++) {
+                if (this.compare(item, modList[i])) {
+                    return i
+                }
+            }
+            return null
+        }
+        // function to find corresponidng preclusion module in modlist based off item requirement
+        // FUNCTION TO BE IMPLEMENTED
         // recurse through nodes to check whether conditions are met or not
-        // define verification function
-        const verifyEndpoint = (endpoint) => {
-            return endpoint.match!==[]
-        }
-        const verifyCollection = (collection) => {
-            return false
-        }
-        const verifyNode = (node) => {
-            return false
-        }
-        // direct match modules
-        const verifyHelper = (currentNode, criteria) => {
-            // if trackFn already satisfied, do not traverse
-            if(criteria!==undefined){console.log(criteria.check())}
-            if (criteria!==undefined && criteria.check()) {
-                return true
+        const verifyHelper = (currentNode, checkFn) => {
+            console.log('BP', checkFn)
+            let tracker = {
+                completed:false,
+                number:0,
+                credit:0
             }
             // if endpoint
             if (currentNode.type ==="node" && currentNode.logic===".") {
-                console.log('.', currentNode.match.length !== 0, currentNode.match, currentNode.modules)
-                return currentNode.match.length !== 0
+                // MATCH CODE WITH MODLIST, REPEAT IF XX IN CODE UNTIL NULL / CRITERIA MET
+                do {
+                    console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
+                    let matchIndex = findMatch(currentNode.modules[0])
+                    if (matchIndex!==null) {
+                        currentNode['match'].push(modList[matchIndex])
+                        modList.splice(matchIndex, 1)
+                        tracker.number++
+                        if (this.db!==undefined && this.db[currentNode.match]!==undefined) {
+                            tracker.credit += parseInt(this.db[currentNode.match]["moduleCredit"])
+                        }
+                    }
+                } while (checkCanRepeat(currentNode.modules[0]) && checkFn!==undefined && checkFn(tracker.number, tracker.credit))
+                console.log('END LOG')
+                tracker.completed = currentNode.match.length!==0
+                console.log('ENDPOINT', currentNode.match, tracker, checkFn)
+                return tracker
             // if and/or node
             } else if (currentNode.type==="node") {
                 if (currentNode.logic==="and") {
-                    // if and node, check all children are true
+                    // if AND node, check all children are true
                     let testLogic = true
                     for (let i=0;i<currentNode.modules.length;i++) {
-                        testLogic = testLogic && verifyHelper(currentNode.modules[i])
+                        // if checkFn satsfied, exit loop
+                        if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
+                            break
+                        }
+                        let result = verifyHelper(currentNode.modules[i])
+                        testLogic = testLogic && result.completed
+                        tracker.number += result.number
+                        tracker.credit += result.credit
                     }
-                    console.log('and', testLogic, currentNode.modules)
-                    return testLogic
+                    tracker.completed = testLogic
+                    console.log('AND NODE', tracker, currentNode.modules, checkFn)
+                    return tracker
                 } else {
-                    // if or node, check any children is true
+                    // if OR node, check any children is true
                     let testLogic = false
                     for (let i=0;i<currentNode.modules.length;i++) {
-                        testLogic = testLogic || verifyHelper(currentNode.modules[i])
+                        // if checkFn satsfied, exit loop
+                        if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
+                            break
+                        }
+                        let result = verifyHelper(currentNode.modules[i])
+                        testLogic = testLogic || result.completed
+                        tracker.number += result.number
+                        tracker.credit += result.credit
+                        
                     }
-                    console.log('or', testLogic, currentNode.modules)
-                    return testLogic
+                    tracker.completed = testLogic
+                    console.log('OR NODE', tracker, currentNode.modules, checkFn)
+                    return tracker
                 }
             // if category/main/group
             } else {
+                let currCheckFn
                 // check for criteria for category/main/group
-                let criteriaOpr
                 if (currentNode.criteria!==undefined) {
-                    console.log('Crit', currentNode.criteria)
-                    // criteria is number of modules
                     if (currentNode.criteria.number!==undefined) {
-                        console.log('NUMBER')
-                        criteriaOpr = {
-                            type:"number", 
-                            value:currentNode.criteria.number,
-                            count:0,
-                            check:()=>{return this.count>=this.value},
-                            update:(val)=> {this.count += val}
-                        }
-                    // criteria is number of MCs
+                        // compare number
+                        currCheckFn = (number, credit) => {return number>=currentNode.criteria.number}
                     } else if (currentNode.criteria.credit!==undefined) {
-                        console.log('CREDIT')
-                        criteriaOpr ={
-                            type:"credit", 
-                            value:currentNode.criteria.credit,
-                            count:0,
-                            check:()=>{return this.count>=this.value},
-                            update:(val)=> {this.count += val}
-                        }
+                        //compare credits
+                        currCheckFn = (number, credit) => {return credit>=currentNode.criteria.credit}
                     }
-                    console.log(criteriaOpr)
+                } else {
+                    // if criteria not defined for current layer, pass on from previous layer
+                    currCheckFn = checkFn
                 }
-                // recurse through structure if not endpoint
+                // return directly because category/main/group should only have 1 node going out
+                // return verifyHelper(currentNode.modules[0], currCheckFn)
+                // if categpry/main/group node, treat as OR node to check any children is true
+                console.log('START GRP', currCheckFn)
+                let testLogic = false
                 for (let i=0;i<currentNode.modules.length;i++) {
-                    return verifyHelper(currentNode.modules[i], criteriaOpr)
+                    // if checkFn satsfied, exit loop
+                    if (currCheckFn!==undefined && currCheckFn(tracker.number, tracker.credit)) {
+                        break
+                    }
+                    let result = verifyHelper(currentNode.modules[i])
+                    testLogic = testLogic || result.completed
+                    tracker.number += result.number
+                    tracker.credit += result.credit
+                    
                 }
+                if (currCheckFn!==undefined) {
+                    tracker.completed = currCheckFn(tracker.number, tracker.credit)
+                } else {
+                    tracker.completed = testLogic
+                }
+                console.log('GRP NODE', tracker, currentNode.modules, currCheckFn)
+                return tracker
             }
         }
 
         // execute direct matching
-        return verifyHelper(this.data)
+        return verifyHelper(this.data).completed
     }
 
     // DATA EXTRACTION METHODS
