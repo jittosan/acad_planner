@@ -42,7 +42,7 @@ export default AcademicRequirementTray
 const AcademicReqHandler = () => {
     let modData = useContext(DataStoreContext)
     console.log('Academic Requirement Handler Test')
-    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2130", "PC2132"]
+    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2130", "PC2133"]
     // let ml = ['ESP1111']
     let aca = new AcademicRequirement(acadReqDemo, modData)
     // console.log(aca)

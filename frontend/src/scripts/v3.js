@@ -348,7 +348,7 @@ class AcademicRequirement {
         // FUNCTION TO BE IMPLEMENTED
         // recurse through nodes to check whether conditions are met or not
         const verifyHelper = (currentNode, checkFn) => {
-            console.log('BP', checkFn)
+            // console.log('BP', checkFn)
             let tracker = {
                 completed:false,
                 number:0,
@@ -357,19 +357,21 @@ class AcademicRequirement {
             // if endpoint
             if (currentNode.type ==="node" && currentNode.logic===".") {
                 // MATCH CODE WITH MODLIST, REPEAT IF XX IN CODE UNTIL NULL / CRITERIA MET
+                let matchIndex = null
                 do {
-                    console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
-                    let matchIndex = findMatch(currentNode.modules[0])
+                    // console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
+                    matchIndex = findMatch(currentNode.modules[0])
                     if (matchIndex!==null) {
-                        currentNode['match'].push(modList[matchIndex])
+                        let moduleCode = modList[matchIndex]
+                        currentNode['match'].push(moduleCode)
                         modList.splice(matchIndex, 1)
                         tracker.number++
-                        if (this.db!==undefined && this.db[currentNode.match]!==undefined) {
-                            tracker.credit += parseInt(this.db[currentNode.match]["moduleCredit"])
+                        if (this.db!==undefined && this.db[moduleCode]!==undefined) {
+                            console.log('CREDITS FOUND', )
+                            tracker.credit += parseInt(this.db[moduleCode]["moduleCredit"])
                         }
                     }
-                } while (checkCanRepeat(currentNode.modules[0]) && checkFn!==undefined && checkFn(tracker.number, tracker.credit))
-                console.log('END LOG')
+                } while (checkCanRepeat(currentNode.modules[0]) && matchIndex!==null && (checkFn!==undefined && !checkFn(tracker.number, tracker.credit)))
                 tracker.completed = currentNode.match.length!==0
                 console.log('ENDPOINT', currentNode.match, tracker, checkFn)
                 return tracker
@@ -383,13 +385,13 @@ class AcademicRequirement {
                         if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
                             break
                         }
-                        let result = verifyHelper(currentNode.modules[i])
+                        let result = verifyHelper(currentNode.modules[i], checkFn)
                         testLogic = testLogic && result.completed
                         tracker.number += result.number
                         tracker.credit += result.credit
                     }
                     tracker.completed = testLogic
-                    console.log('AND NODE', tracker, currentNode.modules, checkFn)
+                    console.log('AND NODE', tracker, currentNode.modules)
                     return tracker
                 } else {
                     // if OR node, check any children is true
@@ -399,14 +401,14 @@ class AcademicRequirement {
                         if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
                             break
                         }
-                        let result = verifyHelper(currentNode.modules[i])
+                        let result = verifyHelper(currentNode.modules[i], checkFn)
                         testLogic = testLogic || result.completed
                         tracker.number += result.number
                         tracker.credit += result.credit
                         
                     }
                     tracker.completed = testLogic
-                    console.log('OR NODE', tracker, currentNode.modules, checkFn)
+                    console.log('OR NODE', tracker, currentNode.modules)
                     return tracker
                 }
             // if category/main/group
@@ -428,14 +430,14 @@ class AcademicRequirement {
                 // return directly because category/main/group should only have 1 node going out
                 // return verifyHelper(currentNode.modules[0], currCheckFn)
                 // if categpry/main/group node, treat as OR node to check any children is true
-                console.log('START GRP', currCheckFn)
+                console.log('START GRP')
                 let testLogic = false
                 for (let i=0;i<currentNode.modules.length;i++) {
                     // if checkFn satsfied, exit loop
                     if (currCheckFn!==undefined && currCheckFn(tracker.number, tracker.credit)) {
                         break
                     }
-                    let result = verifyHelper(currentNode.modules[i])
+                    let result = verifyHelper(currentNode.modules[i], currCheckFn)
                     testLogic = testLogic || result.completed
                     tracker.number += result.number
                     tracker.credit += result.credit
@@ -446,7 +448,7 @@ class AcademicRequirement {
                 } else {
                     tracker.completed = testLogic
                 }
-                console.log('GRP NODE', tracker, currentNode.modules, currCheckFn)
+                console.log('GRP NODE', tracker, currentNode.modules)
                 return tracker
             }
         }
