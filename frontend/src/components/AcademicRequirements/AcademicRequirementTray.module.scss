@@ -24,3 +24,37 @@
         font-size: 1.5rem;
     }
 }
+
+.requirementTab {
+    position: relative;
+    padding: 1ch;
+    background-color: grey;
+    height: 3ch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: -0.5ch;
+        right: -0.5ch;
+        height: 2ch;
+        width: 2ch;
+        border-radius: 50%;
+        background-color: grey;
+    }
+}
+
+.incompleteRequirement {
+    &::before {
+        background-color: red;
+    }
+}
+
+.completeRequirement {
+    &::before {
+        background-color: greenyellow;
+    }
+}

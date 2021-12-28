@@ -24,12 +24,15 @@ const demoTag = [
     }
 ]
 
+let demoData = [acadReqDemo, acadReqDemoAlt]
+
 const AcademicRequirementTray = () => {
     return (
         <div className={styles.tray}>
             <div className={styles.tagContainer}>
-            <AcademicReqHandler />
-                {demoTag.map((item, index) => <LargeTag key={index} code={item.code} color={item.color} />)}
+            {/* <AcademicReqHandler /> */}
+                {/* {demoTag.map((item, index) => <LargeTag key={index} code={item.code} color={item.color} />)} */}
+                {demoData.map((item, index) => <AcademicRequirementTab key={index} reqDataset={item} />)}
             </div>
             <div className={styles.editContainer}>
                 <RiEditBoxLine />
@@ -48,14 +51,27 @@ const AcademicReqHandler = () => {
     // let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2133",'PC1101', 'PC2174A', 'PC2193', 'PC2130' ,'PC2135', 'GER1000']
     let phm = new AcademicRequirement(acadReqDemoAlt, modData)
     let esp = new AcademicRequirement(acadReqDemo, modData)
-    console.log('PHYSICS MINOR', phm.verify(scheduleMods))
+    // console.log('PHYSICS MINOR', phm.verify(scheduleMods))
     console.log()
-    console.log('ESP MAJOR',esp.verify(scheduleMods))
+    // console.log('ESP MAJOR',esp.verify(scheduleMods))
     console.log()
 
     return (
         <div>
             <p>..</p>
+        </div>
+    )
+}
+
+
+const AcademicRequirementTab = ({reqDataset}) => {
+    let modData = useContext(DataStoreContext)
+    let scheduleMods = useContext(ScheduleContext).flatten()
+    let acadRequirementHandler = new AcademicRequirement(reqDataset, modData)
+
+    return(
+        <div className={`${styles.requirementTab} ${acadRequirementHandler.verify(scheduleMods) ? styles.completeRequirement : styles.incompleteRequirement}`}>
+            <p>{reqDataset.name.substring(0,3)}</p>
         </div>
     )
 }

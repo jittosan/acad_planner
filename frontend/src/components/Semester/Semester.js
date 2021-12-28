@@ -12,7 +12,7 @@ const Semester = ({index}) => {
     let semData = semHandler.getData()[index]
     let moduleInputRef = useRef(null) // function to add module from input field
     const addModuleCode = ()=> {
-        semHandler.addModule(moduleInputRef.current.value, index)
+        semHandler.addModule(moduleInputRef.current.value.toUpperCase(), index)
         moduleInputRef.current.value = ''
     }
     const removeModuleCode = (code) => { // function to remove module from sem
