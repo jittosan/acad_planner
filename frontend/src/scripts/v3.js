@@ -362,6 +362,7 @@ class AcademicRequirement {
                     // console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
                     matchIndex = findMatch(currentNode.modules[0])
                     if (matchIndex!==null) {
+                        // check current addition will not overload maximum limits
                         let moduleCode = modList[matchIndex]
                         currentNode['match'].push(moduleCode)
                         modList.splice(matchIndex, 1)
