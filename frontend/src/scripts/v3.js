@@ -231,6 +231,12 @@ class Schedule {
     getData() {
         return this.data
     }
+
+    flatten() {
+        let output = []
+        this.data.map((item) => {return output = output.concat(item.modules)})
+        return output
+    }
 }
 
 // ACADEMIC REQUIREMENT COMPONENTS
@@ -368,13 +374,13 @@ class AcademicRequirement {
                         modList.splice(matchIndex, 1)
                         tracker.number++
                         if (this.db!==undefined && this.db[moduleCode]!==undefined) {
-                            console.log('CREDITS FOUND', )
+                            // console.log('CREDITS FOUND', )
                             tracker.credit += parseInt(this.db[moduleCode]["moduleCredit"])
                         }
                     }
                 } while (checkCanRepeat(currentNode.modules[0]) && matchIndex!==null && (checkFn!==undefined && !checkFn(tracker.number, tracker.credit)))
                 tracker.completed = currentNode.match.length!==0
-                console.log('ENDPOINT', currentNode.match, tracker, checkFn)
+                // console.log('ENDPOINT', currentNode.match, tracker, checkFn)
                 return tracker
             // if and/or node
             } else if (currentNode.type==="node") {
@@ -392,7 +398,7 @@ class AcademicRequirement {
                         tracker.credit += result.credit
                     }
                     tracker.completed = testLogic
-                    console.log('AND NODE', tracker, currentNode.modules)
+                    // console.log('AND NODE', tracker, currentNode.modules)
                     return tracker
                 } else {
                     // if OR node, check any children is true
@@ -409,7 +415,7 @@ class AcademicRequirement {
                         
                     }
                     tracker.completed = testLogic
-                    console.log('OR NODE', tracker, currentNode.modules)
+                    // console.log('OR NODE', tracker, currentNode.modules)
                     return tracker
                 }
             // if category/main/group
@@ -431,7 +437,7 @@ class AcademicRequirement {
                 // return directly because category/main/group should only have 1 node going out
                 // return verifyHelper(currentNode.modules[0], currCheckFn)
                 // if categpry/main/group node, treat as OR node to check any children is true (CONSIDER SWITCHING TO AND)
-                console.log('START GRP')
+                // console.log('START GRP')
                 let testLogic = true
                 for (let i=0;i<currentNode.modules.length;i++) {
                     // if checkFn satsfied, exit loop
@@ -449,7 +455,7 @@ class AcademicRequirement {
                 } else {
                     tracker.completed = testLogic
                 }
-                console.log('GRP NODE', tracker, currentNode.modules)
+                // console.log('GRP NODE', tracker, currentNode.modules)
                 return tracker
             }
         }
