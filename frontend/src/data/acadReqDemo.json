@@ -32,9 +32,6 @@
                                 },
                                 {
                                     "type":"group",
-                                    "criteria": {
-                                        "number" : 2
-                                    },
                                     "modules":[
                                         {
                                             "type":"node",

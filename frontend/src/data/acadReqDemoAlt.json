@@ -1,0 +1,69 @@
+{
+    "type" : "main",
+    "name" : "Physics Minor",
+    "code":"ESP",
+    "modules":[
+        {
+            "type":"category",
+            "name": "Compulsory Modules",
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":"and",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC1101"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2174A"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2193"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Selected Modules",
+            "criteria": {
+                "number":2
+            },
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":"or",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2031"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2032"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2130"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2135"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

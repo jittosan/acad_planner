@@ -1,6 +1,7 @@
 import { RiEditBoxLine } from 'react-icons/ri'
 import { AcademicRequirement } from '../../scripts/v3'
 import acadReqDemo from '../../data/acadReqDemo.json'
+import acadReqDemoAlt from '../../data/acadReqDemoAlt.json'
 import styles from './AcademicRequirementTray.module.scss'
 import {LargeTag} from './Tag'
 import { useContext } from 'react/cjs/react.development'
@@ -42,13 +43,13 @@ export default AcademicRequirementTray
 const AcademicReqHandler = () => {
     let modData = useContext(DataStoreContext)
     console.log('Academic Requirement Handler Test')
-    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2130", "PC2133"]
-    // let ml = ['ESP1111']
-    let aca = new AcademicRequirement(acadReqDemo, modData)
-    // console.log(aca)
-    // aca.match(ml)
-    // console.log(aca.flatten())
-    console.log(aca.verify(ml))
+    let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2133",'PC1101', 'PC2174A', 'PC2193', 'PC2130' ,'PC2031', 'PC2032', 'GER1000']
+    let phm = new AcademicRequirement(acadReqDemoAlt, modData)
+    let esp = new AcademicRequirement(acadReqDemo, modData)
+    console.log('PHYSICS MINOR', phm.verify(ml))
+    console.log()
+    console.log('ESP MAJOR',esp.verify(ml))
+    console.log()
 
     return (
         <div>

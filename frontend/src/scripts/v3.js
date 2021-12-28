@@ -429,16 +429,16 @@ class AcademicRequirement {
                 }
                 // return directly because category/main/group should only have 1 node going out
                 // return verifyHelper(currentNode.modules[0], currCheckFn)
-                // if categpry/main/group node, treat as OR node to check any children is true
+                // if categpry/main/group node, treat as OR node to check any children is true (CONSIDER SWITCHING TO AND)
                 console.log('START GRP')
-                let testLogic = false
+                let testLogic = true
                 for (let i=0;i<currentNode.modules.length;i++) {
                     // if checkFn satsfied, exit loop
                     if (currCheckFn!==undefined && currCheckFn(tracker.number, tracker.credit)) {
                         break
                     }
                     let result = verifyHelper(currentNode.modules[i], currCheckFn)
-                    testLogic = testLogic || result.completed
+                    testLogic = testLogic && result.completed
                     tracker.number += result.number
                     tracker.credit += result.credit
                     
