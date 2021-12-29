@@ -3,26 +3,9 @@ import { AcademicRequirement } from '../../scripts/v3'
 import acadReqDemo from '../../data/acadReqDemo.json'
 import acadReqDemoAlt from '../../data/acadReqDemoAlt.json'
 import styles from './AcademicRequirementTray.module.scss'
-import {LargeTag} from './Tag'
 import { useContext } from 'react/cjs/react.development'
 import { DataStoreContext } from '../../context/DataStoreContext'
 import { ScheduleContext } from '../../context/ScheduleContext'
-
-// define demo data for tags
-const demoTag = [
-    {
-        code : 'ESP',
-        color: '#229'
-    },
-    {
-        code : 'ESP',
-        color: '#933'
-    },
-    {
-        code : 'ESP',
-        color: '#070'
-    }
-]
 
 let demoData = [acadReqDemo, acadReqDemoAlt]
 
@@ -31,7 +14,6 @@ const AcademicRequirementTray = () => {
         <div className={styles.tray}>
             <div className={styles.tagContainer}>
             {/* <AcademicReqHandler /> */}
-                {/* {demoTag.map((item, index) => <LargeTag key={index} code={item.code} color={item.color} />)} */}
                 {demoData.map((item, index) => <AcademicRequirementTab key={index} reqDataset={item} />)}
             </div>
             <div className={styles.editContainer}>
@@ -68,6 +50,7 @@ const AcademicRequirementTab = ({reqDataset}) => {
     let modData = useContext(DataStoreContext)
     let scheduleMods = useContext(ScheduleContext).flatten()
     let acadRequirementHandler = new AcademicRequirement(reqDataset, modData)
+    console.log(reqDataset.name, acadRequirementHandler.verify(scheduleMods))
 
     return(
         <div className={`${styles.requirementTab} ${acadRequirementHandler.verify(scheduleMods) ? styles.completeRequirement : styles.incompleteRequirement}`}>
