@@ -1,10 +1,18 @@
 [
     {
-        "name": "ESP Recommended",
+        "name": "ESP Recommended Schedule",
         "semesters" : [
             {
                 "name" : "Y1 S1",
-                "modules" : ["ESP1111", "CS1010E"]
+                "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
+            },
+            {
+                "name" : "Y1 S2",
+                "modules" : ["ESP2111", "MA1508E", "PF1101", "DTK1234", "GEA1000"]
+            },
+            {
+                "name" : "Y2 S1",
+                "modules" : ["ESP2107"]
             }
         ]
     },

@@ -12,8 +12,10 @@ const Semester = ({index}) => {
     let semData = semHandler.getData()[index]
     let moduleInputRef = useRef(null) // function to add module from input field
     const addModuleCode = ()=> {
+        // remove spaces, strip front & back
         semHandler.addModule(moduleInputRef.current.value.toUpperCase(), index)
         moduleInputRef.current.value = ''
+        // enable popup for user-defined defined mods if not in database already
     }
     const removeModuleCode = (code) => { // function to remove module from sem
         semHandler.removeModule(code, index)

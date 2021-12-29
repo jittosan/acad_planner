@@ -7,7 +7,8 @@ import { useContext } from 'react/cjs/react.development'
 import { DataStoreContext } from '../../context/DataStoreContext'
 import { ScheduleContext } from '../../context/ScheduleContext'
 
-let demoData = [acadReqDemo, acadReqDemoAlt]
+// let demoData = [acadReqDemo, acadReqDemoAlt]
+let demoData = [acadReqDemoAlt, acadReqDemo]
 
 const AcademicRequirementTray = () => {
     return (
@@ -26,24 +27,24 @@ const AcademicRequirementTray = () => {
 
 export default AcademicRequirementTray
 
-const AcademicReqHandler = () => {
-    let modData = useContext(DataStoreContext)
-    let scheduleMods = useContext(ScheduleContext).flatten()
-    // console.log('Academic Requirement Handler Test')
-    // let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2133",'PC1101', 'PC2174A', 'PC2193', 'PC2130' ,'PC2135', 'GER1000']
-    let phm = new AcademicRequirement(acadReqDemoAlt, modData)
-    let esp = new AcademicRequirement(acadReqDemo, modData)
-    // console.log('PHYSICS MINOR', phm.verify(scheduleMods))
-    console.log()
-    // console.log('ESP MAJOR',esp.verify(scheduleMods))
-    console.log()
+// const AcademicReqHandler = () => {
+//     let modData = useContext(DataStoreContext)
+//     let scheduleMods = useContext(ScheduleContext).flatten()
+//     // console.log('Academic Requirement Handler Test')
+//     // let ml = ['ESP1111', 'CS1010E', 'ESP2111', 'GEC1010', 'GESS1014', 'ESP5402', 'GEA1000', 'GEQ1000', "PC2133",'PC1101', 'PC2174A', 'PC2193', 'PC2130' ,'PC2135', 'GER1000']
+//     let phm = new AcademicRequirement(acadReqDemoAlt, modData)
+//     let esp = new AcademicRequirement(acadReqDemo, modData)
+//     // console.log('PHYSICS MINOR', phm.verify(scheduleMods))
+//     console.log()
+//     // console.log('ESP MAJOR',esp.verify(scheduleMods))
+//     console.log()
 
-    return (
-        <div>
-            <p>..</p>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <p>..</p>
+//         </div>
+//     )
+// }
 
 
 const AcademicRequirementTab = ({reqDataset}) => {

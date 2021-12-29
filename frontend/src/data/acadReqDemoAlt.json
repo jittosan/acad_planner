@@ -1,7 +1,8 @@
 {
     "type" : "main",
     "name" : "Physics Minor",
-    "code":"ESP",
+    "doubleCount" :8,
+    "code" : "PHM",
     "modules":[
         {
             "type":"category",
