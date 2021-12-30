@@ -87,13 +87,6 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-
-        .module {
-            display: inline-block;
-            background-color: rgb(198, 198, 199);
-            width: 100%;
-            margin: 1ch 0ch;
-        }
     }
     
     .footer {
@@ -144,6 +137,12 @@
     }
 }
 
+.module {
+    display: inline-block;
+    background-color: rgb(198, 198, 199);
+    width: 100%;
+    margin: 1ch 0ch;
+}
 
 
 

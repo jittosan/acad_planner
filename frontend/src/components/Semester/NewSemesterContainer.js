@@ -24,26 +24,22 @@ const SemesterContainer = () => {
             setSelectedSem(selectedSem+value)
         }
     }
-    console.log(selectedSem)
-    // console.log(schedule.length)
-    // console.log(schedule)
+
     return (
         <div className={styles.container}>
-        <div className={styles.buttonContainer}>
-            <div className={`${styles.button} ${firstSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(-1)}}>
-                <BsChevronLeft />
+            <div className={styles.buttonContainer}>
+                <div className={`${styles.button} ${firstSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(-1)}}>
+                    <BsChevronLeft />
+                </div>
+                <div className={styles.editButton} onClick={displayModal}>
+                    <RiEditLine /> <p>Edit Semesters</p>
+                </div>
+                <div className={`${styles.button} ${lastSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(1)}}>
+                    <BsChevronRight />
+                </div>
             </div>
-            <div className={styles.editButton} onClick={displayModal}>
-                <p><RiEditLine /> Edit Semesters</p>
-            </div>
-            <div className={`${styles.button} ${lastSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(1)}}>
-                <BsChevronRight />
-            </div>
-        </div>
             <Semester index={selectedSem} />
-            {/* {schedule.map((_, index) => <Semester key={index} index={index}  />)} */}
-            
-        {modalOpen ? <SemesterModal close={hideModal} /> : ''}
+            {modalOpen ? <SemesterModal close={hideModal} /> : ''}
         </div>
     )
 }
@@ -102,11 +98,11 @@ const Module = ({module_code, removeModuleCode}) => {
             </div>
 
             {/* Module Title & Tag */}
-            {/* <div className={styles.contentContainer}>
+            <div className={styles.contentContainer}>
                 <p>{modData[module_code] ? modData[module_code].title : '!Not Found'}</p>
                 <div className={styles.tagContainer}>
                 </div>
-            </div> */}
+            </div>
 
             {/* Delete Icon when hovered over */}
             {/* <div className={styles.deleteContainer}>
