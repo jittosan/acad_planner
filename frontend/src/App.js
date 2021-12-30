@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';         // import global styles
-import SemesterContainer from './components/Semester/SemesterContainer';    // import local components
+import SemesterContainer from './components/Semester/NewSemesterContainer';    // import local components
 import AcademicRequirements from './components/AcademicRequirements/AcademicRequirements';
 import ScheduleContainer from './components/Schedule/ScheduleContainer';
 import { ScheduleContextProvider } from './context/ScheduleContext';    
