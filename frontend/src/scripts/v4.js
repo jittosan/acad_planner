@@ -347,13 +347,8 @@ class Planner {
         this.db = modData // DataStore
         this.schedules = scheduleList.map((item) => new Schedule(item)) // Array of Schedule
         this.selectedSchedule = selectIndex
-        this.acad = acadList.map((item) => new AcademicRequirement(item))  // Array of AcademicRequirement
+        this.acad = acadList.map((item) => new AcademicRequirement(item, this.db))  // Array of AcademicRequirement
         this.moduleMap = {}
-        this.schedules[this.selectedSchedule].flatten().map((item) => this.moduleMap[item]=[])
-    }
-
-    refresh(){
-        return null
     }
 
     // == Database Methods ==
@@ -370,21 +365,41 @@ class Planner {
     }
 
     getScheduleData(semIndex) {
-        let data = this.schedules[this.selectedSchedule].getData()
-        if (semIndex!==undefined && semIndex>=0 && semIndex<=data.length) {
-            return data[semIndex] 
-        } else {
-            return data
+        if (semIndex===undefined) {
+            semIndex= this.selectedSchedule
         }
+        return this.schedules[semIndex].getData()
     }
 
+    // SEMESTER MANIPULATION METHODS
+
     addSemester(name) {
-        return this.schedules[this.selectedSchedule].addSemester(name)
+        return this.getSchedule().addSemester(name)
+    }
+
+    removeSemester(index) {
+        return this.getSchedule().removeSemester(index)
+    }
+
+    addModule(code, semIndex) {
+        return this.getSchedule().addModule(code, semIndex)
+    }
+
+    removeModule(code, semIndex) {
+        return this.getSchedule().removeModule(code, semIndex)
     }
 
     // == Academic Requirement Methods ==
 
+    refresh(){
+        let moduleMap = {}
+        this.schedules[this.selectedSchedule].flatten().map((item) => moduleMap[item]=[])
+        return moduleMap
+    }
 
+    verify() {
+        return this.acad.map((item) => item.verify(this.getSchedule().flatten()))
+    }
 
 }
 

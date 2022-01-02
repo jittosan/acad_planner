@@ -40,13 +40,12 @@ function App() {
     <div className="App">
     <PlannerContextProvider 
       selectIndex={currentSchedule}
-      updateIndex={setCurrentSchedule}
       scheduleList={scheduleData}
       acadList={[acadReqDemoAlt, acadReqDemo]}
     >
       <ScheduleContextProvider value={schedule} update={update}>
         <div className='MainContainer'>
-        <MainMenuTray />
+          <MainMenuTray />
           {/* <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/> */}
           <SemesterContainer />
           <AcademicRequirementTray />

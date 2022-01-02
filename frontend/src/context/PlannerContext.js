@@ -10,17 +10,12 @@ import modData from '../data/modData.json'
 // define context
 const PlannerContext = createContext({});
 
-const PlannerContextProvider = ({children, scheduleList, acadList, selectIndex, updateIndex}) => {
+const PlannerContextProvider = ({children, scheduleList, acadList, selectIndex}) => {
     // load data from data file or localStorage
     // parse data and place into object before populating component tree
     let newValue = new Planner(modData, scheduleList, acadList, selectIndex)
-    // console.log('SCHEDULE LIST', scheduleList)
-    // console.log('ACAD LIST', acadList)
-    // console.log('SELECT INDEX', selectIndex)
-    // console.log('UPDATE INDEX', updateIndex)
-    console.log(newValue)
-    // console.log(newValue.addSemester('NEW'))
-    console.log(newValue)
+    console.log(newValue.verify())
+
     return(
         <PlannerContext.Provider value={newValue}>
             {children}
