@@ -1,29 +1,25 @@
 import { RiEditBoxLine } from 'react-icons/ri'
-import { AcademicRequirement } from '../../scripts/v3'
-import acadReqDemo from '../../data/acadReqDemo.json'
-import acadReqDemoAlt from '../../data/acadReqDemoAlt.json'
 import styles from './AcademicRequirementTray.module.scss'
 import { useContext } from 'react/cjs/react.development'
-import { DataStoreContext } from '../../context/DataStoreContext'
-import { ScheduleContext } from '../../context/ScheduleContext'
 import { useEffect, useState } from 'react'
 import { PlannerContext } from '../../context/PlannerContext'
 
-let demoData = [acadReqDemoAlt, acadReqDemo]
-
 const AcademicRequirementTray = () => {
     const planner = useContext(PlannerContext)
+    let demoData = planner.getAllRequirements()
     const [triggerFlag, setTriggerFlag] = useState(false)
     
+    console.log('ACADTRAY')
     useEffect(() => {
-        planner.attachCallback(()=>{console.log('boop');setTriggerFlag(!triggerFlag)})
-    }, [])
+        const trigger = () => setTriggerFlag(!triggerFlag)
+        planner.attachCallback(()=>{console.log('boop');trigger()})
+    }, [planner])
 
     return (
         <div className={styles.tray}>
             <div className={styles.tagContainer}>
             {/* <AcademicReqHandler /> */}
-                {demoData.map((item, index) => <AcademicRequirementTab key={index} reqDataset={item} />)}
+                {demoData.map((item, index) => <AcademicRequirementTab key={index} reqDataset={item} index={index} />)}
             </div>
             <div className={styles.editContainer}>
                 <RiEditBoxLine />
@@ -55,15 +51,14 @@ export default AcademicRequirementTray
 // }
 
 
-const AcademicRequirementTab = ({reqDataset}) => {
-    let modData = useContext(DataStoreContext)
-    let scheduleMods = useContext(ScheduleContext).flatten()
-    let acadRequirementHandler = new AcademicRequirement(reqDataset, modData)
-    console.log(reqDataset.name, acadRequirementHandler.verify(scheduleMods))
+const AcademicRequirementTab = ({reqDataset, index}) => {
+    let planner = useContext(PlannerContext)
+    let acadRequirementHandler = planner.getRequirement(index)
+    console.log(acadRequirementHandler.getName(), planner.verify(index))
 
     return(
-        <div className={`${styles.requirementTab} ${acadRequirementHandler.verify(scheduleMods) ? styles.completeRequirement : styles.incompleteRequirement}`}>
-            <p>{reqDataset.name.substring(0,3)}</p>
+        <div className={`${styles.requirementTab} ${planner.verify(index) ? styles.completeRequirement : styles.incompleteRequirement}`}>
+            <p>{reqDataset.getName().substring(0,3)}</p>
         </div>
     )
 }

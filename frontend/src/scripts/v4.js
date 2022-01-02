@@ -213,6 +213,10 @@ class AcademicRequirement {
         this.data = data
     }
 
+    getName() {
+        return this.getData().name
+    }
+
     // PREPROCESSING METHODS
     initialise(currentNode) {
         // define match property for endpoint nodes, and end function
@@ -452,7 +456,14 @@ class Planner {
         this.selectedSchedule = selectIndex
         this.acad = acadList.map((item) => new AcademicRequirement(item, this.db.data))  // Array of AcademicRequirement
         this.moduleMap = {}
-        this.callbacks = [callback]
+        this.acadMap = []
+        if (callback!==undefined) {
+            this.callbacks = [callback]
+        } else {
+            this.callbacks = []
+        }
+        this.refresh()
+        this.attachCallback(()=>this.refresh())
     }
 
     // Callback methods
@@ -523,14 +534,25 @@ class Planner {
 
     // == Academic Requirement Methods ==
 
-    refresh(){
-        let moduleMap = {}
-        this.schedules[this.selectedSchedule].flatten().map((item) => moduleMap[item]=[])
-        return moduleMap
+    getRequirement(index) {
+        if (index>=0 && index<=this.acad.length) {
+            return this.acad[index]
+        } else {
+            return null
+        }
     }
 
-    verify() {
-        return this.acad.map((item) => item.verify(this.getSchedule().flatten()))
+    getAllRequirements() {
+        return this.acad
+    }
+
+    refresh(){
+        this.schedules[this.selectedSchedule].flatten().map((item) => this.moduleMap[item]=[])
+        this.acadMap = this.acad.map((item) => item.verify(this.getSchedule().flatten()))
+    }
+
+    verify(index) {
+        return this.acadMap[index]
     }
 
 }

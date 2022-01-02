@@ -4,15 +4,14 @@ import {RiEditLine} from 'react-icons/ri'                           // import ic
 import {BsChevronLeft, BsChevronRight} from 'react-icons/bs'                           
 import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
 import {IoAdd} from 'react-icons/io5'               
-import styles from './NewSemesterContainer.module.scss'                // import styles                           
-import { ScheduleContext } from '../../context/ScheduleContext'     // import context data
+import styles from './NewSemesterContainer.module.scss'                // import styles
 // import local components
 import SemesterModal from '../modals/SemesterModal.js'
-import { PlannerContext } from '../../context/PlannerContext'
+import { PlannerContext } from '../../context/PlannerContext'               // import context data
 
 const SemesterContainer = () => {
-    let scheduleHandler = useContext(ScheduleContext) // get schedule data from context
-    let schedule = scheduleHandler.getData()
+    let planner = useContext(PlannerContext) // get schedule data from context
+    let schedule = planner.getSchedule()
     const [modalOpen, setModalOpen] = useState(false) // state controls for showing/hiding edit settings modal
     const displayModal = () => {setModalOpen(true)}
     const hideModal = () => {setModalOpen(false)}
