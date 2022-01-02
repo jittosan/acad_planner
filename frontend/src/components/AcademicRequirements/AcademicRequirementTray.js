@@ -7,7 +7,6 @@ import { useContext } from 'react/cjs/react.development'
 import { DataStoreContext } from '../../context/DataStoreContext'
 import { ScheduleContext } from '../../context/ScheduleContext'
 
-// let demoData = [acadReqDemo, acadReqDemoAlt]
 let demoData = [acadReqDemoAlt, acadReqDemo]
 
 const AcademicRequirementTray = () => {

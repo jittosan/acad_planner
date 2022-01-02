@@ -1,7 +1,7 @@
 // DATA STORAGE CLASS
 class DataStore {
-    constructor(){
-        this.nodes = {}
+    constructor(data){
+        this.nodes = data
         this.links  = []
     }
 
@@ -49,6 +49,7 @@ class DataStore {
 // SCHEDULING CLASS
 class Schedule {
     constructor(rawData) {
+        this.name = rawData.name
         this.data = rawData.semesters
     }
 
@@ -344,10 +345,10 @@ class AcademicRequirement {
 // MAIN PLANNER CLASS
 class Planner {
     constructor(modData, scheduleList, acadList, selectIndex) {
-        this.db = modData // DataStore
+        this.db = new DataStore(modData) // DataStore
         this.schedules = scheduleList.map((item) => new Schedule(item)) // Array of Schedule
         this.selectedSchedule = selectIndex
-        this.acad = acadList.map((item) => new AcademicRequirement(item, this.db))  // Array of AcademicRequirement
+        this.acad = acadList.map((item) => new AcademicRequirement(item, this.db.data))  // Array of AcademicRequirement
         this.moduleMap = {}
     }
 
@@ -362,6 +363,10 @@ class Planner {
 
     getSchedule() {
         return this.schedules[this.selectedSchedule]
+    }
+
+    getAllSchedules() {
+        return this.schedules
     }
 
     getScheduleData(semIndex) {
