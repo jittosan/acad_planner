@@ -48,9 +48,8 @@ class DataStore {
 
 // SCHEDULING CLASS
 class Schedule {
-    constructor(data, update) {
-        this.data = data
-        this.update = update
+    constructor(rawData) {
+        this.data = rawData.semesters
     }
 
     addSemester(name) {
@@ -60,27 +59,23 @@ class Schedule {
             modules:[]
         }
         this.data.push(newSem)
-        this.update(this.data)
         return true
     }
 
     removeSemester(index) {
         this.data.splice(index, 1)
-        this.update(this.data)
         return true
     }
 
     addModule(code, semIndex) {
         let semObj = this.data[semIndex]
         semObj.modules.push(code)
-        this.update(this.data)
         return true
     }
 
     removeModule(code, semIndex) {
         let semObj = this.data[semIndex]
         semObj.modules.splice(semObj.modules.indexOf(code),1)
-        this.update(this.data)
         return true
     }
 
@@ -348,12 +343,17 @@ class AcademicRequirement {
 
 // MAIN PLANNER CLASS
 class Planner {
-    constructor() {
-        this.db = {}
-        this.schedules = {}
-        this.selectedSchedule = 0
-        this.acad = {}
+    constructor(modData, scheduleList, acadList, selectIndex) {
+        this.db = modData // DataStore
+        this.schedules = scheduleList.map((item) => new Schedule(item)) // Array of Schedule
+        this.selectedSchedule = selectIndex
+        this.acad = acadList.map((item) => new AcademicRequirement(item))  // Array of AcademicRequirement
         this.moduleMap = {}
+        this.schedules[this.selectedSchedule].flatten().map((item) => this.moduleMap[item]=[])
+    }
+
+    refresh(){
+        return null
     }
 
     // == Database Methods ==
@@ -367,6 +367,19 @@ class Planner {
 
     getSchedule() {
         return this.schedules[this.selectedSchedule]
+    }
+
+    getScheduleData(semIndex) {
+        let data = this.schedules[this.selectedSchedule].getData()
+        if (semIndex!==undefined && semIndex>=0 && semIndex<=data.length) {
+            return data[semIndex] 
+        } else {
+            return data
+        }
+    }
+
+    addSemester(name) {
+        return this.schedules[this.selectedSchedule].addSemester(name)
     }
 
     // == Academic Requirement Methods ==
