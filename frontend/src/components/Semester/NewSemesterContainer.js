@@ -6,7 +6,7 @@ import {HiOutlineTrash} from 'react-icons/hi'                           // impor
 import {IoAdd} from 'react-icons/io5'               
 import styles from './NewSemesterContainer.module.scss'                // import styles                           
 import { ScheduleContext } from '../../context/ScheduleContext'     // import context data
-import { DataStoreContext } from '../../context/DataStoreContext'     // import local components
+// import local components
 import SemesterModal from '../modals/SemesterModal.js'
 import { PlannerContext } from '../../context/PlannerContext'
 
@@ -48,17 +48,20 @@ const SemesterContainer = () => {
 export default SemesterContainer
 
 const Semester = ({index}) => {
-    let semHandler = useContext(ScheduleContext) // get schedule context data
-    let semData = semHandler.getData()[index]
+    let planner = useContext(PlannerContext)    // get schedule context data
+    let semData = planner.getSemester(index)
+    const [triggerFlag, setTriggerFlag] = useState(true)
     let moduleInputRef = useRef(null) // function to add module from input field
     const addModuleCode = ()=> {
         // remove spaces, strip front & back
-        semHandler.addModule(moduleInputRef.current.value.toUpperCase(), index)
+        planner.addModule(moduleInputRef.current.value.toUpperCase(), index)
         moduleInputRef.current.value = ''
         // enable popup for user-defined defined mods if not in database already
+        setTriggerFlag(!triggerFlag)
     }
     const removeModuleCode = (code) => { // function to remove module from sem
-        semHandler.removeModule(code, index)
+        planner.removeModule(code, index)
+        setTriggerFlag(!triggerFlag)
     }
     
     return (

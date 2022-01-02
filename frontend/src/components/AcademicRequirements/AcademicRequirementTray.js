@@ -6,10 +6,19 @@ import styles from './AcademicRequirementTray.module.scss'
 import { useContext } from 'react/cjs/react.development'
 import { DataStoreContext } from '../../context/DataStoreContext'
 import { ScheduleContext } from '../../context/ScheduleContext'
+import { useEffect, useState } from 'react'
+import { PlannerContext } from '../../context/PlannerContext'
 
 let demoData = [acadReqDemoAlt, acadReqDemo]
 
 const AcademicRequirementTray = () => {
+    const planner = useContext(PlannerContext)
+    const [triggerFlag, setTriggerFlag] = useState(false)
+    
+    useEffect(() => {
+        planner.attachCallback(()=>{console.log('boop');setTriggerFlag(!triggerFlag)})
+    }, [])
+
     return (
         <div className={styles.tray}>
             <div className={styles.tagContainer}>

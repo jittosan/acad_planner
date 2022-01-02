@@ -6,18 +6,21 @@ import { FiUpload, FiDownload, FiSettings } from 'react-icons/fi'
 import { useContext } from 'react/cjs/react.development'
 import { PlannerContext } from '../../context/PlannerContext'
 
-const MainMenuTray = () => {
+const MainMenuTray = ({updateSchedule}) => {
+    const planner = useContext(PlannerContext)
+    const scheduleTitle = planner.getSchedule().name
     const [dropdown, setDropdown] = useState(false)
     const showDropdown = () => {setDropdown(true)}
     const hideDropdown = () => {setDropdown(false)}
+    const selectNewSchedule = (index) => {updateSchedule(index);hideDropdown()}
     
     return (
         <div className={`${styles.mainTray} ${dropdown ? styles.enlarged : styles.minimised}`} >
             <div>
-                <h2 onClick={() => {if (!dropdown) {showDropdown()} else {hideDropdown()}}}>{dropdown ? 'Menu' : 'Academic Planner' }</h2>
+                <h2 onClick={() => {if (!dropdown) {showDropdown()} else {hideDropdown()}}}>{dropdown ? 'Menu' : scheduleTitle }</h2>
                 {/* <p onClick={() => {if (!dropdown) {showDropdown()} else {hideDropdown()}}}>{dropdown ? <BsChevronUp /> : <BsChevronDown /> }</p> */}
             </div>
-            {dropdown ? <ScheduleMenu /> : ''}
+            {dropdown ? <ScheduleMenu updateSemester={selectNewSchedule} /> : ''}
             {dropdown ? <GlobalControlsTray /> : ''}
             
 
@@ -28,13 +31,13 @@ const MainMenuTray = () => {
 export default MainMenuTray
 
 
-const ScheduleMenu= () => {
+const ScheduleMenu= ({updateSemester}) => {
     const planner = useContext(PlannerContext)
 
     return(
         <div>
             <strong>SCHEDULES</strong>
-            {planner.getAllSchedules().map((item, index) => <p key={index}>{item.name}</p>)}
+            {planner.getAllSchedules().map((item, index) => <p key={index} onClick={() => updateSemester(index)}>{item.name}</p>)}
             <p>Edit</p>
         </div>
     )

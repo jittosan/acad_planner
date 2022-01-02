@@ -182,8 +182,8 @@ class Schedule {
         return true
     }
 
-    getData() {
-        return this.data
+    getSemester(index) {
+        return this.data[index]
     }
 
     flatten() {
@@ -446,12 +446,22 @@ class AcademicRequirement {
 
 // MAIN PLANNER CLASS
 class Planner {
-    constructor(modData, scheduleList, acadList, selectIndex) {
+    constructor(modData, scheduleList, acadList, selectIndex, callback) {
         this.db = new DataStore(modData) // DataStore
         this.schedules = scheduleList.map((item) => new Schedule(item)) // Array of Schedule
         this.selectedSchedule = selectIndex
         this.acad = acadList.map((item) => new AcademicRequirement(item, this.db.data))  // Array of AcademicRequirement
         this.moduleMap = {}
+        this.callbacks = [callback]
+    }
+
+    // Callback methods
+    attachCallback(fn) {
+        this.callbacks.push(fn)
+    }
+
+    runCallback() {
+        this.callbacks.map((item) => {if (item!==undefined) {return item()} else {return null}})
     }
 
     // == Database Methods ==
@@ -463,6 +473,7 @@ class Planner {
     selectSchedule(index) {
         // check valid index first
         this.selectedSchedule = index
+        this.runCallback()
     }
 
     getSchedule() {
@@ -482,20 +493,32 @@ class Planner {
 
     // SEMESTER MANIPULATION METHODS
 
+    getSemester(index) {
+        return this.getSchedule().getSemester(index)
+    }
+
     addSemester(name) {
-        return this.getSchedule().addSemester(name)
+        let output = this.getSchedule().addSemester(name)
+        this.runCallback()
+        return output
     }
 
     removeSemester(index) {
-        return this.getSchedule().removeSemester(index)
+        let output = this.getSchedule().removeSemester(index)
+        this.runCallback()
+        return output
     }
 
     addModule(code, semIndex) {
-        return this.getSchedule().addModule(code, semIndex)
+        let output = this.getSchedule().addModule(code, semIndex)
+        this.runCallback()
+        return output
     }
 
     removeModule(code, semIndex) {
-        return this.getSchedule().removeModule(code, semIndex)
+        let output = this.getSchedule().removeModule(code, semIndex)
+        this.runCallback()
+        return output
     }
 
     // == Academic Requirement Methods ==

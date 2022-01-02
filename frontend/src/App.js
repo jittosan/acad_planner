@@ -30,7 +30,7 @@ let acad_req_data = [
 
 function App() {
   const [currentSchedule, setCurrentSchedule] = useState(0)   // state to track current selected schedule from list
-  const selectSchedule = (index) => {setCurrentSchedule(index);trigger()}
+  const selectSchedule = (index) => {setCurrentSchedule(index)}
   const [flip, setFlip] = useState(true)      // dummy state to trigger for rerenders (setCurrentSchedule apparently does not trigger rerender cycles properly)
   const trigger = () => (setFlip(!flip))
   const update = (newState) => {trigger()}
@@ -45,7 +45,7 @@ function App() {
     >
       <ScheduleContextProvider value={schedule} update={update}>
         <div className='MainContainer'>
-          <MainMenuTray />
+          <MainMenuTray updateSchedule={selectSchedule} />
           {/* <ScheduleContainer schedule={scheduleData} update={selectSchedule} current={currentSchedule}/> */}
           <SemesterContainer />
           <AcademicRequirementTray />
