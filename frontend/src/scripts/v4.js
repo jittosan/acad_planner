@@ -103,9 +103,8 @@ class DataStore {
     }
 
     initialise(moduleData) {
-        console.log('KEYS', Object.keys(moduleData))
         Object.keys(moduleData).map((item) => this.addNode(item, moduleData[item]))
-        console.log('MODULE DATA', moduleData, this.nodes)
+        // link preclusions, etc.
     }
 
     // data methods for Node

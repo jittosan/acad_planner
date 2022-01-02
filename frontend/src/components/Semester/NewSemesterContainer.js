@@ -89,18 +89,18 @@ const Module = ({module_code}) => {
     const [hovered, setHovered] = useState(false)  // state to track hover state of component
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
-    let modData = useContext(DataStoreContext)   // extract data storage context
+    let moduleInfo = useContext(PlannerContext).getModuleInfo(module_code) // extract data storage context
 
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
             {/* Module Code */}
             <div className={styles.codeContainer}>
-                <p>{module_code}</p>
+                <p>{moduleInfo!==null ? moduleInfo.moduleCode : module_code}</p>
             </div>
 
             {/* Module Title & Tag */}
             <div className={styles.contentContainer}>
-                <p>{modData[module_code] ? modData[module_code].title : '!Not Found'}</p>
+                <p>{moduleInfo!==null ? moduleInfo.title : '!Not Found'}</p>
                 <div className={styles.tagContainer}>
                 </div>
             </div>
