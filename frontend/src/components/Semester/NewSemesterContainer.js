@@ -8,6 +8,7 @@ import styles from './NewSemesterContainer.module.scss'                // import
 import { ScheduleContext } from '../../context/ScheduleContext'     // import context data
 import { DataStoreContext } from '../../context/DataStoreContext'     // import local components
 import SemesterModal from '../modals/SemesterModal.js'
+import { PlannerContext } from '../../context/PlannerContext'
 
 const SemesterContainer = () => {
     let scheduleHandler = useContext(ScheduleContext) // get schedule data from context
@@ -15,7 +16,7 @@ const SemesterContainer = () => {
     const [modalOpen, setModalOpen] = useState(false) // state controls for showing/hiding edit settings modal
     const displayModal = () => {setModalOpen(true)}
     const hideModal = () => {setModalOpen(false)}
-    // selecting sem to display
+    // selecting sem to display (CONSIDER STORING IN CACHE/LOCALSTORAGE FOR PERSISTENCE)
     const [selectedSem, setSelectedSem] = useState(0)
     const firstSemSelected = () => {return selectedSem===0}
     const lastSemSelected = () => {return selectedSem===schedule.length-1}
@@ -84,7 +85,7 @@ const Semester = ({index}) => {
 }
 
 // Individual module in Semester Card component
-const Module = ({module_code, removeModuleCode}) => {
+const Module = ({module_code}) => {
     const [hovered, setHovered] = useState(false)  // state to track hover state of component
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
