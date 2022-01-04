@@ -152,7 +152,7 @@ class DataStore {
 class Schedule {
     constructor(rawData) {
         this.name = rawData.name
-        this.data = rawData.semesters
+        this.semesters = rawData.semesters
     }
 
     addSemester(name) {
@@ -161,34 +161,34 @@ class Schedule {
             name:name, 
             modules:[]
         }
-        this.data.push(newSem)
+        this.semesters.push(newSem)
         return true
     }
 
     removeSemester(index) {
-        this.data.splice(index, 1)
+        this.semesters.splice(index, 1)
         return true
     }
 
     addModule(code, semIndex) {
-        let semObj = this.data[semIndex]
+        let semObj = this.semesters[semIndex]
         semObj.modules.push(code)
         return true
     }
 
     removeModule(code, semIndex) {
-        let semObj = this.data[semIndex]
+        let semObj = this.semesters[semIndex]
         semObj.modules.splice(semObj.modules.indexOf(code),1)
         return true
     }
 
     getSemester(index) {
-        return this.data[index]
+        return this.semesters[index]
     }
 
     flatten() {
         let output = []
-        this.data.map((item) => {return output = output.concat(item.modules)})
+        this.semesters.map((item) => {return output = output.concat(item.modules)})
         return output
     }
 }

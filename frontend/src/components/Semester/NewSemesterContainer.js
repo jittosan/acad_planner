@@ -18,13 +18,13 @@ const SemesterContainer = () => {
     // selecting sem to display (CONSIDER STORING IN CACHE/LOCALSTORAGE FOR PERSISTENCE)
     const [selectedSem, setSelectedSem] = useState(0)
     const firstSemSelected = () => {return selectedSem===0}
-    const lastSemSelected = () => {return selectedSem===schedule.length-1}
+    const lastSemSelected = () => {return selectedSem===schedule.semesters.length-1}
     const incrementSelectedSem = (value) => {
-        if ((selectedSem+value)>=0 && (selectedSem+value)<=schedule.length-1) {
+        if ((selectedSem+value)>=0 && (selectedSem+value)<=schedule.semesters.length-1) {
             setSelectedSem(selectedSem+value)
         }
     }
-
+    
     return (
         <div className={styles.container}>
             <div className={styles.buttonContainer}>
@@ -39,7 +39,7 @@ const SemesterContainer = () => {
                 </div>
             </div>
             <Semester index={selectedSem} />
-            {modalOpen ? <SemesterModal close={hideModal} /> : ''}
+            {/* {modalOpen ? <SemesterModal close={hideModal} /> : ''} */}
         </div>
     )
 }
