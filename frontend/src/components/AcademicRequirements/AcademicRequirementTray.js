@@ -31,14 +31,17 @@ const AcademicRequirementTray = () => {
 
 export default AcademicRequirementTray
 
+// Tab for display within tray
 const AcademicRequirementTab = ({index}) => {
     let planner = useContext(PlannerContext)
     let acadRequirementHandler = planner.getRequirement(index)
-    // console.log(acadRequirementHandler.getName(), planner.verify(index))
-    console.log('Acad Refresh')
+    console.log(acadRequirementHandler.getName(), planner.verify(index))
+    
     return(
         <div className={`${styles.requirementTab} ${planner.verify(index) ? styles.completeRequirement : styles.incompleteRequirement}`}>
             <p>{acadRequirementHandler.getName().substring(0,3)}</p>
         </div>
     )
 }
+
+// Visual cue tag to attach to end of modules within the schedule directly

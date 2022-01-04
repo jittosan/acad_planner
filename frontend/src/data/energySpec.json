@@ -1,0 +1,95 @@
+{
+    "type" : "main",
+    "name" : "Energy Science Specialisation",
+    "doubleCount": 8,
+    "code" : "ENR",
+    "modules":[
+        {
+            "type":"category",
+            "name": "Core Modules",
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":"and",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ESP5403"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ESP5402"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Elective Modules",
+            "criteria": {
+                "number":3
+            },
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":"or",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ESP3102"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ESP4401"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME3122"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME3221"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME4223"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME4225"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME4226"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME4227"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC4441"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3242"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+{
+    "type" : "main",
+    "name" : "Nanotechnology Specialisation",
+    "doubleCount": 8,
+    "code" : "NAN",
+    "modules":[
+        {
+            "type":"category",
+            "name": "Core Modules",
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":"and",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3242"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3251"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Elective Modules",
+            "criteria": {
+                "number":3
+            },
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":"or",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3247"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC4259"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3233"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC4253"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ESP5402"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC4240"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC3232"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

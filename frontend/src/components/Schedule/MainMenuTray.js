@@ -1,6 +1,7 @@
 import { useState } from 'react'
 // import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 // import ScheduleContainer from './ScheduleContainer'
+import { BsPlusCircleDotted } from 'react-icons/bs'
 import styles from './MainMenuTray.module.scss'
 import { FiUpload, FiDownload, FiSettings } from 'react-icons/fi'
 import { useContext } from 'react/cjs/react.development'
@@ -33,11 +34,12 @@ export default MainMenuTray
 
 const ScheduleMenu= ({updateSemester}) => {
     const planner = useContext(PlannerContext)
+    let selectedScheduleIndex = planner.getSelectedScheduleIndex()
 
     return(
         <div>
             <strong>SCHEDULES</strong>
-            {planner.getAllSchedules().map((item, index) => <p key={index} onClick={() => updateSemester(index)}>{item.name}</p>)}
+            {planner.getAllSchedules().map((item, index) => <p key={index} onClick={() => updateSemester(index)}>{selectedScheduleIndex===index ? <BsPlusCircleDotted /> : ''}{item.name}</p>)}
             <p>Edit</p>
         </div>
     )
