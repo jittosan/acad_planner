@@ -201,7 +201,7 @@ class AcademicRequirement {
     constructor(reqData, modData) {
         this.data = reqData 
         this.db = modData
-        this.initialise(this.data)
+        this.initialise()
     }
 
     // getter/setter methods
@@ -218,26 +218,31 @@ class AcademicRequirement {
     }
 
     // PREPROCESSING METHODS
-    initialise(currentNode) {
-        // define match property for endpoint nodes, and end function
-        if (currentNode.type ==="node" && currentNode.logic===".") {
-            currentNode['match'] = []
-        } else {
-            // define criteria boolean for category/group nodes
-            if (currentNode.type!=="node") {
-                // create criteria segment if not defined
-                if (!currentNode.criteria) {
-                    currentNode['criteria'] = {met:false}
-                } else {
-                    currentNode.criteria['met'] = false
+    initialise() {
+        //define helper function
+        const initialiseHelper = (currentNode) => {
+            // define match property for endpoint nodes, and end function
+            if (currentNode.type ==="node" && currentNode.logic===".") {
+                currentNode['match'] = []
+            } else {
+                // define criteria boolean for category/group nodes
+                if (currentNode.type!=="node") {
+                    // create criteria segment if not defined
+                    if (!currentNode.criteria) {
+                        currentNode['criteria'] = {met:false}
+                    } else {
+                        currentNode.criteria['met'] = false
+                    }
+                }
+                // continue recursing through nodes
+                for (let i=0;i<currentNode.modules.length;i++) {
+                    initialiseHelper(currentNode.modules[i])
                 }
             }
-            // continue recursing through nodes
-            for (let i=0;i<currentNode.modules.length;i++) {
-                this.initialise(currentNode.modules[i])
-            }
         }
-    }
+        
+        initialiseHelper(this.data)
+        }
 
     // VALIDATION METHODS
     compare(requirement, module) {
@@ -259,42 +264,7 @@ class AcademicRequirement {
         return true
     }
 
-    match(modList) {
-        // define helper functions
-        const findMatch = (item, collection) => {
-            for (let i=0;i<collection.length;i++) {
-                if (this.compare(item, collection[i])) {
-                    return i
-                }
-            }
-            return null
-        }
-        // direct match modules
-        const matchHelper = (currentNode) => {
-            // if endpoint
-            if (currentNode.type ==="node" && currentNode.logic===".") {
-                // find direct matching module
-                let matchedCodeIndex = findMatch(currentNode.modules[0], modList)
-                // if XX present in code, loop to keep matching untill null/criteria met
-                // attach to endpoint and drop from modList once matched
-                if (matchedCodeIndex !== null) {
-                    currentNode['match'].push(modList[matchedCodeIndex])
-                    modList.splice(matchedCodeIndex, 1)
-                }
-            } else {
-                // recurse through structure if not endpoint
-                // process criteria if present and pass down
-                for (let i=0;i<currentNode.modules.length;i++) {
-                    matchHelper(currentNode.modules[i])
-                }
-            }
-        }
-
-        // execute direct matching
-        matchHelper(this.data)
-        // execute preclusion checks
-    }
-
+    // PROCESSING METHODS
     verify(modList) {
         // is repeated
         const checkCanRepeat = (item) => {
@@ -309,6 +279,10 @@ class AcademicRequirement {
             }
             return null
         }
+        // generate module map
+        let moduleMap = {}
+        modList.map((item) => moduleMap[item]=[])
+        console.log(moduleMap)
         // function to find corresponidng preclusion module in modlist based off item requirement
         // FUNCTION TO BE IMPLEMENTED
         // recurse through nodes to check whether conditions are met or not
@@ -329,8 +303,10 @@ class AcademicRequirement {
                     if (matchIndex!==null) {
                         // check current addition will not overload maximum limits
                         let moduleCode = modList[matchIndex]
+                        // CHECK IF MODULE IS DOUBLE COUNTED
                         currentNode['match'].push(moduleCode)
                         modList.splice(matchIndex, 1)
+                        // UPDATE MODULE MAP
                         tracker.number++
                         if (this.db!==undefined && this.db[moduleCode]!==undefined) {
                             // console.log('CREDITS FOUND', )
@@ -420,6 +396,7 @@ class AcademicRequirement {
         }
 
         // execute direct matching
+        // UPDATE ACADEMIC MAP
         return verifyHelper(this.data).completed
     }
 
