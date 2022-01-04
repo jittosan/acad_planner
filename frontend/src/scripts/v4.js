@@ -265,24 +265,53 @@ class AcademicRequirement {
     }
 
     // PROCESSING METHODS
-    verify(modList) {
+    verify(moduleMap) {
+        // tracking double counting
+        let doubleCountTracker = 0
+        const withinDoubleCount = (credits) => {
+            return (doubleCountTracker+credits) <= this.data.doubleCount
+        }
+        const updateDoubleCount = (credits) => {
+            doubleCountTracker += credits
+        }
+        const checkDoubleCount = (code) => {
+            // check if other requirements used
+            return (moduleMap[code].length-checkModuleUsed(code))>0
+        }
+        // track if module already accounted for in current requirement
+        const checkModuleUsed = (code) => {
+            // check current req not alr used
+            // console.log('CHECKING ', code)
+            let currentReq = false
+            moduleMap[code].map((item) => currentReq=currentReq||(item!==undefined && item===this))
+            return currentReq
+        }
         // is repeated
         const checkCanRepeat = (item) => {
             return item.includes('X')
         }
+        // get MCs of module, else default to 0
+        const getModuleCredits = (code) =>{
+            if (this.db!==undefined && this.db.getData(code)!==undefined && this.db.getData(code)["moduleCredit"]!==undefined) {
+                return parseInt(this.db.getData(code)["moduleCredit"])
+            } else {
+                return 0
+            }
+        }
         // find a corresponding module match in modlist based of item requirement
         const findMatch = (item) => {
-            for (let i=0;i<modList.length;i++) {
-                if (this.compare(item, modList[i])) {
-                    return i
+            // console.log('MATCHING', item)
+            let keys = Object.keys(moduleMap)
+            for (let i=0;i<keys.length;i++) {
+                // if module not already use to satisfy current req, and matches requirement
+                if (!checkModuleUsed(keys[i]) && this.compare(item, keys[i])) {
+                    return keys[i]
                 }
             }
+            // console.log('NULL FOUND')
             return null
         }
-        // generate module map
-        let moduleMap = {}
-        modList.map((item) => moduleMap[item]=[])
-        console.log(moduleMap)
+        
         // function to find corresponidng preclusion module in modlist based off item requirement
         // FUNCTION TO BE IMPLEMENTED
         // recurse through nodes to check whether conditions are met or not
@@ -296,24 +325,32 @@ class AcademicRequirement {
             // if endpoint
             if (currentNode.type ==="node" && currentNode.logic===".") {
                 // MATCH CODE WITH MODLIST, REPEAT IF XX IN CODE UNTIL NULL / CRITERIA MET
-                let matchIndex = null
+                let moduleCode = null
                 do {
                     // console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
-                    matchIndex = findMatch(currentNode.modules[0])
-                    if (matchIndex!==null) {
-                        // check current addition will not overload maximum limits
-                        let moduleCode = modList[matchIndex]
-                        // CHECK IF MODULE IS DOUBLE COUNTED
-                        currentNode['match'].push(moduleCode)
-                        modList.splice(matchIndex, 1)
-                        // UPDATE MODULE MAP
-                        tracker.number++
-                        if (this.db!==undefined && this.db[moduleCode]!==undefined) {
-                            // console.log('CREDITS FOUND', )
-                            tracker.credit += parseInt(this.db[moduleCode]["moduleCredit"])
+                    moduleCode = findMatch(currentNode.modules[0])
+                    if (moduleCode!==null) {
+                        // get no of MCs of module, if defined
+                        let moduleCredits = getModuleCredits(moduleCode)
+                        // console.log('FOUND', moduleCode, moduleCredits)
+                        if (checkDoubleCount(moduleCode)) {
+                            if (withinDoubleCount(moduleCredits)) {
+                                updateDoubleCount(moduleCredits)
+                                // match
+                                currentNode['match'].push(moduleCode)
+                                moduleMap[moduleCode].push(this)
+                                tracker.number++
+                                tracker.credit+=moduleCredits
+                            }
+                        } else {
+                            //match
+                            currentNode['match'].push(moduleCode)
+                            moduleMap[moduleCode].push(this)
+                            tracker.number++
+                            tracker.credit+=moduleCredits
                         }
                     }
-                } while (checkCanRepeat(currentNode.modules[0]) && matchIndex!==null && (checkFn!==undefined && !checkFn(tracker.number, tracker.credit)))
+                } while (checkCanRepeat(currentNode.modules[0]) && moduleCode!==null && (checkFn!==undefined && !checkFn(tracker.number, tracker.credit)))
                 tracker.completed = currentNode.match.length!==0
                 // console.log('ENDPOINT', currentNode.match, tracker, checkFn)
                 return tracker
@@ -396,7 +433,6 @@ class AcademicRequirement {
         }
 
         // execute direct matching
-        // UPDATE ACADEMIC MAP
         return verifyHelper(this.data).completed
     }
 
@@ -431,7 +467,7 @@ class Planner {
         this.db = new DataStore(modData) // DataStore
         this.schedules = scheduleList.map((item) => new Schedule(item)) // Array of Schedule
         this.selectedSchedule = selectIndex
-        this.acad = acadList.map((item) => new AcademicRequirement(item, this.db.data))  // Array of AcademicRequirement
+        this.acad = acadList.map((item) => new AcademicRequirement(item, this.db))  // Array of AcademicRequirement
         this.moduleMap = {}
         this.acadMap = []
         if (callback!==undefined) {
@@ -525,11 +561,21 @@ class Planner {
 
     refresh(){
         this.schedules[this.selectedSchedule].flatten().map((item) => this.moduleMap[item]=[])
-        this.acadMap = this.acad.map((item) => item.verify(this.getSchedule().flatten()))
+        this.acadMap = this.acad.map((item) => item.verify(this.moduleMap))
+        // console.log('MAIN MODULE MAP', this.moduleMap)
+        // console.log('MAIN ACAD MAP', this.acadMap)
     }
 
     verify(index) {
         return this.acadMap[index]
+    }
+
+    getModuleMap(code) {
+        if (code===undefined) {
+            return this.moduleMap
+        } else if (this.moduleMap[code]!==undefined) {
+            return this.moduleMap[code]
+        }
     }
 
 }

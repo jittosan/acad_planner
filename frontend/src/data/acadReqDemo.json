@@ -1,6 +1,7 @@
 {
     "type" : "main",
     "name" : "Engineering Science Programme",
+    "doubleCount":12,
     "code":"ESP",
     "modules":[
         {

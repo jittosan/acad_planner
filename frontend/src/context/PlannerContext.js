@@ -14,7 +14,6 @@ const PlannerContextProvider = ({children, scheduleList, acadList, selectIndex, 
     // load data from data file or localStorage
     // parse data and place into object before populating component tree
     let newValue = new Planner(modData, scheduleList, acadList, selectIndex)
-    console.log(newValue.verify())
 
     return(
         <PlannerContext.Provider value={newValue}>
