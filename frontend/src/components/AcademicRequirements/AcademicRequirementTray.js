@@ -7,7 +7,10 @@ import { PlannerContext } from '../../context/PlannerContext'
 const AcademicRequirementTray = () => {
     const planner = useContext(PlannerContext)
     let demoData = planner.getAllRequirements()
-    const [triggerFlag, setTriggerFlag] = useState(false)
+    const [triggerFlag, setTriggerFlag] = useState(false) // dummy flag to trigger refresh
+    const [display, setDisplay] = useState(false)
+    const showDisplay = () => {setDisplay(true)}
+    const hideDisplay = () => {setDisplay(false)}
     
     console.log('ACADTRAY')
     useEffect(() => {
@@ -16,13 +19,16 @@ const AcademicRequirementTray = () => {
     }, [planner, triggerFlag])
 
     return (
-        <div className={styles.tray}>
-            <div className={styles.tagContainer}>
-            {/* <AcademicReqHandler /> */}
-                {demoData.map((_, index) => <AcademicRequirementTab key={index} index={index} />)}
-            </div>
+        <div className={`${styles.tray} ${display ? styles.displayEnlarged : styles.displayMinimised}`}>
+            {display ?
+                <AcademicRequirementDisplay />
+                : 
+                <div className={styles.tagContainer}>
+                    {demoData.map((_, index) => <AcademicRequirementTab key={index} index={index} />)}
+                </div>
+            }
             <div className={styles.editContainer}>
-                <RiEditBoxLine />
+                <RiEditBoxLine onClick={()=>{if(display) {hideDisplay()} else {showDisplay()}}} />
             </div>
 
         </div>
@@ -44,4 +50,12 @@ const AcademicRequirementTab = ({index}) => {
     )
 }
 
-// Visual cue tag to attach to end of modules within the schedule directly
+// Component for full-screen display of Academic Requirements
+export const AcademicRequirementDisplay = () => {
+    return (
+        <div>
+            <h1>Academic Requirement</h1>
+        </div>
+    )
+}
+
