@@ -52,10 +52,55 @@ const AcademicRequirementTab = ({index}) => {
 
 // Component for full-screen display of Academic Requirements
 export const AcademicRequirementDisplay = () => {
+    let planner = useContext(PlannerContext)
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    let requirement = planner.getRequirement(selectedIndex).data
+    console.log(requirement)
+
+    const visualiseRequirements = (currentNode, renderOutput) => {
+        // category
+        if (currentNode.type==="category") {
+            renderOutput.push(currentNode)
+        } else if (currentNode.type==="node" && currentNode.logic===".") {
+            renderOutput.push(currentNode)
+            return
+        } 
+
+        currentNode.modules.map((item) => visualiseRequirements(item, renderOutput))
+    }
+
+    let renderOutput = []
+    visualiseRequirements(requirement, renderOutput)
+    console.log(renderOutput)
+
     return (
-        <div>
-            <h1>Academic Requirement</h1>
+        <div className={styles.fullDisplay}>
+            <h1 onClick={()=>setSelectedIndex(selectedIndex+1)}>Academic Requirement</h1>
+            <h2>{requirement.name}</h2>
+            {renderOutput.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} />)}
         </div>
     )
 }
 
+export const AcademicRequirementDisplayItem = ({ dataNode }) => {
+    let endpoint = false
+    let renderOut
+    // category node
+    if (dataNode.type==="category") {
+        renderOut = <strong>{dataNode.name}</strong>
+    // node EndPoint
+    } else if (dataNode.type==="node" && dataNode.logic===".") {
+        endpoint = true
+        renderOut = <p>{dataNode.modules[0]}</p>
+    // node AND/OR
+    } else if (dataNode.type==="node") {
+        
+    }
+    
+    return (
+        <div>
+            {renderOut}
+            {endpoint ? <br /> : '' }
+        </div>
+    )
+}
