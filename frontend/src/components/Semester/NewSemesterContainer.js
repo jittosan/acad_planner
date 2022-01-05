@@ -17,34 +17,72 @@ const SemesterContainer = () => {
     const hideModal = () => {setModalOpen(false)}
     // selecting sem to display (CONSIDER STORING IN CACHE/LOCALSTORAGE FOR PERSISTENCE)
     const [selectedSem, setSelectedSem] = useState(0)
-    const firstSemSelected = () => {return selectedSem===0}
-    const lastSemSelected = () => {return selectedSem===schedule.semesters.length-1}
+    const firstSemSelected = () => {return selectedSem === 0}
+    const lastSemSelected = () => {return selectedSem === schedule.semesters.length - 1}
     const incrementSelectedSem = (value) => {
-        if ((selectedSem+value)>=0 && (selectedSem+value)<=schedule.semesters.length-1) {
+        if ((selectedSem + value) >= 0 && (selectedSem + value) <= schedule.semesters.length - 1) {
             setSelectedSem(selectedSem+value)
         }
     }
+
+    const [viewOverview, setViewOverview] = useState(false)
     
     return (
         <div className={styles.container}>
-            <div className={styles.buttonContainer}>
-                <div className={`${styles.button} ${firstSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(-1)}}>
-                    <BsChevronLeft />
-                </div>
-                <div className={styles.editButton} onClick={displayModal}>
-                    <RiEditLine /> <p>Edit Semesters</p>
-                </div>
-                <div className={`${styles.button} ${lastSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(1)}}>
-                    <BsChevronRight />
-                </div>
+            <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
+                {viewOverview ? 'View By Semester' : 'View Semesters Overview'}
             </div>
-            <Semester index={selectedSem} />
+
+            {
+                // nav bar to toggle between semsters in semester view
+                !viewOverview &&
+                <div className={styles.buttonContainer}>
+                    <div className={`${styles.button} ${firstSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(-1)}}>
+                        <BsChevronLeft />
+                    </div>
+                    <div className={styles.editButton} onClick={displayModal}>
+                        <RiEditLine /> <p>Edit Semesters</p>
+                    </div>
+                    <div className={`${styles.button} ${lastSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(1)}}>
+                        <BsChevronRight />
+                    </div>
+                </div>
+            }
+
+            { viewOverview ? <SemestersOverview /> : <Semester index={selectedSem} /> }
+
             {/* {modalOpen ? <SemesterModal close={hideModal} /> : ''} */}
         </div>
     )
 }
 
 export default SemesterContainer
+
+const SemestersOverview = () => {
+    const planner = useContext(PlannerContext)
+    const schedule = planner.getSchedule()
+
+    return (
+        <div className={styles.semestersOverviewContainer}>
+            <h2>Semesters Overview</h2>
+            {schedule.semesters.map((_, index) => <SemesterSummaryCard index={index} />)}
+        </div>
+    )
+}
+
+const SemesterSummaryCard = ({ index }) => {
+    const planner = useContext(PlannerContext)
+    const semData = planner.getSemester(index)
+
+    return (
+        <div className={styles.semesterSummaryCard}>
+            <h3>{semData.name}</h3>
+            <ul className={styles.modulesList}>
+                {semData.modules.map((code, index)=><li key={index}>{code}: {planner.getModuleInfo(code).title}</li>)}
+            </ul>
+        </div>
+    )
+}
 
 const Semester = ({index}) => {
     let planner = useContext(PlannerContext)    // get schedule context data
