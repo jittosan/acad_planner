@@ -10,19 +10,13 @@
             "modules": [
                 {
                     "type":"node",
-                    "logic":"and",
-                    "modules":[
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["ESP5403"]
-                        },
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["ESP5402"]
-                        }
-                    ]
+                    "logic":".",
+                    "modules":["ESP5403"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["ESP5402"]
                 }
             ]
         },

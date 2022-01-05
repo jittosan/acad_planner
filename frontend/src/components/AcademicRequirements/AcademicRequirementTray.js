@@ -76,31 +76,59 @@ export const AcademicRequirementDisplay = () => {
     return (
         <div className={styles.fullDisplay}>
             <h1 onClick={()=>setSelectedIndex(selectedIndex+1)}>Academic Requirement</h1>
-            <h2>{requirement.name}</h2>
-            {renderOutput.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} />)}
+            {/* <h2>{requirement.name}</h2> */}
+            <AcademicRequirementDisplayItem dataNode={requirement} />
+            {/* {renderOutput.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} />)} */}
         </div>
     )
 }
 
-export const AcademicRequirementDisplayItem = ({ dataNode }) => {
+export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
+    if (indent===undefined) {indent=0}
     let endpoint = false
+    let combination = false
     let renderOut
     // category node
     if (dataNode.type==="category") {
-        renderOut = <strong>{dataNode.name}</strong>
+        console.log('CATEGORY', dataNode)
+        return (
+            <div>
+                <strong>{dataNode.name}</strong>
+                {dataNode.criteria.number!==undefined ? <i><br />{dataNode.criteria.number} of the following:<br /><br /></i> : (dataNode.criteria.credit!==undefined ? <i><br />{dataNode.criteria.credit} MCs worth:<br /><br /></i> : '')}
+                {dataNode.modules.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} indent={indent+1}/>)}
+            </div>
+        )
     // node EndPoint
     } else if (dataNode.type==="node" && dataNode.logic===".") {
         endpoint = true
         renderOut = <p>{dataNode.modules[0]}</p>
+        console.log('END', dataNode)
+        return (
+            <div>
+                <p>{dataNode.modules[0]}</p>
+            </div>
+        )
     // node AND/OR
-    } else if (dataNode.type==="node") {
-        
+    } else if ((dataNode.type==="node" && dataNode.log!==".") || dataNode.type==="group") {
+        console.log('LOGIC', dataNode.logic, dataNode)
+        return (
+            <div className={styles.combinationContainer}>
+                <div className={styles.combinationBar}>
+                    {dataNode.logic==="and" ? "&" : "or"}
+                </div>
+                <div>
+                    {dataNode.modules.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} indent={indent+1}/>)}
+                </div>
+            </div>
+        )
+    } else if (dataNode.type==="main") {
+        indent=0
+        console.log('MAIN', dataNode)
+        return (
+            <div>
+                <h3>{dataNode.name}</h3>
+                {dataNode.modules.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} indent={indent+1}/>)}
+            </div>
+        )
     }
-    
-    return (
-        <div>
-            {renderOut}
-            {endpoint ? <br /> : '' }
-        </div>
-    )
 }

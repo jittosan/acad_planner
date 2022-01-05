@@ -5,7 +5,8 @@
     bottom: 0;
     left: 0;
     transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
-    background-color: rgb(4, 184, 255);
+    // background-color: rgb(4, 184, 255);
+    background-color: rgb(4, 176, 255);
     // background-color: rgb(216, 216, 216);
     display: grid;
     grid-template-columns: 80% 20%;
@@ -72,5 +73,31 @@
 .fullDisplay {
     text-align: left;
     padding: 2ch;
-    overflow-y:scroll
+    overflow-y:scroll;
+
+    .nonCombinationContainer {
+        height: auto;
+        width: 100%;
+    }
+
+    .combinationContainer { 
+        height: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 5ch 1fr;
+        grid-template-rows: 1fr;
+
+        .combinationBar {
+            grid-column: 1;
+            height: 100%;
+            width: 3ch;
+            box-sizing: border-box;
+            // background-color: rgba(255, 167, 4, 0.87);
+            border-right: solid 0.5rem orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
 }
