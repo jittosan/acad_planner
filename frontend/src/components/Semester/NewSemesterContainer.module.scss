@@ -102,7 +102,7 @@
                 background-color: purple;
                 color: white;
                 border: rgb(105, 1, 105) 0.1ch solid;
-                filter: drop-shadow(0px 2px 3px rgba(105, 1, 105, 0.4));
+                // filter: drop-shadow(0px 2px 3px rgba(105, 1, 105, 0.4));
                 width: auto;
                 height: auto;
                 padding: 0.5ch;
@@ -206,7 +206,8 @@
 .semesterSummaryCard {
     display: flex;
     flex-direction: column;
-    background-color: rgb(198, 198, 199);
+    background-color: rgba(182, 95, 207,0.3);
+            border-radius: 1ch;
     width: 100%;
     margin: 1ch 0ch;
     padding-bottom: 1ch;

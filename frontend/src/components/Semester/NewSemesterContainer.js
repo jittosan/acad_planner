@@ -23,6 +23,7 @@ const SemesterContainer = () => {
             setSelectedSem(selectedSem+value)
         }
     }
+    // reset valid selectedSem index while switching between schedules
 
     const [viewOverview, setViewOverview] = useState(false)
     
