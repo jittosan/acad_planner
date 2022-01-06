@@ -12,7 +12,6 @@ const AcademicRequirementTray = () => {
     const showDisplay = () => {setDisplay(true)}
     const hideDisplay = () => {setDisplay(false)}
     
-    console.log('ACADTRAY')
     useEffect(() => {
         const trigger = () => setTriggerFlag(!triggerFlag)
         planner.attachCallback(()=>{console.log('boop');trigger()})
