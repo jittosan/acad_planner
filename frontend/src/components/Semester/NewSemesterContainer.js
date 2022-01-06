@@ -25,15 +25,21 @@ const SemesterContainer = () => {
     }
     // reset valid selectedSem index while switching between schedules
 
-    const [viewOverview, setViewOverview] = useState(false)
+    const [viewOverview, setViewOverview] = useState(true)
     const toggle = () => setViewOverview(!viewOverview)
     return (
         <div className={styles.container}>
-            <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
+            {/* <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
                 {viewOverview ? <p>View By Semester <HiOutlineClipboardList /></p> : <p>View Semesters Overview <BsCalendar3Week /></p>}
-            </div>
+            </div> */}
 
-            {
+            {!viewOverview ? 
+                <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
+                    <p>View Semesters Overview <BsCalendar3Week /></p>
+                </div>
+                : ''
+            }
+            {/* {
                 // nav bar to toggle between semsters in semester view
                 !viewOverview &&
                 <div className={styles.buttonContainer}>
@@ -47,7 +53,7 @@ const SemesterContainer = () => {
                         <BsChevronRight />
                     </div>
                 </div>
-            }
+            } */}
 
             { viewOverview ? <SemestersOverview toggle={toggle} select={setSelectedSem} /> : <Semester index={selectedSem} /> }
 
@@ -64,7 +70,7 @@ const SemestersOverview = ({toggle, select}) => {
 
     return (
         <div className={styles.semestersOverviewContainer}>
-            <h2>Semesters Overview</h2>
+            {/* <h2>Semesters Overview</h2> */}
             {schedule.semesters.map((_, index) => <SemesterSummaryCard key={index} index={index} toggle={toggle} select={select} />)}
         </div>
     )

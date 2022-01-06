@@ -29,7 +29,7 @@
             },
             {
                 "name" : "Y2S1",
-                "modules" : ["ESP2106", "PC2030"]
+                "modules" : ["ESP2106"]
             }
         ]
     },
