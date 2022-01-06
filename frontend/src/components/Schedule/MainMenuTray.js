@@ -1,6 +1,7 @@
 import { useState } from 'react'
 // import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 // import ScheduleContainer from './ScheduleContainer'
+// import { BsPlusCircleDotted } from 'react-icons/bs'
 import { FiUpload, FiDownload, FiSettings } from 'react-icons/fi'
 import { RiEditLine } from 'react-icons/ri'      
 import { useContext } from 'react/cjs/react.development'
@@ -37,6 +38,7 @@ export default MainMenuTray
 
 const ScheduleMenu= ({ updateSemester, scheduleTitle }) => {
     const planner = useContext(PlannerContext)
+    let selectedScheduleIndex = planner.getSelectedScheduleIndex()
 
     return(
         <div>

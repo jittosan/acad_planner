@@ -1,0 +1,52 @@
+{
+    "type" : "main",
+    "name" : "Philosophy Minor",
+    "doubleCount" :8,
+    "code" : "PHL",
+    "modules":[
+        {
+            "type":"category",
+            "name": "Compulsory Modules",
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["GEX1015"]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Electives Modules",
+            "criteria": {
+                "credit":16
+            },
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":"and",
+                    "modules":[
+                        {
+                            "type":"group",
+                            "criteria": {
+                                "credit":4
+                            },
+                            "modules":[
+                                {
+                                "type":"node",
+                                "logic":".",
+                                "modules":["PH3XXX"]
+                            }
+                        ]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PHXXXX"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react'
 import { RiEditLine } from 'react-icons/ri'                           // import icons
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'                           
-// import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
+import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
 import { IoAdd } from 'react-icons/io5'               
 import styles from './NewSemesterContainer.module.scss'                // import styles
 // import local components
@@ -124,7 +124,7 @@ const Semester = ({index}) => {
 }
 
 // Individual module in Semester Card component
-const Module = ({module_code}) => {
+const Module = ({module_code, removeModuleCode}) => {
     const [hovered, setHovered] = useState(false)  // state to track hover state of component
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
@@ -144,10 +144,10 @@ const Module = ({module_code}) => {
                 </div>
             </div>
 
-            {/* Deconste Icon when hovered over */}
-            {/* <div className={styles.deconsteContainer}>
-                {hovered ? <HiOutlineTrash className={styles.deconsteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
-            </div> */}
+            {/* Delete Icon when hovered over */}
+            <div className={styles.deleteContainer}>
+                {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
+            </div>
         </div>
     )
 }
