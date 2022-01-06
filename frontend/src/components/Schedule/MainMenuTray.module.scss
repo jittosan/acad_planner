@@ -10,6 +10,40 @@
     grid-template-columns: 100%;
     grid-template-rows: 80px calc(100vh - 240px) 160px;
     transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
+
+    .mainTrayTitleDiv {
+        cursor: pointer;
+    }
+}
+
+.menuSchedule {
+    cursor: pointer;
+
+    &:hover {
+        color: blue;
+    }
+}
+
+.menuScheduleEditItem {
+    &:hover {
+        color: red;
+    }
+}
+
+.menuScheduleSelected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.menuScheduleEditList {
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+        color: maroon;
+    }
 }
 
 .minimised {

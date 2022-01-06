@@ -1,17 +1,16 @@
-import { useState, useRef} from 'react'
-import { useContext } from 'react'
-import {RiEditLine} from 'react-icons/ri'                           // import icons
-import {BsChevronLeft, BsChevronRight} from 'react-icons/bs'                           
-import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
-import {IoAdd} from 'react-icons/io5'               
+import { useState, useRef, useContext } from 'react'
+import { RiEditLine } from 'react-icons/ri'                           // import icons
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'                           
+// import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
+import { IoAdd } from 'react-icons/io5'               
 import styles from './NewSemesterContainer.module.scss'                // import styles
 // import local components
-import SemesterModal from '../modals/SemesterModal.js'
+// import SemesterModal from '../modals/SemesterModal.js'
 import { PlannerContext } from '../../context/PlannerContext'               // import context data
 
 const SemesterContainer = () => {
-    let planner = useContext(PlannerContext) // get schedule data from context
-    let schedule = planner.getSchedule()
+    const planner = useContext(PlannerContext) // get schedule data from context
+    const schedule = planner.getSchedule()
     const [modalOpen, setModalOpen] = useState(false) // state controls for showing/hiding edit settings modal
     const displayModal = () => {setModalOpen(true)}
     const hideModal = () => {setModalOpen(false)}
@@ -41,7 +40,7 @@ const SemesterContainer = () => {
                         <BsChevronLeft />
                     </div>
                     <div className={styles.editButton} onClick={displayModal}>
-                        <RiEditLine /> <p>Edit Semesters</p>
+                        <RiEditLine /> <p>&nbsp;Edit Semesters</p>
                     </div>
                     <div className={`${styles.button} ${lastSemSelected() ? styles.disableButton : styles.enableButton}`} onClick={()=>{incrementSelectedSem(1)}}>
                         <BsChevronRight />
@@ -65,7 +64,7 @@ const SemestersOverview = () => {
     return (
         <div className={styles.semestersOverviewContainer}>
             <h2>Semesters Overview</h2>
-            {schedule.semesters.map((_, index) => <SemesterSummaryCard index={index} />)}
+            {schedule.semesters.map((_, index) => <SemesterSummaryCard key={index} index={index} />)}
         </div>
     )
 }
@@ -85,10 +84,10 @@ const SemesterSummaryCard = ({ index }) => {
 }
 
 const Semester = ({index}) => {
-    let planner = useContext(PlannerContext)    // get schedule context data
-    let semData = planner.getSemester(index)
+    const planner = useContext(PlannerContext)    // get schedule context data
+    const semData = planner.getSemester(index)
     const [triggerFlag, setTriggerFlag] = useState(true)
-    let moduleInputRef = useRef(null) // function to add module from input field
+    const moduleInputRef = useRef(null) // function to add module from input field
     const addModuleCode = ()=> {
         // remove spaces, strip front & back
         planner.addModule(moduleInputRef.current.value.toUpperCase(), index)
@@ -129,7 +128,7 @@ const Module = ({module_code}) => {
     const [hovered, setHovered] = useState(false)  // state to track hover state of component
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}
-    let moduleInfo = useContext(PlannerContext).getModuleInfo(module_code) // extract data storage context
+    const moduleInfo = useContext(PlannerContext).getModuleInfo(module_code) // extract data storage context
 
     return(
         <div className={styles.module} onMouseOver={isHovered} onMouseLeave={notHovered}>
@@ -145,9 +144,9 @@ const Module = ({module_code}) => {
                 </div>
             </div>
 
-            {/* Delete Icon when hovered over */}
-            {/* <div className={styles.deleteContainer}>
-                {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
+            {/* Deconste Icon when hovered over */}
+            {/* <div className={styles.deconsteContainer}>
+                {hovered ? <HiOutlineTrash className={styles.deconsteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
             </div> */}
         </div>
     )

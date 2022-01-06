@@ -1,8 +1,9 @@
-import { RiEditBoxLine } from 'react-icons/ri'
-import styles from './AcademicRequirementTray.module.scss'
-import { useContext } from 'react/cjs/react.development'
 import { useEffect, useState } from 'react'
+import { RiEditBoxLine } from 'react-icons/ri'
+import { useContext } from 'react/cjs/react.development'
+
 import { PlannerContext } from '../../context/PlannerContext'
+import styles from './AcademicRequirementTray.module.scss'
 
 const AcademicRequirementTray = () => {
     const planner = useContext(PlannerContext)
@@ -12,7 +13,7 @@ const AcademicRequirementTray = () => {
     console.log('ACADTRAY')
     useEffect(() => {
         const trigger = () => setTriggerFlag(!triggerFlag)
-        planner.attachCallback(()=>{console.log('boop');trigger()})
+        planner.attachCallback(()=>{console.log('boop'); trigger()})
     }, [planner, triggerFlag])
 
     return (
