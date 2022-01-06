@@ -10,24 +10,18 @@
             "modules": [
                 {
                     "type":"node",
-                    "logic":"and",
-                    "modules":[
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["PC1101"]
-                        },
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["PC2174A"]
-                        },
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["PC2193"]
-                        }
-                    ]
+                    "logic":".",
+                    "modules":["PC1101"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["PC2174A"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["PC2193"]
                 }
             ]
         },

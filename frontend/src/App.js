@@ -4,8 +4,11 @@ import SemesterContainer from './components/Semester/NewSemesterContainer';    /
 import AcademicRequirementTray from './components/AcademicRequirements/AcademicRequirementTray';
 import MainMenuTray from './components/Schedule/MainMenuTray';
 import scheduleData from './data/schedule.json'  // import data from local file
-import acadReqDemoAlt from './data/acadReqDemoAlt.json'
-import acadReqDemo from './data/acadReqDemo.json'
+import espMajor from './data/ESPMajor.json'
+import physicsMinor from './data/physicsMinor.json'
+import philoMinor from './data/philoMinor.json'
+import nanoSpec from './data/nanoSpec.json'
+import energySpec from './data/energySpec.json'
 import { PlannerContextProvider } from './context/PlannerContext';
 
 function App() {
@@ -16,7 +19,7 @@ function App() {
     <PlannerContextProvider 
       selectIndex={currentSchedule}
       scheduleList={scheduleData}
-      acadList={[acadReqDemoAlt, acadReqDemo]}
+      acadList={[espMajor, nanoSpec, energySpec, physicsMinor,  philoMinor]}
     >
         <div className='MainContainer'>
           <MainMenuTray updateSchedule={setCurrentSchedule} />

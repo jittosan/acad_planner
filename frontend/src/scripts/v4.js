@@ -292,7 +292,7 @@ class AcademicRequirement {
         }
         // get MCs of module, else default to 0
         const getModuleCredits = (code) =>{
-            if (this.db!==undefined && this.db.getData(code)!==undefined && this.db.getData(code)["moduleCredit"]!==undefined) {
+            if (this.db!==undefined && this.db.getData(code)!==null && this.db.getData(code)["moduleCredit"]!==undefined) {
                 return parseInt(this.db.getData(code)["moduleCredit"])
             } else {
                 return 0
@@ -433,7 +433,9 @@ class AcademicRequirement {
         }
 
         // execute direct matching
-        return verifyHelper(this.data).completed
+        let o = verifyHelper(this.data).completed
+        console.log(doubleCountTracker, this.data.name)
+        return o
     }
 
     // DATA EXTRACTION METHODS
@@ -500,6 +502,10 @@ class Planner {
         this.runCallback()
     }
 
+    getSelectedScheduleIndex() {
+        return this.selectedSchedule
+    }
+
     getSchedule() {
         return this.schedules[this.selectedSchedule]
     }
@@ -562,8 +568,8 @@ class Planner {
     refresh(){
         this.schedules[this.selectedSchedule].flatten().map((item) => this.moduleMap[item]=[])
         this.acadMap = this.acad.map((item) => item.verify(this.moduleMap))
-        // console.log('MAIN MODULE MAP', this.moduleMap)
-        // console.log('MAIN ACAD MAP', this.acadMap)
+        console.log('CURRENT STATE')
+        console.log(this.moduleMap)
     }
 
     verify(index) {

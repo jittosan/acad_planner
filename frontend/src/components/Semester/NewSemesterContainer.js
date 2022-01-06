@@ -124,7 +124,7 @@ const Semester = ({index}) => {
 }
 
 // Individual module in Semester Card component
-const Module = ({module_code}) => {
+const Module = ({module_code, removeModuleCode}) => {
     const [hovered, setHovered] = useState(false)  // state to track hover state of component
     const isHovered = () => {setHovered(true)}
     const notHovered = () => {setHovered(false)}

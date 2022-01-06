@@ -4,8 +4,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    // background-color: rgb(255, 167, 4);
-    background-color: rgb(216, 216, 216);
+    transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
+    // background-color: rgb(4, 184, 255);
+    background-color: rgb(4, 176, 255);
+    // background-color: rgb(216, 216, 216);
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-rows: 100%;
@@ -47,6 +49,15 @@
     }
 }
 
+.displayEnlarged { 
+    height: 100vh;
+    z-index: 2;
+}
+
+.displayMinimised {
+    height: 80px;
+}
+
 .incompleteRequirement {
     &::before {
         background-color: red;
@@ -57,4 +68,36 @@
     &::before {
         background-color: greenyellow;
     }
+}
+
+.fullDisplay {
+    text-align: left;
+    padding: 2ch;
+    overflow-y:scroll;
+
+    .nonCombinationContainer {
+        height: auto;
+        width: 100%;
+    }
+
+    .combinationContainer { 
+        height: auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 5ch 1fr;
+        grid-template-rows: 1fr;
+
+        .combinationBar {
+            grid-column: 1;
+            height: 100%;
+            width: 3ch;
+            box-sizing: border-box;
+            // background-color: rgba(255, 167, 4, 0.87);
+            border-right: solid 0.5rem orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
 }
