@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react'
 import { RiEditLine } from 'react-icons/ri'                           // import icons
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'                           
-// import {HiOutlineTrash} from 'react-icons/hi'                           // import icons
+import { BsCalendar3Week, BsChevronLeft, BsChevronRight } from 'react-icons/bs'                           
+import {HiOutlineClipboardList, HiOutlineTrash} from 'react-icons/hi'                           // import icons
 import { IoAdd } from 'react-icons/io5'               
 import styles from './NewSemesterContainer.module.scss'                // import styles
 // import local components
@@ -30,7 +30,7 @@ const SemesterContainer = () => {
     return (
         <div className={styles.container}>
             <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
-                {viewOverview ? 'View By Semester' : 'View Semesters Overview'}
+                {viewOverview ? <p>View By Semester <HiOutlineClipboardList /></p> : <p>View Semesters Overview <BsCalendar3Week /></p>}
             </div>
 
             {
@@ -64,7 +64,7 @@ const SemestersOverview = () => {
 
     return (
         <div className={styles.semestersOverviewContainer}>
-            <h2>Semesters Overview</h2>
+            {/* <h2>Semesters Overview</h2> */}
             {schedule.semesters.map((_, index) => <SemesterSummaryCard key={index} index={index} />)}
         </div>
     )
@@ -146,9 +146,9 @@ const Module = ({module_code, removeModuleCode}) => {
             </div>
 
             {/* Deconste Icon when hovered over */}
-            {/* <div className={styles.deconsteContainer}>
-                {hovered ? <HiOutlineTrash className={styles.deconsteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
-            </div> */}
+            <div className={styles.deleteContainer}>
+                <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} />
+            </div>
         </div>
     )
 }
