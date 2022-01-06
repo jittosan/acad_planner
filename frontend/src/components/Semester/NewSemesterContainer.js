@@ -26,7 +26,7 @@ const SemesterContainer = () => {
     // reset valid selectedSem index while switching between schedules
 
     const [viewOverview, setViewOverview] = useState(false)
-    
+    const toggle = () => setViewOverview(!viewOverview)
     return (
         <div className={styles.container}>
             <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
@@ -49,7 +49,7 @@ const SemesterContainer = () => {
                 </div>
             }
 
-            { viewOverview ? <SemestersOverview /> : <Semester index={selectedSem} /> }
+            { viewOverview ? <SemestersOverview toggle={toggle} select={setSelectedSem} /> : <Semester index={selectedSem} /> }
 
             {/* {modalOpen ? <SemesterModal close={hideModal} /> : ''} */}
         </div>
@@ -58,24 +58,24 @@ const SemesterContainer = () => {
 
 export default SemesterContainer
 
-const SemestersOverview = () => {
+const SemestersOverview = ({toggle, select}) => {
     const planner = useContext(PlannerContext)
     const schedule = planner.getSchedule()
 
     return (
         <div className={styles.semestersOverviewContainer}>
-            {/* <h2>Semesters Overview</h2> */}
-            {schedule.semesters.map((_, index) => <SemesterSummaryCard key={index} index={index} />)}
+            <h2>Semesters Overview</h2>
+            {schedule.semesters.map((_, index) => <SemesterSummaryCard key={index} index={index} toggle={toggle} select={select} />)}
         </div>
     )
 }
 
-const SemesterSummaryCard = ({ index }) => {
+const SemesterSummaryCard = ({ index, toggle, select }) => {
     const planner = useContext(PlannerContext)
     const semData = planner.getSemester(index)
 
     return (
-        <div className={styles.semesterSummaryCard}>
+        <div className={styles.semesterSummaryCard}  onClick={()=>{select(index); toggle()}}>
             <h3>{semData.name}</h3>
             <ul className={styles.modulesList}>
                 {semData.modules.map((code, index)=><li key={index}>{code}: {planner.getModuleInfo(code).title}</li>)}
