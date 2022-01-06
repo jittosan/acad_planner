@@ -57,25 +57,25 @@ export const AcademicRequirementDisplay = () => {
     let requirement = planner.getRequirement(selectedIndex).data
     console.log(requirement)
 
-    const visualiseRequirements = (currentNode, renderOutput) => {
-        // category
-        if (currentNode.type==="category") {
-            renderOutput.push(currentNode)
-        } else if (currentNode.type==="node" && currentNode.logic===".") {
-            renderOutput.push(currentNode)
-            return
-        } 
+    // const visualiseRequirements = (currentNode, renderOutput) => {
+    //     // category
+    //     if (currentNode.type==="category") {
+    //         renderOutput.push(currentNode)
+    //     } else if (currentNode.type==="node" && currentNode.logic===".") {
+    //         renderOutput.push(currentNode)
+    //         return
+    //     } 
 
-        currentNode.modules.map((item) => visualiseRequirements(item, renderOutput))
-    }
+    //     currentNode.modules.map((item) => visualiseRequirements(item, renderOutput))
+    // }
 
-    let renderOutput = []
-    visualiseRequirements(requirement, renderOutput)
-    console.log(renderOutput)
+    // let renderOutput = []
+    // visualiseRequirements(requirement, renderOutput)
+    // console.log(renderOutput)
 
     return (
         <div className={styles.fullDisplay}>
-            <h1 onClick={()=>setSelectedIndex(selectedIndex+1)}>Academic Requirement</h1>
+            <h1 onClick={()=>setSelectedIndex((selectedIndex+1)%planner.getAllRequirements().length)}>Academic Requirement</h1>
             {/* <h2>{requirement.name}</h2> */}
             <AcademicRequirementDisplayItem dataNode={requirement} />
             {/* {renderOutput.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} />)} */}
@@ -85,9 +85,6 @@ export const AcademicRequirementDisplay = () => {
 
 export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
     if (indent===undefined) {indent=0}
-    let endpoint = false
-    let combination = false
-    let renderOut
     // category node
     if (dataNode.type==="category") {
         console.log('CATEGORY', dataNode)
@@ -100,12 +97,10 @@ export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
         )
     // node EndPoint
     } else if (dataNode.type==="node" && dataNode.logic===".") {
-        endpoint = true
-        renderOut = <p>{dataNode.modules[0]}</p>
         console.log('END', dataNode)
         return (
             <div>
-                <p>{dataNode.modules[0]}</p>
+                <p>{dataNode.modules[0]}<i>{dataNode.modules[0]===dataNode.match[0] ? '  DONE' : ''}</i></p>
             </div>
         )
     // node AND/OR
