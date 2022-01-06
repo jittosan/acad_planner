@@ -1,7 +1,7 @@
 @import './theme';
 
 // color styling
-@function getcolor($name) {
+@function get-color($name) {
     @return map.get($theme-colors, $name)
 };
 
