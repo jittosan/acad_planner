@@ -7,7 +7,6 @@ import { FiUpload, FiDownload, FiSettings } from 'react-icons/fi'
 import { RiEditLine } from 'react-icons/ri'      
 import { useContext } from 'react/cjs/react.development'
 import { PlannerContext } from '../../context/PlannerContext'
-import styles from './MainMenuTray.module.scss'
 
 const MainMenuTray = ({updateSchedule}) => {
     const planner = useContext(PlannerContext)
