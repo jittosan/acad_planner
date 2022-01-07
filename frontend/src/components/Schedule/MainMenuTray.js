@@ -42,10 +42,10 @@ const ScheduleMenu= ({ updateSemester, scheduleTitle }) => {
 
     return(
         <div>
-            <strong>SCHEDULES</strong>
+            <strong className={`${styles.menuTitle}`}>SCHEDULES</strong>
                 {
                     planner.getAllSchedules().map((item, index) => 
-                        <p>
+                        <div className={`${styles.menuSchedules}`}>
                             <span key={index} 
                                 className={`${styles.menuSchedule} ${scheduleTitle === item.name && styles.menuScheduleSelected}` /* highlight current selected schedule in menu */} 
                                 onClick={() => updateSemester(index)}
@@ -53,7 +53,7 @@ const ScheduleMenu= ({ updateSemester, scheduleTitle }) => {
                                 {item.name}&nbsp;
                             </span>
                             <RiEditLine className={`${styles.menuSchedule} ${styles.menuScheduleEditItem}`}/>
-                        </p>
+                        </div>
                     )
                 }
             <p className={styles.menuScheduleEditList}>Edit List</p>

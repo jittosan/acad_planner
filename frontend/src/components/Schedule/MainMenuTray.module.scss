@@ -6,6 +6,7 @@
     left: 0;
     width: 100%;
     background-color: theme.$secondary;
+    color: theme.$secondary-text;
     z-index: 2;
     overflow: hidden;
     display: grid;
@@ -18,33 +19,42 @@
     }
 }
 
-.menuSchedule {
-    cursor: pointer;
+.menuTitle {
+    font-size: larger;
+}
+
+.menuSchedules {
+    padding: 1ch;
+    height: auto;
 
     &:hover {
-        color: blue;
+        background-color: theme.$secondary-light;
+        color: theme.$secondary-light-text;
     }
+}
+
+.menuSchedule {
+    cursor: pointer;
 }
 
 .menuScheduleEditItem {
     &:hover {
-        color: red;
+        color: theme.$secondary-dark;
     }
 }
 
 .menuScheduleSelected {
     font-weight: bold;
-    text-decoration: underline;
 }
 
 .menuScheduleEditList {
-    color: red;
+    color: theme.$secondary-text;
     font-weight: bold;
     text-decoration: underline;
     cursor: pointer;
 
     &:hover {
-        color: maroon;
+        color: theme.$secondary-dark;
     }
 }
 
