@@ -1,10 +1,65 @@
-$theme-colors : (
-    "primary":#eee,
-    "primary-dark":#eee,
-    "secondary":#eee,
-    "secondary-dark":#eee,
-    "highlight":#eee,
-    "highlight-dark":#eee,
-    "background":#eee,
-    "background-light":#eee
-)
+@use 'sass:color';
+
+$primary: #df40fb;
+// // triadic
+// $secondary: color.adjust($primary, $hue: 120);
+// $tertiary: color.adjust($primary, $hue: -120);
+
+// analogous
+$secondary: color.adjust($primary, $hue: 30);
+$tertiary: color.adjust($primary, $hue: -30);
+
+// // complementary
+// $secondary: color.adjust($primary, $hue: 180);
+// $tertiary: color.adjust($primary, $hue: 0);
+
+// // split complemetary
+// $secondary: color.adjust($primary, $hue: -150);
+// $tertiary: color.adjust($primary, $hue: 60);
+
+// // monochromatic
+// $secondary: color.adjust($primary, $hue: 15);
+// $tertiary: color.adjust($primary, $hue: -15);
+
+
+$primary-light: color.scale($primary, $saturation: 100%, $lightness: 19%);
+$primary-dark: color.scale($primary, $saturation: 100%, $lightness: -39%);
+
+$secondary-light: color.scale($secondary, $saturation: 100%, $lightness: 19%);
+$secondary-dark: color.scale($secondary, $saturation: 100%, $lightness: -39%);
+
+$tertiary-light: color.scale($tertiary, $saturation: 100%, $lightness: 19%);
+$tertiary-dark: color.scale($tertiary, $saturation: 100%, $lightness: -39%);
+
+$background: #FFFFFF;
+$surface:$primary;
+$error: #B00020;
+
+$default-font-color: #000000;
+
+@function contrast($background-color, $font-color) {
+    $font-color: $default-font-color;
+
+    @if lightness($background-color) > 70% {
+        $font-color: invert($default-font-color);
+    }
+
+    @return $font-color;
+}
+
+$primary-text: contrast($primary, $default-font-color);
+$secondary-text: contrast($secondary, $default-font-color);
+$tertiary-text: contrast($tertiary, $default-font-color);
+
+$primary-light-text: contrast($primary-light, $default-font-color);
+$secondary-light-text: contrast($secondary-light, $default-font-color);
+$tertiary-light-text: contrast($tertiary-light, $default-font-color);
+
+$primary-dark-text: contrast($primary-dark, $default-font-color);
+$secondary-dark-text: contrast($secondary-dark, $default-font-color);
+$tertiary-dark-text: contrast($tertiary-dark, $default-font-color);
+
+$background-text: contrast($background, $default-font-color);
+$surface-text: contrast($surface, $default-font-color);
+$error-text: contrast($error, $default-font-color);
+

@@ -1,9 +1,11 @@
+@use '../styles/theme';
+
 .mainTray {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffb703;
+    background-color: theme.$secondary;
     z-index: 2;
     overflow: hidden;
     display: grid;

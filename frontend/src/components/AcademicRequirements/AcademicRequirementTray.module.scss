@@ -1,3 +1,5 @@
+@use '../styles/theme';
+
 .tray {
     width: 100%;
     height: 80px;
@@ -6,7 +8,7 @@
     left: 0;
     transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
     // background-color: rgb(4, 184, 255);
-    background-color: rgb(4, 176, 255);
+    background-color: theme.$tertiary;
     // background-color: rgb(216, 216, 216);
     display: grid;
     grid-template-columns: 80% 20%;

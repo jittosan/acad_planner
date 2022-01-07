@@ -122,8 +122,8 @@ const Semester = ({index}) => {
                 {/* Card Footer & Add module */}
                 <div className={styles.footer}>
                     <IoAdd className={styles.footerIcon} />
-                    <input placeholder={'Add Module...'} ref={moduleInputRef} onKeyPress={(e) => {if (e.key==='Enter') {addModuleCode()}}}/>
-                    <p onClick={addModuleCode}>Add</p>
+                    <input placeholder={'Add Module Code'} ref={moduleInputRef} onKeyPress={(e) => {if (e.key==='Enter') {addModuleCode()}}}/>
+                    <p onClick={addModuleCode}></p>
                 </div>
             </div>
         </div>
