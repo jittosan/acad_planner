@@ -1,3 +1,5 @@
+@import './../styles/main';
+
 .container {
     box-sizing: border-box;
     position: absolute;
@@ -9,7 +11,7 @@
     padding: 0;
     padding-bottom: 2ch;
     display: block;
-    background-color: whitesmoke;
+    background-color: get-color("background");
 
     .buttonContainer {
         width: 100%;
@@ -139,7 +141,7 @@
 
 .module {
     display: inline-block;
-    background-color: rgb(198, 198, 199);
+    background-color: get-color("secondary");
     width: 100%;
     margin: 1ch 0ch;
 }
@@ -151,7 +153,7 @@
     align-items: center;
     justify-content: center;
 
-    background: pink;
+    background: get-color("light-danger");
 
     cursor: pointer;
 }
@@ -170,7 +172,7 @@
 .semesterSummaryCard {
     display: flex;
     flex-direction: column;
-    background-color: rgb(198, 198, 199);
+    background-color: get-color("secondary");
     width: 100%;
     margin: 1ch 0ch;
     padding-bottom: 1ch;

@@ -1,10 +1,12 @@
 $theme-colors : (
-    "primary":#eee,
+    "primary":#ffb703,
     "primary-dark":#eee,
-    "secondary":#eee,
+    "secondary":rgb(198, 198, 199),
     "secondary-dark":#eee,
     "highlight":#eee,
     "highlight-dark":#eee,
-    "background":#eee,
-    "background-light":#eee
+    "background":whitesmoke,
+    "background-light":#eee,
+    "danger":red,
+    "light-danger":pink,
 )

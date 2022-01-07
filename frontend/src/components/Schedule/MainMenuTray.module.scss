@@ -1,9 +1,11 @@
+@import './../styles/main';
+
 .mainTray {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #ffb703;
+    background-color: get-color("primary");
     z-index: 2;
     overflow: hidden;
     display: grid;
@@ -26,7 +28,7 @@
 
 .menuScheduleEditItem {
     &:hover {
-        color: red;
+        color: get-color("danger");
     }
 }
 
@@ -36,7 +38,7 @@
 }
 
 .menuScheduleEditList {
-    color: red;
+    color: get-color("danger");
     font-weight: bold;
     text-decoration: underline;
     cursor: pointer;

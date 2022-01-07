@@ -2,15 +2,15 @@
 
 // color styling
 @function get-color($name) {
-    @return map.get($theme-colors, $name)
+    @return map-get($theme-colors, $name)
 };
 
 // media-queries
 
 
 //defualt stylings
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// * {
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+// }

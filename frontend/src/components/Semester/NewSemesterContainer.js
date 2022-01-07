@@ -144,10 +144,10 @@ const Module = ({module_code, removeModuleCode}) => {
                 </div>
             </div>
 
-            {/* Delete Icon when hovered over */}
-            <div className={styles.deleteContainer}>
-                {hovered ? <HiOutlineTrash className={styles.deleteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
-            </div>
+            {/* Deconste Icon when hovered over */}
+            {/* <div className={styles.deconsteContainer}>
+                {hovered ? <HiOutlineTrash className={styles.deconsteIcon} onClick={() => removeModuleCode(module_code)} /> : '' }
+            </div> */}
         </div>
     )
 }
