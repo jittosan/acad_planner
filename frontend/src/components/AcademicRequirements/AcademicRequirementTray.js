@@ -100,7 +100,7 @@ export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
         console.log('END', dataNode)
         return (
             <div>
-                <p>{dataNode.modules[0]}<i>{dataNode.modules[0]===dataNode.match[0] ? '  DONE' : ''}</i></p>
+                <p>{dataNode.modules[0]}<i>{dataNode.completed ? '  COMPL' : ''}</i></p>
             </div>
         )
     // node AND/OR
@@ -110,6 +110,7 @@ export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
             <div className={styles.combinationContainer}>
                 <div className={styles.combinationBar}>
                     {dataNode.logic==="and" ? "&" : "or"}
+                    {dataNode.completed ? "-Y" : "-X"}
                 </div>
                 <div>
                     {dataNode.modules.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} indent={indent+1}/>)}

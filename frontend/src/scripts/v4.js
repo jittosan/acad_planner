@@ -325,6 +325,8 @@ class AcademicRequirement {
             // if endpoint
             if (currentNode.type ==="node" && currentNode.logic===".") {
                 // MATCH CODE WITH MODLIST, REPEAT IF XX IN CODE UNTIL NULL / CRITERIA MET
+                // reset match on first entering node
+                currentNode.match.length = 0
                 let moduleCode = null
                 do {
                     // console.log('LOG', checkCanRepeat(currentNode.modules[0]), checkFn!==undefined)
