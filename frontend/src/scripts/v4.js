@@ -352,6 +352,7 @@ class AcademicRequirement {
                     }
                 } while (checkCanRepeat(currentNode.modules[0]) && moduleCode!==null && (checkFn!==undefined && !checkFn(tracker.number, tracker.credit)))
                 tracker.completed = currentNode.match.length!==0
+                currentNode.completed = tracker.completed
                 // console.log('ENDPOINT', currentNode.match, tracker, checkFn)
                 return tracker
             // if and/or node
@@ -370,6 +371,7 @@ class AcademicRequirement {
                         tracker.credit += result.credit
                     }
                     tracker.completed = testLogic
+                    currentNode.completed = tracker.completed
                     // console.log('AND NODE', tracker, currentNode.modules)
                     return tracker
                 } else {
@@ -387,6 +389,7 @@ class AcademicRequirement {
                         
                     }
                     tracker.completed = testLogic
+                    currentNode.completed = tracker.completed
                     // console.log('OR NODE', tracker, currentNode.modules)
                     return tracker
                 }
@@ -427,6 +430,7 @@ class AcademicRequirement {
                 } else {
                     tracker.completed = testLogic
                 }
+                currentNode.completed = tracker.completed
                 // console.log('GRP NODE', tracker, currentNode.modules)
                 return tracker
             }
