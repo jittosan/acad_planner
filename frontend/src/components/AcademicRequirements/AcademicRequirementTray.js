@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { RiEditBoxLine } from 'react-icons/ri'
+import { BsCheck } from 'react-icons/bs'
 import { useContext } from 'react/cjs/react.development'
 
 import { PlannerContext } from '../../context/PlannerContext'
@@ -46,6 +47,7 @@ const AcademicRequirementTab = ({index}) => {
     return(
         <div className={`${styles.requirementTab} ${planner.verify(index) ? styles.completeRequirement : styles.incompleteRequirement}`}>
             <p>{acadRequirementHandler.getName().substring(0,3)}</p>
+            {planner.verify(index) ? <div className={styles.checkDiv}><BsCheck /></div> : ''}
         </div>
     )
 }
@@ -55,31 +57,14 @@ export const AcademicRequirementDisplay = () => {
     let planner = useContext(PlannerContext)
     const [selectedIndex, setSelectedIndex] = useState(0)
     let requirement = planner.getRequirement(selectedIndex).data
-    console.log(requirement)
-
-    // const visualiseRequirements = (currentNode, renderOutput) => {
-    //     // category
-    //     if (currentNode.type==="category") {
-    //         renderOutput.push(currentNode)
-    //     } else if (currentNode.type==="node" && currentNode.logic===".") {
-    //         renderOutput.push(currentNode)
-    //         return
-    //     } 
-
-    //     currentNode.modules.map((item) => visualiseRequirements(item, renderOutput))
-    // }
-
-    // let renderOutput = []
-    // visualiseRequirements(requirement, renderOutput)
-    // console.log(renderOutput)
+    // console.log(requirement)
 
     return (
         <div className={styles.fullDisplay}>
             <h1 onClick={()=>setSelectedIndex((selectedIndex+1)%planner.getAllRequirements().length)}>Academic Requirement</h1>
             {/* <h2>{requirement.name}</h2> */}
             <AcademicRequirementDisplayItem dataNode={requirement} />
-            {/* {renderOutput.map((item, index) => <AcademicRequirementDisplayItem key={index} dataNode={item} />)} */}
-        </div>
+            </div>
     )
 }
 
@@ -99,8 +84,8 @@ export const AcademicRequirementDisplayItem = ({ dataNode, indent }) => {
     } else if (dataNode.type==="node" && dataNode.logic===".") {
         console.log('END', dataNode)
         return (
-            <div>
-                <p>{dataNode.modules[0]}<i>{dataNode.completed ? '  COMPL' : ''}</i></p>
+            <div className={styles.moduleReqContainer}>
+                <p>{dataNode.modules[0]}{dataNode.completed ? <div className={styles.checkDiv}><BsCheck /></div> : ''}</p>
             </div>
         )
     // node AND/OR
