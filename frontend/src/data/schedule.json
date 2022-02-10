@@ -3,15 +3,15 @@
         "name": "ESP Recommended Schedule",
         "semesters" : [
             {
-                "name" : "Y1 S1",
+                "name" : "Year 1  -  Semester 1",
                 "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
             },
             {
-                "name" : "Y1 S2",
+                "name" : "Semester 2",
                 "modules" : ["ESP2111", "MA1508E", "PF1101", "DTK1234", "GEA1000"]
             },
             {
-                "name" : "Y2 S1",
+                "name" : "Semester 3",
                 "modules" : ["ESP2107"]
             }
         ]
@@ -20,15 +20,15 @@
         "name": "Spam Minors",
         "semesters" : [
             {
-                "name" : "Y1S1",
+                "name" : "Semester 1",
                 "modules" : ["ESP1111", "CS1010E"]
             },
             {
-                "name" : "Y1S2",
+                "name" : "Semester 2",
                 "modules" : ["ESP2111", "GEA1000"]
             },
             {
-                "name" : "Y2S1",
+                "name" : "Semester 3",
                 "modules" : ["ESP2106"]
             }
         ]
@@ -37,7 +37,7 @@
         "name": "Balanced",
         "semesters" : [
             {
-                "name" : "Y1S2",
+                "name" : "Semester 1",
                 "modules" : ["ESP1111", "CS1010E"]
             }
         ]

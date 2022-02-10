@@ -357,48 +357,10 @@ class AcademicRequirement {
                 currentNode.completed = tracker.completed
                 // console.log('ENDPOINT', currentNode.match, tracker, checkFn)
                 return tracker
-            // if and/or node
-            } else if (currentNode.type==="node") {
-                if (currentNode.logic==="and") {
-                    // if AND node, check all children are true
-                    let testLogic = true
-                    for (let i=0;i<currentNode.modules.length;i++) {
-                        // if checkFn satsfied, exit loop
-                        if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
-                            break
-                        }
-                        let result = verifyHelper(currentNode.modules[i], checkFn)
-                        testLogic = testLogic && result.completed
-                        tracker.number += result.number
-                        tracker.credit += result.credit
-                    }
-                    tracker.completed = testLogic
-                    currentNode.completed = tracker.completed
-                    // console.log('AND NODE', tracker, currentNode.modules)
-                    return tracker
-                } else {
-                    // if OR node, check any children is true
-                    let testLogic = false
-                    for (let i=0;i<currentNode.modules.length;i++) {
-                        // if checkFn satsfied, exit loop
-                        if (checkFn!==undefined && checkFn(tracker.number, tracker.credit)) {
-                            break
-                        }
-                        let result = verifyHelper(currentNode.modules[i], checkFn)
-                        testLogic = testLogic || result.completed
-                        tracker.number += result.number
-                        tracker.credit += result.credit
-                        
-                    }
-                    tracker.completed = testLogic
-                    currentNode.completed = tracker.completed
-                    // console.log('OR NODE', tracker, currentNode.modules)
-                    return tracker
-                }
-            // if category/main/group
+            // if branching node
             } else {
                 let currCheckFn
-                // check for criteria for category/main/group
+                // check for criteria to define checkFn
                 if (currentNode.criteria!==undefined) {
                     if (currentNode.criteria.number!==undefined) {
                         // compare number
@@ -412,23 +374,31 @@ class AcademicRequirement {
                     currCheckFn = checkFn
                 }
                 // return directly because category/main/group should only have 1 node going out
-                // return verifyHelper(currentNode.modules[0], currCheckFn)
-                // if categpry/main/group node, treat as OR node to check any children is true (CONSIDER SWITCHING TO AND)
-                // console.log('START GRP')
-                let testLogic = true
+                let testLogic
+                // AND logic as default, OR logic for or-nodes
+                if (currentNode.type==="node" && currentNode.logic==="or") {
+                    testLogic = false
+                } else {
+                    testLogic = true
+                }
                 for (let i=0;i<currentNode.modules.length;i++) {
                     // if checkFn satsfied, exit loop
                     if (currCheckFn!==undefined && currCheckFn(tracker.number, tracker.credit)) {
                         break
                     }
                     let result = verifyHelper(currentNode.modules[i], currCheckFn)
-                    testLogic = testLogic && result.completed
+                    // AND logic as default, OR logic for or-nodes
+                    if (currentNode.type==="node" && currentNode.logic==="or") {
+                        testLogic = testLogic || result.completed
+                    } else {
+                        testLogic = testLogic && result.completed
+                    }
                     tracker.number += result.number
                     tracker.credit += result.credit
                     
                 }
                 if (currCheckFn!==undefined) {
-                    tracker.completed = currCheckFn(tracker.number, tracker.credit)
+                    tracker.completed = currCheckFn(tracker.number, tracker.credit) && testLogic
                 } else {
                     tracker.completed = testLogic
                 }
@@ -440,7 +410,7 @@ class AcademicRequirement {
 
         // execute direct matching
         let o = verifyHelper(this.data).completed
-        console.log(doubleCountTracker, this.data.name)
+        // console.log(doubleCountTracker, this.data.name)
         return o
     }
 

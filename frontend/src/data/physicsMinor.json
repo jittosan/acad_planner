@@ -35,6 +35,9 @@
                 {
                     "type":"node",
                     "logic":"or",
+                    "criteria": {
+                        "number":2
+                    },
                     "modules":[
                         {
                             "type":"node",

@@ -34,8 +34,9 @@ const SemesterContainer = () => {
             </div> */}
 
             {!viewOverview ? 
-                <div className={styles.overviewSwitch} onClick={() => setViewOverview(!viewOverview)}>
-                    <p>View Semesters Overview <BsCalendar3Week /></p>
+                <div className={styles.overviewSwitch} >
+                    {/* <p>View Semesters Overview <BsCalendar3Week /></p> */}
+                    <p onClick={() => setViewOverview(!viewOverview)}>&lt; Back</p>
                 </div>
                 : ''
             }
@@ -112,7 +113,7 @@ const Semester = ({index}) => {
             {/* Title/Header */}
             <div className={styles.title}>
                 <h2>{semData.name}</h2>
-                <p>{semData.acad_year} ({semData.type})</p>
+                {/* <p>{semData.acad_year} ({semData.type})</p> */}
             </div>
 
             {/* Module List Display */}
