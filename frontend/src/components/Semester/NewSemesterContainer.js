@@ -85,7 +85,7 @@ const SemesterSummaryCard = ({ index, toggle, select }) => {
         <div className={styles.semesterSummaryCard}  onClick={()=>{select(index); toggle()}}>
             <h3>{semData.name}</h3>
             <ul className={styles.modulesList}>
-                {semData.modules.map((code, index)=><li key={index}>{code}: {planner.getModuleInfo(code).title}</li>)}
+                {semData.modules.map((code, index)=><p key={index}>{code}</p>)}
             </ul>
         </div>
     )

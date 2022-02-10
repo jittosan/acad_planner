@@ -258,11 +258,34 @@
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(255, 81, 56, 0.3);
+        background-color: rgba(255, 81, 56, 0.1);
+    }
+
+    h3 {
+        font-weight: normal;
     }
     
     .modulesList {
-        text-align: left;
+        box-sizing: border-box;
+        padding: 0;
+        padding-bottom: 2ch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 0;
+
+        p {
+            // color: rgba(255, 81, 56, 0.9);
+            // background-color: rgba(255, 81, 56, 0.9);
+            background-color: rgb(195, 195, 195);
+            color: black;
+            padding: 0.5ch 1ch;
+            margin: 0.5ch 1ch;
+            border-radius: 0.5ch;
+            min-width: 7ch;
+        }
     }
 }
     
