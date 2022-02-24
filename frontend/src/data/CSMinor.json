@@ -1,0 +1,119 @@
+{
+    "type" : "main",
+    "name" : "Computer Science Minor",
+    "doubleCount" : 8,
+    "code" : "CS",
+    "modules":[
+        {
+            "type":"category",
+            "name": "Category I",
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["CS1010"]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Category II",
+            "criteria": {
+                "credit":12
+            },
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":"or",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS1231"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2030"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2040"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2100"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2102"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2103"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2104"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2105"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2106"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2107"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2108"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS2109S"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name": "Category III",
+            "criteria": {
+                "credit":4
+            },
+            "modules": [
+                {
+                    "type":"node",
+                    "logic":"or",
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS3XXX"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["CS4XXX"]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

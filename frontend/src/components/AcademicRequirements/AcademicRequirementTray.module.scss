@@ -7,6 +7,7 @@
     transition: cubic-bezier(0.19, 1, 0.22, 1) 350ms;
     // background-color: rgb(4, 184, 255);
     background-color: rgb(4, 176, 255);
+    // background-color: rgba(255, 81, 56, 1);
     // background-color: rgb(216, 216, 216);
     display: grid;
     grid-template-columns: 80% 20%;
@@ -29,8 +30,10 @@
 
 .requirementTab {
     position: relative;
-    padding: 1ch;
-    background-color: grey;
+    padding: 0.7ch 1ch;
+    background-color: rgb(0, 0, 0);
+    border-radius: 1rem;
+    min-width: 4ch;
     height: 3ch;
     display: flex;
     justify-content: center;

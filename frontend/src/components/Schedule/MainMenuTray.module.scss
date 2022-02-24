@@ -18,9 +18,10 @@
 
 .menuSchedule {
     cursor: pointer;
+    padding: 0.5ch 2ch;
 
     &:hover {
-        color: blue;
+        background-color: #c59212
     }
 }
 

@@ -52,11 +52,11 @@ const ScheduleMenu= ({ updateSemester, scheduleTitle }) => {
                             >
                                 {item.name}&nbsp;
                             </span>
-                            <RiEditLine className={`${styles.menuSchedule} ${styles.menuScheduleEditItem}`}/>
+                            {/* <RiEditLine className={`${styles.menuSchedule} ${styles.menuScheduleEditItem}`}/> */}
                         </p>
                     )
                 }
-            <p className={styles.menuScheduleEditList}>Edit List</p>
+            {/* <p className={styles.menuScheduleEditList}>Edit List</p> */}
         </div>
     )
 }

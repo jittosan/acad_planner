@@ -16,38 +16,54 @@
                 {
                     "type":"node",
                     "logic":".",
-                    "modules":["GEC1010"]
+                    "modules":["GECXXXX"]
                 },
                 {
                     "type":"node",
                     "logic":".",
-                    "modules":["GESS1014"]
+                    "modules":["GESSXXXX"]
                 },
                 {
-                    "type":"group",
-                    "modules":[
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["GEA1000"]
-                        },
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["GEQ1000"]
-                        },
-                        {
-                            "type":"node",
-                            "logic":".",
-                            "modules":["GER1000"]
-                        }
-                    ]
+                    "type":"node",
+                    "logic":".",
+                    "modules":["GEA1000"]
                 }
             ]
         },
         {
             "type":"category",
             "name":"Engineering Core",
+            "modules":[
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["MA1511"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["MA1512"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["MA1508E"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["EG2401A"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["EG3611A"]
+                }
+            ]
+        },
+        {
+            "type":"category",
+            "name":"Major Programme",
             "modules":[
                 {
                     "type":"node",
@@ -62,21 +78,61 @@
                 {
                     "type":"node",
                     "logic":".",
-                    "modules":["ESP5402"]
-                }
-            ]
-        },
-        {
-            "type":"category",
-            "name":"Physics Component",
-            "criteria": {
-                "credit": 8
-            },
-            "modules":[
+                    "modules":["ESP2106"]
+                },
                 {
                     "type":"node",
                     "logic":".",
-                    "modules":["PC21XX"]
+                    "modules":["ESP2107"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["ESP2110"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["ESP3903"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["CM3296"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["PC2130B"]
+                },
+                {
+                    "type":"node",
+                    "logic":".",
+                    "modules":["PC2133"]
+                },
+                {
+                    "type":"node",
+                    "logic":"group",
+                    "criteria": {
+                        "number": 1
+                    },
+                    "modules":[
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["PC2020"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["ME2121"]
+                        },
+                        {
+                            "type":"node",
+                            "logic":".",
+                            "modules":["EE2023"]
+                        }
+                    ]
                 }
             ]
         }

@@ -46,8 +46,9 @@ const AcademicRequirementTab = ({index}) => {
     
     return(
         <div className={`${styles.requirementTab} ${planner.verify(index) ? styles.completeRequirement : styles.incompleteRequirement}`}>
+            {/* <p>{acadRequirementHandler.getName().substring(0,3)}</p> */}
             <p>{acadRequirementHandler.getName().substring(0,3)}</p>
-            {planner.verify(index) ? <div className={styles.checkDiv}><BsCheck /></div> : ''}
+            {/* {planner.verify(index) ? <div className={styles.checkDiv}><BsCheck /></div> : ''} */}
         </div>
     )
 }

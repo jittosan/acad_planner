@@ -3,6 +3,80 @@
         "name": "ESP Recommended Schedule",
         "semesters" : [
             {
+                "name" : "Semester 1",
+                "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
+            },
+            {
+                "name" : "Semester 2",
+                "modules" : ["ESP2111", "MA1508E", "PF1101", "DTK1234", "GEA1000"]
+            },
+            {
+                "name" : "Semester 3",
+                "modules" : ["ES2531", "IE2141", "ESP2107"]
+            },
+            {
+                "name" : "Semester 4",
+                "modules" : ["EG2501", "EE2211", "ESP2110", "PC2133"]
+            },
+            {
+                "name" : "Semester 5",
+                "modules" : ["EG3611A", "ESP2106"]
+            },
+            {
+                "name" : "Semester 6",
+                "modules" : ["PC2130B", "EG2401A"]
+            },
+            {
+                "name" : "Semester 7",
+                "modules" : ["ESP4901"]
+            },
+            {
+                "name" : "Semester 8",
+                "modules" : ["ESP4901", "CM3296", "ESP3903"]
+            }
+        ]
+    },
+    {
+        "name": "ESP + CS Minor",
+        "semesters" : [
+            {
+                "name" : "Semester 1",
+                "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
+            },
+            {
+                "name" : "Semester 2",
+                "modules" : ["ESP2111", "MA1508E", "PF1101", "DTK1234", "GEA1000"]
+            },
+            {
+                "name" : "Semester 3",
+                "modules" : ["ES2531", "IE2141", "ESP2107", "CS1231"]
+            },
+            {
+                "name" : "Semester 4",
+                "modules" : ["EG2501", "EE2211", "ESP2110", "PC2133", "CS2040"]
+            },
+            {
+                "name" : "Semester 5",
+                "modules" : ["EG3611A", "ESP2106"]
+            },
+            {
+                "name" : "Semester 6",
+                "modules" : ["PC2130B", "EG2401A", "CS2030"]
+            },
+            {
+                "name" : "Semester 7",
+                "modules" : ["ESP4901"]
+            },
+            {
+                "name" : "Semester 8",
+                "modules" : ["ESP4901", "CM3296", "ESP3903"]
+            }
+        ]
+    },
+    {
+        "name": "ESP + Physics Minor",
+        "semesters" : [
+            {
                 "name" : "Year 1  -  Semester 1",
                 "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
             },
@@ -12,33 +86,64 @@
             },
             {
                 "name" : "Semester 3",
-                "modules" : ["ESP2107"]
+                "modules" : ["ES2531", "IE2141", "ESP2107", "PC1101"]
+            },
+            {
+                "name" : "Semester 4",
+                "modules" : ["EG2501", "EE2211", "ESP2110", "PC2133", "PC2174A"]
+            },
+            {
+                "name" : "Semester 5",
+                "modules" : ["EG3611A", "ESP2106", "PC2193"]
+            },
+            {
+                "name" : "Semester 6",
+                "modules" : ["PC2130B", "EG2401A"]
+            },
+            {
+                "name" : "Semester 7",
+                "modules" : ["ESP4901", "PC2032"]
+            },
+            {
+                "name" : "Semester 8",
+                "modules" : ["ESP4901", "CM3296", "ESP3903"]
             }
         ]
     },
     {
-        "name": "Spam Minors",
+        "name": "ESP (Nano Spec)",
         "semesters" : [
             {
-                "name" : "Semester 1",
-                "modules" : ["ESP1111", "CS1010E"]
+                "name" : "Year 1  -  Semester 1",
+                "modules" : ["ESP1111", "CS1010E", "MA1511", "MA1512", "EG1311"]
             },
             {
                 "name" : "Semester 2",
-                "modules" : ["ESP2111", "GEA1000"]
+                "modules" : ["ESP2111", "MA1508E", "PF1101", "DTK1234", "GEA1000"]
             },
             {
                 "name" : "Semester 3",
-                "modules" : ["ESP2106"]
-            }
-        ]
-    },
-    {
-        "name": "Balanced",
-        "semesters" : [
+                "modules" : ["ES2531", "IE2141", "ESP2107", "PC1101"]
+            },
             {
-                "name" : "Semester 1",
-                "modules" : ["ESP1111", "CS1010E"]
+                "name" : "Semester 4",
+                "modules" : ["EG2501", "EE2211", "ESP2110", "PC2133", "PC2174A"]
+            },
+            {
+                "name" : "Semester 5",
+                "modules" : ["EG3611A", "ESP2106", "PC2193"]
+            },
+            {
+                "name" : "Semester 6",
+                "modules" : ["PC2130B", "EG2401A"]
+            },
+            {
+                "name" : "Semester 7",
+                "modules" : ["ESP4901", "PC2032"]
+            },
+            {
+                "name" : "Semester 8",
+                "modules" : ["ESP4901", "CM3296", "ESP3903"]
             }
         ]
     }
